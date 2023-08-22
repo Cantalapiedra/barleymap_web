@@ -169,6 +169,9 @@ class HtmlLayoutBarleymap(object):
             text_buffer.append("""
             <br/><strong>Latest changes</strong>
             <br/>
+            <br/>22-08-2023:<br/>
+            . Results can now be correctly exported as CSV files after fixing bug.
+            <br/>
             <br/>19-06-2023:<br/>
             . Mapped DartSeq markers on MorexV3 by user request.
             <br/>

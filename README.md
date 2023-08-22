@@ -146,7 +146,7 @@ app_path PATH_TO_BARLEYMAP_DIR
 genmap_path app_aux/
 split_blast_path app_aux/
 
-# Absolute paths to temporary and datasets folders
+# Absolute paths to temporary and datasets folders, tmp_files_path should not have final /
 tmp_files_path PATH_TO_BARLEYMAP_DIR/tmp_files
 datasets_path PATH_TO_BARLEYMAP_DIR/datasets/
 annot_path PATH_TO_BARLEYMAP_DIR/datasets_annotation/

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # HtmlComponentsHelp.py is part of Barleymap web app.
-# Copyright (C) 2017 Carlos P Cantalapiedra.
+# Copyright (C) 2017-2023 Carlos P Cantalapiedra.
 # (terms of use can be found within the distributed LICENSE file).
 
 class HtmlComponentsHelp(object):
@@ -202,7 +202,7 @@ class HtmlComponentsHelp(object):
                                 <b>BOPA2</b> dataset<sup>[4][11]</sup>: bears 1,536 sequences.
                                 "BOPA consensus" identifiers must be provided (e.g.: 12_31342, i_12_31342, BOPA2_12_31342).
                                 <br/>
-                                A full list of markers, different identifiers and their sequences can be found at [4][11] (supplementary Table S10).
+                                A full list of markers, different identifiers and their sequences can be found at [4][11] (supplementary Table S10; "POPA" identifiers are also used often, see Table S14). 
                             </li>
                             
                             <li>

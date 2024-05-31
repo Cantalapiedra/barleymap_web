@@ -4,9 +4,11 @@
 # html_writer_maps.py is part of Barleymap web app.
 # Copyright (C)  2013-2014  Carlos P Cantalapiedra.
 # Copyright (C)  2017  Carlos P Cantalapiedra.
+# Copyright (C)  2024 Bruno Contreras Moreira 
 # (terms of use can be found within the distributed LICENSE file).
 
 import sys
+import requests 
 
 from barleymapcore.m2p_exception import m2pException
 #from barleymapcore.maps.MapsBase import MapTypes
@@ -31,7 +33,9 @@ class HtmlMapsWriter():
     
     def get_output_buffer(self):
         return self.output_buffer
-    
+   
+    ## never used? probably drafted by Carlos ##
+
     def __interpro_html_link(self, ipr_code):
         if ipr_code != "-":
             retValue = '<a href="http://www.ebi.ac.uk/interpro/entry/'+ipr_code+'" rel="external" target="_blank">'+ipr_code+'</a>'
@@ -62,6 +66,26 @@ class HtmlMapsWriter():
         return '<a href="http://plants.ensembl.org/Hordeum_vulgare/Gene/Summary?g='+str(gene_id)+'" \
                         rel="external" target="_blank">'+str(gene_id)+'</a>'
     
+    ## ----------------------- ##
+
+    # only for pangenes with MorexV3 genes, see https://github.com/eead-csic-compbio/barley_pangenes
+    # example URL:
+    # https://www.ncbi.nlm.nih.gov/projects/msaviewer/?url=https://floresta.eead.csic.es/barley_pangenes_msa/gene:HORVU.MOREX.r3.1HG0006490.cds.faa
+
+    def __pangene_html_link(self, gene_id):
+        if gene_id.startswith("HORVU.MOREX.r3"):
+            panurl = 'https://floresta.eead.csic.es/barley_pangenes_msa/gene:'+gene_id+'.cds.faa'
+            if requests.head(panurl).ok:
+                retValue = '<a href="https://www.ncbi.nlm.nih.gov/projects/msaviewer/?url='+panurl+'"' \
+                           'rel="external" target="_blank">'+gene_id+'</a>'
+            else:
+                retValue = gene_id
+
+        else:
+            retValue = gene_id
+        
+        return retValue    
+
     def __output_html_positions_base_header(self, map_as_physical, map_has_cm_pos, map_has_bp_pos, multiple_param, table_id = "positions_table"):
         
         self.output_buffer.append('<table id="'+table_id+'">') #
@@ -108,7 +132,7 @@ class HtmlMapsWriter():
         
         ## Marker ID
         marker_id = str(pos.get_marker_id())#pos[MapFields.MARKER_NAME_POS]
-        self.output_buffer.append(td+str(marker_id)+"</td>")
+        self.output_buffer.append(td+self.__pangene_html_link(marker_id)+"</td>")
         
         ## Chromosome
         chrom = pos.get_chrom_name()#pos[MapFields.MARKER_CHR_POS]

@@ -1,10 +1,11 @@
 
 ## Contents
 
- - 1: [Barleymap overview](https://github.com/Cantalapiedra/barleymap#1-barleymap-overview)
- - 2: [Prerequisites](https://github.com/Cantalapiedra/barleymap#2-prerequisites)
- - 3: [Installation and configuration](https://github.com/Cantalapiedra/barleymap#3-installation-and-configuration)
- - 4: [Tools and algorithms](https://github.com/Cantalapiedra/barleymap#4-tools-and-algorithms)
+ - 1: [Barleymap overview](https://github.com/Cantalapiedra/barleymap_web#1-barleymap-overview)
+ - 2: [Prerequisites](https://github.com/Cantalapiedra/barleymap_web#2-prerequisites)
+ - 3: [Installation and configuration](https://github.com/Cantalapiedra/barleymap_web#3-installation-and-configuration)
+ - 4: [Tools and algorithms](https://github.com/Cantalapiedra/barleymap_web#4-tools-and-algorithms)
+ - 5: [Citation](https://github.com/Cantalapiedra/barleymap_web#5-citation)
  
 ## 1) Barleymap overview
 
@@ -1020,3 +1021,7 @@ whereas for small dataset files is likely better to not use index files.
 README is part of Barleymap.
 Copyright (C)  2013-2014  Carlos P Cantalapiedra.
 (terms of use can be found within the distributed LICENSE file).
+
+## 5) Citation
+
+Cantalapiedra, C.P., Boudiar, R., Casas, A.M. et al. BARLEYMAP: physical and genetic mapping of nucleotide sequences and annotation of surrounding loci in barley. Mol Breeding 35, 13 (2015). https://doi.org/10.1007/s11032-015-0253-1

@@ -148,7 +148,7 @@ class HtmlLayoutBarleymap(object):
             <h2><a href="{1}/">Barleymap</a></h2>
             <h3 class="infobar">({0})</h3>
         </header>
-        """.format("Map markers to the barley genome - MorexV3 2021 edition", base_url)
+        """.format("Map markers to the barley genome - MorexV3 + pangenes 2024 edition", base_url)
     
     @staticmethod
     def footer():
@@ -167,9 +167,12 @@ class HtmlLayoutBarleymap(object):
         text_buffer = []
         if show_last_changes:
             text_buffer.append("""
-            <br/><strong>Latest changes</strong>
+            <br/><strong>Latest changes</strong><br/>
+            <br/>31-05-2024:<br/>
+            . MorexV3 HC genes in maps now link out to multiple protein alignments of barley pangenes, read more at the <a href="https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html">blog</a>.
+            <br/>
             <br/>08-02-2024:<br/>
-            . Check out barley pangenes and their conservation at <a href="https://eead-csic-compbio.github.io/barley_pangenes">https://eead-csic-compbio.github.io/barley_pangenes/</a>.
+            . Check out barley pangenes and their conservation at <a href="https://eead-csic-compbio.github.io/barley_pangenes">https://eead-csic-compbio.github.io/barley_pangenes</a>
             <br/>
             <br/>22-08-2023:<br/>
             . Results can now be correctly exported as CSV files after fixing bug.
@@ -215,7 +218,8 @@ class HtmlLayoutBarleymap(object):
             , <a href="https://galaxy-web.ipk-gatersleben.de/" target="_blank">IPK</a> 
             , <a href="http://doi.org/10.5447/ipk/2021/3" target="_blank">e!DAL</a>
             , <a href="https://ics.hutton.ac.uk/barleyrtd" target="_blank">Barley RTD</a>
-            and the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_904849725.1" target="_blank">NCBI</a>.
+            the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_904849725.1" target="_blank">NCBI</a>
+            and https://eead-csic-compbio.github.io/barley_pangenes
             <br/><br/>
             
             The <strong><i><a href="{2}/find/">Find markers</a></i></strong> option allows to find the position of markers by using their identifiers as input.
@@ -234,7 +238,7 @@ class HtmlLayoutBarleymap(object):
             <br/><br/>
             
             In addition to locate a list of markers or sequences,
-            <strong><a href="{0}#genes_markers_enrichment_and_annotation">information of genes, genetic markers, and anchored features,</a></strong>
+            <strong><a href="{0}#genes_markers_enrichment_and_annotation">information of genes and pangenes, genetic markers, and anchored features,</a></strong>
             that enrich the context around or between the queries will be shown.<br/><br/>
             
             <strong><a href="https://github.com/Cantalapiedra/barleymap_web">Barleymap web</a></strong> 
@@ -306,6 +310,14 @@ class HtmlLayoutBarleymap(object):
             BaRTv1.0: an improved barley reference transcript dataset to determine accurate changes in the barley transcriptome using RNA-seq
             </a>
             BMC Genomics 20:968 doi:10.1186/s12864-019-6243-7
+            </cite>
+            </br>
+
+            <cite><sup>[7]</sup>Contreras-Moreira et al. 2023
+            <a href="https://doi.org/10.1186/s13059-023-03071-z" target="_blank">
+            GET_PANGENES: calling pangenes from plant genome alignments confirms presence-absence variation
+            </a>
+            Genome Biol 24, 223 doi: 10.1186/s13059-023-03071-z
             </cite>
 
 

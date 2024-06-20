@@ -689,7 +689,7 @@ instead of just the unaligned ones. For the "exhaustive" algorithm, the "align t
 should be moved to the box "Retrieve map positions" and change the tag "unaligned" to "unmapped".
 </sub>
 <p align="center">
-  <img width="450" height="470" src="http://floresta.eead.csic.es/barleymap/img/barleymap_popseq.pipeline_2.png">
+  <img width="450" height="470" src="https://github.com/Cantalapiedra/barleymap_web/blob/master/img/barleymap_popseq.pipeline_2.png">
 </p>
 
 In addition there are three **versions of the algorithm**: "greedy", "hierarchical" and "exhaustive".

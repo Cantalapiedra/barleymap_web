@@ -552,7 +552,7 @@ Gene000090	GO:0005524
 
 NOTE: in the web version of barleymap some of the options and parameters, which can be changed in
 the standalone version, have been fixed. Check
-[http://floresta.eead.csic.es/barleymap/help/](http://floresta.eead.csic.es/barleymap/help/).
+[https://barleymap.eead.csic.es/barleymap/help](https://barleymap.eead.csic.es/barleymap/help).
 
 ### 4.1) Main tools
 

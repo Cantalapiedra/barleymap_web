@@ -168,6 +168,9 @@ class HtmlLayoutBarleymap(object):
         if show_last_changes:
             text_buffer.append("""
             <br/><strong>Latest changes</strong><br/>
+            <br/>25-10-2024:<br/>
+            . Updated barley pangenes to v04102024.
+            <br/>
             <br/>31-05-2024:<br/>
             . MorexV3 HC genes in maps now link out to multiple protein alignments of barley pangenes, read more at the <a href="https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html">blog</a>.
             <br/>

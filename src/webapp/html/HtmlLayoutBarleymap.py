@@ -168,29 +168,30 @@ class HtmlLayoutBarleymap(object):
         if show_last_changes:
             text_buffer.append("""
             <br/><strong>Latest changes</strong><br/>
+            <br/>03-06-2025:<br/>
+            . Added BarT2 and panBaRT genes to facilitate cross-analysis at <a href="https://ics.hutton.ac.uk/eorna/index.html">EoRNA</a> and <a href="https://ics.hutton.ac.uk/panbart20/index.html">panBaRT</a>.
+            <br/>            
+            <br/>19-05-2025:<br/>
+            . Updated pangenes, made with pangenomeV2 annotated assemblies & <a href="https://doi.org/10.1186/s13059-023-03071-z">GET_PANGENES</a> v14052025. Relies on <a ref="https://www.ncbi.nlm.nih.gov/projects/msaviewer">NCBI Multiple Sequence Alignment Viewer</a>. 
+            <br/>
             <br/>25-10-2024:<br/>
-            . Updated barley pangenes to v04102024.
+            . Updated pangenes, made with <a href="https://doi.org/10.1186/s13059-023-03071-z">GET_PANGENES</a> v04102024.
             <br/>
             <br/>31-05-2024:<br/>
-            . MorexV3 HC genes in maps now link out to multiple protein alignments of barley pangenes, read more at the <a href="https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html">blog</a>.
-            <br/>
-            <br/>08-02-2024:<br/>
-            . Check out barley pangenes and their conservation at <a href="https://eead-csic-compbio.github.io/barley_pangenes">https://eead-csic-compbio.github.io/barley_pangenes</a>
+            . MorexV3 HC genes in maps now link out to protein alignments of pangenes<sup>[7]</sup>, read more at the <a href="https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html">blog</a>.<br/> 
+            . You can browse all pangenes, even those absent in MorexV3, at <a href="https://eead-csic-compbio.github.io/barley_pangenes">https://eead-csic-compbio.github.io/barley_pangenes</a>
             <br/>
             <br/>22-08-2023:<br/>
             . Results can now be correctly exported as CSV files after fixing bug.
-            <br/>
-            <br/>19-06-2023:<br/>
-            . Mapped DartSeq markers on MorexV3 by user request.
             <br/>
             <br/>15-03-2023:<br/>
             . Moved to new server and updated URL (<a href="https://barleymap.eead.csic.es">https://barleymap.eead.csic.es</a>).
             <br/>
             <br/>14-06-2022:<br/>
-            . Added lifted-over IBSC 2012 & 2016 gene models to MorexV3 map.
+            . Added lifted-over IBSC 2012 & 2016 gene models to MorexV3 map. DartSeq markers mapped later by user request.
             <br/>
             <br/>04-11-2021:<br/>
-            · Added MorexV3 map + centromeres, PGSB and BaRT1.0 gene models and NCBI Entrez CDS sequeces (see release <a href='https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html'>notes</a>).
+            · Added MorexV3map <sup>[5]</sup>, centromeres, PGSB and BaRT1.0 gene models <sup>[6]</sup> and NCBI Entrez CDS sequeces (see release <a href='https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html'>notes</a>).
             <br/>
             <br/>17-08-2018:<br/>
             · Added POPSEQ map updated with 2017 data<sup>[3]</sup> (POPSEQ_2017).
@@ -222,7 +223,7 @@ class HtmlLayoutBarleymap(object):
             , <a href="http://doi.org/10.5447/ipk/2021/3" target="_blank">e!DAL</a>
             , <a href="https://ics.hutton.ac.uk/barleyrtd" target="_blank">Barley RTD</a>
             the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_904849725.1" target="_blank">NCBI</a>
-            and https://eead-csic-compbio.github.io/barley_pangenes
+            and <a href="https://eead-csic-compbio.github.io/barley_pangenes">barley_pangenes</a>
             <br/><br/>
             
             The <strong><i><a href="{2}/find/">Find markers</a></i></strong> option allows to find the position of markers by using their identifiers as input.
@@ -261,7 +262,12 @@ class HtmlLayoutBarleymap(object):
             <br/>
             <a href="mailto:bcontreras@eead.csic.es">Bruno Contreras-Moreira</a>
             <br/><br/>
-            
+           
+            <strong>Funding</strong>
+            This work was funded by DGA-Obra Social La Caixa [GA-LC-059-2011], the Spanish Ministry of Science and Innovation [AGL2010-21929,RTA2009-00006-C04-02,
+            PID2022-142116OB-I00],Horizon 2020 [PRIMA GENDIBAR, PCI2019-103526], Government of Aragon [A08_23R] and CSIC [FAS2022_052, INFRA24018].
+            <br/><br/>
+
             <strong>Citation:</strong>
             <a href="http://link.springer.com/article/10.1007%2Fs11032-015-0253-1">{1}</a>
             <br/><br/>

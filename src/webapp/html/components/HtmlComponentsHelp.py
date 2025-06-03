@@ -274,6 +274,14 @@ class HtmlComponentsHelp(object):
                             45,619 genes.
                             (e.g.: BART1_0-u00002).</li>
 
+                            <li><b>BaRT 2.18 transcript isoforms</b><sup>[15]</sup>: MorexV3 only.
+                            133647 transcripts.
+                            (e.g.: BaRT2v18chr1HG000020.1).</li>            
+
+                            <li><b>panBaRT20 transcript isoforms</b><sup>[16]</sup>: MorexV3 only.
+                            565817 transcripts.
+                            (e.g.: PanBaRT20_chr1HG00001.1).</li>
+
                             <li><b>Entrez CDS</b>: MorexV3 only.
                             292 sequences (e.g.: BAO51910.1, LEA3).</li>						 
 
@@ -663,6 +671,9 @@ class HtmlComponentsHelp(object):
                     <br/>
                     <cite><sup>[15]</sup><a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-019-6243-7"
                                             target="_blank">Rapazote-Flores et al. 2019</a></cite>
+                    <br/>
+                    <cite><sup>[16]</sup><a href="https://www.nature.com/articles/s41597-021-00872-4"
+                                            target="_blank">Milne et al. 2021</a></cite>
                     <br/>
                 </section>
                 <br/>

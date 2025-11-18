@@ -3,6 +3,7 @@
 
 # RunQuery.py is part of Barleymap web app.
 # Copyright (C) 2017  Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 import sys, traceback
@@ -212,6 +213,58 @@ class Root():
         
         return output
     
+    @cherrypy.expose
+    def graph(self, action = "", query = "", multiple = "", sort = "",
+              show_markers = "", show_genes = "", show_anchored = "",
+              show_main = "", show_how = "",
+              load_annot = "", extend = "", extend_cm = "", extend_bp = "",
+              maps = "", send_email = "", email_to = "", user_file = None,
+              aligner = "", threshold_id = "", threshold_cov = ""):
+
+        sys.stderr.write("server.py: request to /mapmarkers/graph\n")
+
+        try:
+            bmap_settings = cherrypy.request.app.config['bmapsettings']
+
+            form = FormsFactory.get_graph_form_new(query, multiple, sort,
+                                                   show_markers, show_genes, show_anchored,
+                                                   show_main, show_how,
+                                                   extend, extend_cm, extend_bp,
+                                                   maps, send_email, email_to, user_file,
+                                                     aligner, threshold_id, threshold_cov)
+
+            form.set_session(cherrypy.session)
+
+            paths_config = PathsConfig.from_dict(cherrypy.request.app.config[self.PATHS_CONFIG])
+
+            app_name = bmap_settings[APP_NAME]
+            n_threads = bmap_settings[N_THREADS]
+            max_queries = bmap_settings[MAX_QUERIES]
+
+            bmap = Bmap(paths_config, DEFAULT_SORT_PARAM, max_queries, ALIGN_ACTION, n_threads, app_name, self.VERBOSE)
+
+            results = bmap.align(form)
+
+            csv_files = bmap.csv_files(results, form)
+
+            output = bmap.output(results, form, self._get_html_layout(bmap_settings), csv_files)
+
+            email_conf = bmap_settings[EMAIL_CONF]
+
+            bmap.email(form, csv_files, email_conf)
+
+        except m2pException as m2pe:
+            sys.stderr.write(str(m2pe)+"\n")
+            traceback.print_exc(file=sys.stderr)
+            output = str(m2pe)
+
+        except Exception, e:
+            sys.stderr.write(str(e)+"\n")
+            traceback.print_exc(file=sys.stderr)
+            output = "There was a server error. Please, contact with PrunusMap web application administrators."
+
+        return output
+
     @cherrypy.expose
     def locate(self, action = "", query = "", multiple = "", sort = "",
              show_markers = "", show_genes = "", show_anchored = "",

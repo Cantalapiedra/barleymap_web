@@ -3,6 +3,7 @@
 
 # Bmap.py is part of Barleymap web app.
 # Copyright (C) 2017  Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 import sys, tempfile, os, csv
@@ -33,6 +34,7 @@ ANNOTATION_TYPES_CONF = ConfigBase.ANNOTATION_TYPES_CONF
 FIND_ACTION = "find"
 ALIGN_ACTION = "align"
 LOCATE_ACTION = "locate"
+GRAPH_ACTION = "graph"
 
 class Bmap(object):
     _paths_config = None
@@ -79,7 +81,7 @@ class Bmap(object):
         ## Preprocessing and format control of input data (either uploaded file and text area)
         # FASTA FORMAT
         if input_lines[0].startswith(">"):
-            if action == ALIGN_ACTION:
+            if action == ALIGN_ACTION or action == GRAPH_ACTION:
                 
                 ## LIMIT OF QUERIES ACCEPTED IN THE WEB 20140529
                 num_queries = len([x for x in input_lines if x.startswith(">")])
@@ -88,7 +90,7 @@ class Bmap(object):
                 
                 if num_queries > max_queries:
                     if self._verbose: sys.stderr.write("NUM QUERIES ******************** "+str(num_queries)+" ---- "+str(max_queries)+"\n")
-                    raise m2pException("The web application only accepts currently "+str(max_queries)+" in the alignment mode.\
+                    raise m2pException("The web application only accepts currently "+str(max_queries)+" in the align/graph modes.\
                                        We counted "+str(num_queries)+" in your request.\
                                        We would recommend you to use the standalone version.")
                 
@@ -101,7 +103,7 @@ class Bmap(object):
                 
         # NO fasta format
         else:
-            if action == ALIGN_ACTION:
+            if action == ALIGN_ACTION or GRAPH_ACTION:
                 raise m2pException("The input for "+ALIGN_ACTION+" action must be in FASTA format.")
             elif action == FIND_ACTION or action == LOCATE_ACTION:
                 pass # OK
@@ -356,7 +358,122 @@ class Bmap(object):
             all_mapping_results.append(mapping_results)
             
         return all_mapping_results
-    
+   
+    ##
+    def graph(self, align_form):
+
+        input_file_name = self.__get_input_file(align_form)
+
+        ## Configuration files and paths
+        paths_config = self._paths_config
+        __app_path = paths_config.get_app_path()
+
+        # Maps
+        maps_conf_file = __app_path+MAPS_CONF
+        maps_config = MapsConfig(maps_conf_file)
+        if align_form.get_maps():
+            maps = align_form.get_maps()
+
+            if isinstance(maps, basestring): maps = [maps]
+
+            maps_names = maps_config.get_maps_names(maps)
+            maps_ids = maps#maps_config.get_maps_ids(maps_names.strip().split(","))
+        else:
+            maps_ids = maps_config.get_maps().keys()
+            maps_names = ",".join(maps_config.get_maps_names(maps_ids))
+
+        maps_path = paths_config.get_maps_path() #__app_path+config_path_dict["maps_path"]
+
+        ############# ALIGNMENTS - REFERENCES
+
+        # Databases
+        databases_conf_file = __app_path+DATABASES_CONF
+        databases_config = DatabasesConfig(databases_conf_file, self._verbose)
+
+        alignment_facade = AlignmentFacade(paths_config, verbose = self._verbose)
+
+        ############ Pre-loading of some objects
+        ############
+        # DatasetsFacade
+        # Datasets config
+        datasets_conf_file = __app_path+DATASETS_CONF
+        datasets_config = DatasetsConfig(datasets_conf_file)
+        datasets_ids = datasets_config.get_datasets().keys()
+
+        # Load DatasetsFacade
+        datasets_path = paths_config.get_datasets_path() #__app_path+config_path_dict["datasets_path"]
+        datasets_facade = DatasetsFacade(datasets_config, datasets_path, maps_path, verbose = self._verbose)
+
+        # Temp directory
+        tmp_files_dir = paths_config.get_tmp_files_path()
+
+        ########### Create maps
+        ###########
+        sort_param = align_form.get_sort()
+        multiple_param = True if align_form.get_multiple()=="1" else False
+        show_markers = True if align_form.get_show_markers() == "1" else False
+        show_genes = True if align_form.get_show_genes() == "1" else False
+        show_anchored = True if align_form.get_show_anchored() == "1" else False
+        show_main = True if align_form.get_show_main() == "1" else False
+        show_how = SHOW_ON_MARKERS if align_form.get_show_how() == "1" else SHOW_ON_INTERVALS
+        collapsed_view = align_form.get_collapsed_view()
+        constrain_fine_mapping = True
+        best_score = True
+
+        aligner = align_form.get_aligner()
+        if "," in aligner:
+            aligner_list = aligner.strip().split(",")
+        else:
+            aligner_list = [aligner]
+
+        sys.stderr.write("BMAP aligner_list: "+str(aligner_list)+"\n")
+
+        threshold_id = float(align_form.get_threshold_id())
+        threshold_cov = float(align_form.get_threshold_cov())
+
+        all_mapping_results = []
+        for map_id in maps_ids:
+            sys.stderr.write("bmap_align_graph: Map "+map_id+"\n")
+
+            map_config = maps_config.get_map_config(map_id)
+            databases_ids = map_config.get_db_list()
+
+            sort_by = map_config.check_sort_param(map_config, sort_param, self._default_sort)
+
+            if align_form.get_extend() != "":
+                if sort_by == MapTypes.MAP_SORT_PARAM_CM:
+                    extend_window = float(align_form.get_extend_cm())
+                elif sort_by == MapTypes.MAP_SORT_PARAM_BP:
+                    extend_window = float(align_form.get_extend_bp())
+            else:
+                extend_window = 0
+
+            mapMarkers = MapMarkers(maps_path, map_config, alignment_facade, self._verbose)
+
+            mapMarkers.perform_mappings(input_file_name, databases_ids, databases_config, aligner_list,
+                                        threshold_id, threshold_cov, self._n_threads,
+                                        best_score, sort_by, multiple_param, tmp_files_dir)
+
+            # GenesAnnotator
+            #load_annot = True always
+            annotator = self._get_annotator(show_genes)
+
+            if show_main:
+                datasets_ids = map_config.get_main_datasets()
+
+            mapMarkers.enrichment(annotator, show_markers, show_genes, show_anchored, show_how,
+                                  datasets_facade, datasets_ids, extend_window, collapsed_view, constrain_fine_mapping = False)
+            mapping_results = mapMarkers.get_mapping_results()
+
+            sys.stderr.write("Num mapping results:"+str(len(mapping_results.get_mapped()))+"\n")
+
+            mapping_results.set_annotator(annotator)
+
+            all_mapping_results.append(mapping_results)
+
+        return all_mapping_results
+
+
     ##
     def locate(self, form):
         

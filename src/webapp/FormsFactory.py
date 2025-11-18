@@ -3,6 +3,7 @@
 
 # FormsFactory.py is part of Barleymap web app.
 # Copyright (C) 2017  Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 #import sys
@@ -54,7 +55,53 @@ class FormsFactory(object):
         align_form = AlignForm.init_from_session(session, DEFAULT_ALIGNER, DEFAULT_THRESHOLD_ID, DEFAULT_THRESHOLD_COV)
         
         return align_form
-    
+   
+    @staticmethod
+    def get_graph_form_new(query = "", multiple = "", sort = "",
+                           show_markers = "", show_genes = "", show_anchored = "",
+                           show_main = "", show_how = "",
+                           extend = "", extend_cm = "", extend_bp = "",
+                           maps = "", send_email = "", email_to = "", user_file = None,
+                           aligner = "", threshold_id = "", threshold_cov = ""):
+
+        form = GraphForm()
+
+        form.set_parameters(query, multiple, sort,
+                           show_markers, show_genes, show_anchored,
+                           show_main, show_how,
+                           extend, extend_cm, extend_bp,
+                           maps, send_email, email_to, user_file)
+
+        form.set_aligner(aligner)
+        form.set_threshold_id(threshold_id)
+        form.set_threshold_cov(threshold_cov)
+
+        return form
+
+    @staticmethod
+    def get_graph_form_empty(DEFAULT_GENES_WINDOW_CM, DEFAULT_GENES_WINDOW_BP,
+                             DEFAULT_GRAPHS, DEFAULT_ALIGNER_GRAPH,
+                             DEFAULT_THRESHOLD_ID, DEFAULT_THRESHOLD_COV):
+
+        align_form = GraphForm()
+
+        align_form.set_extend_cm(DEFAULT_GENES_WINDOW_CM)
+        align_form.set_extend_bp(DEFAULT_GENES_WINDOW_BP)
+        align_form.set_maps(DEFAULT_GRAPHS)
+        align_form.set_aligner(DEFAULT_ALIGNER_GRAPH)
+        align_form.set_threshold_id(DEFAULT_THRESHOLD_ID)
+        align_form.set_threshold_cov(DEFAULT_THRESHOLD_COV)
+
+        return align_form
+
+    @staticmethod
+    def get_graph_form_session(session, DEFAULT_ALIGNER_GRAPH, DEFAULT_THRESHOLD_ID, DEFAULT_THRESHOLD_COV):
+        align_form = None
+
+        align_form = GraphForm.init_from_session(session, DEFAULT_ALIGNER_GRAPH, DEFAULT_THRESHOLD_ID, DEFAULT_THRESHOLD_COV)
+
+        return align_form
+
     @staticmethod
     def get_find_form_new(query = "", multiple = "", sort = "",
                            show_markers = "", show_genes = "", show_anchored = "",
@@ -461,7 +508,80 @@ class AlignForm(InputForm):
         ret_value.append("Threshold_cov: "+self.get_threshold_cov())
         
         return "\n".join(ret_value)
-    
+
+class GraphForm(InputForm):
+
+    ALIGNER = "aligner"
+    THRESHOLD_ID = "threshold_id"
+    THRESHOLD_COV = "threshold_cov"
+
+    _action = "graph"
+    _aligner = ""
+    _threshold_id = ""
+    _threshold_cov = ""
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def init_from_session(session, DEFAULT_ALIGNER_GRAPH, DEFAULT_THRESHOLD_ID, DEFAULT_THRESHOLD_COV):
+
+        new_form = GraphForm()
+
+        InputForm.init_from_session(session, new_form)
+
+        if session[new_form.ACTION] != new_form.get_action():
+            new_form._aligner = DEFAULT_ALIGNER_GRAPH
+            new_form._threshold_id = DEFAULT_THRESHOLD_ID
+            new_form._threshold_cov = DEFAULT_THRESHOLD_COV
+        else:
+            new_form._aligner = session.get(new_form.ALIGNER)
+            new_form._threshold_id = session.get(new_form.THRESHOLD_ID)
+            new_form._threshold_cov = session.get(new_form.THRESHOLD_COV)
+
+        new_form._is_empty = False
+
+        return new_form
+
+    def set_session(self, session):
+
+        self.set_session_input_form(session)
+
+        session[self.ALIGNER] = self.get_aligner()
+        session[self.THRESHOLD_ID] = self.get_threshold_id()
+        session[self.THRESHOLD_COV] = self.get_threshold_cov()
+
+        return
+
+    def get_aligner(self, ):
+        return self._aligner
+
+    def set_aligner(self, aligner):
+        self._aligner = aligner
+
+    def get_threshold_id(self, ):
+        return self._threshold_id
+
+    def set_threshold_id(self, threshold_id):
+        self._threshold_id = threshold_id
+
+    def get_threshold_cov(self, ):
+        return self._threshold_cov
+
+    def set_threshold_cov(self, threshold_cov):
+        self._threshold_cov = threshold_cov
+
+    def as_params_string(self, ):
+        ret_value = []
+
+        ret_value.append(self.as_params_string_input_form())
+
+        ret_value.append("Aligner: "+self.get_aligner())
+        ret_value.append("Threshold Id: "+self.get_threshold_id())
+        ret_value.append("Threshold_cov: "+self.get_threshold_cov())
+
+        return "\n".join(ret_value)    
+
 
 class FindForm(InputForm):
     

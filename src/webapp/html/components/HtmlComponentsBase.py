@@ -3,6 +3,7 @@
 
 # HtmlComponentsBase.py is part of Barleymap web app.
 # Copyright (C) 2017 Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 import sys
@@ -43,7 +44,28 @@ class HtmlComponentsBase(object):
         """)
         
         return "".join(output)
-    
+   
+    @staticmethod
+    def _load_query_area_graph(input_query, user_file, legend, action, name = "query"):
+        output = []
+
+        output.append("""
+                <!-- QUERY AREA -->
+                <fieldset style="border:none">
+                    <legend>{2}
+                        <input type="button" id="graph_demo_button" value="demo" class="demobutton"/>
+                        <input type="button" id="clear_demo_button" value="clear" class="demobutton"/>
+                    </legend>
+                    <textarea rows="16" cols="100" id="{1}_{3}" name="{3}"
+                    autofocus="autofocus">{0}</textarea>
+                    """.format(input_query, action, legend, name))
+        output.append(HtmlComponentsBase._load_input_file(user_file))
+        output.append("""
+                </fieldset>
+        """)
+
+        return "".join(output)
+
     @staticmethod
     def _load_query_area_find(input_query, user_file, legend, action, name = "query"):
         output = []
@@ -361,7 +383,56 @@ class HtmlComponentsBase(object):
                 """)
         
         return "".join(output)
-    
+   
+    @staticmethod
+    def _load_graph_alignment_area(threshold_id, threshold_cov):
+        output = []
+
+        output.append("""
+                <fieldset id="alignment_fieldset" style="border:solid thin;">
+                <legend>Choose an action:</legend>
+                    <select name="aligner" id="aligner">
+                    """)
+
+        output.append('             <option value="align2graph" selected>nucleotide sequences</option>')
+
+        output.append("""
+                    </select>
+                    <span id="algorithm_text" class="explain_text">Perform align2graph search. Input must be nucleotide sequences in FASTA format.</span>
+                    <br/>
+                    <br/>
+                    <label for="threshold_id">min. id.</label>
+                    <input type="number" name="threshold_id" id="threshold_id" pattern="[0-9]+[\.][0-9]+" step="0.1" min="0.1" max="100.0"
+                        """)
+
+        ############# ALIGNMENT THRESHOLDS
+        #if not threshold_id or threshold_id == "":
+        #    myvar = ' value="'+str(def_threshold_id)+'"'
+        #    output.append(myvar)
+        #else:
+        myvar = ' value="'+str(threshold_id)+'"' # If I dont do the cast, it crashes
+        output.append(myvar)
+
+        output.append("""
+                            style="text-align:right;width:4em"/>
+                    
+                    <label for="threshold_cov">min. query cov.</label>
+                    <input type="number" name="threshold_cov" id="threshold_cov" pattern="[0-9]+[\.][0-9]+" step="0.1" min="0.1" max="100.0"
+                        """)
+        #if not threshold_cov or threshold_cov == "":
+        #    myvar = ' value="'+str(def_threshold_cov)+'"'
+        #    output.append(myvar)
+        #else:
+        myvar = ' value="'+str(threshold_cov)+'"' # If I dont do the cast, it crashes
+        output.append(myvar)
+
+        output.append("""
+                            style="text-align:right;width:4em"/>
+                    </fieldset>
+                    """)
+
+        return "".join(output)
+
     @staticmethod
     def _load_alignment_area(aligner, threshold_id, threshold_cov):
         output = []

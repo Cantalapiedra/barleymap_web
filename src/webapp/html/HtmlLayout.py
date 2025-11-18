@@ -3,6 +3,7 @@
 
 # HtmlLayout.py is part of Barleymap web app.
 # Copyright (C) 2017  Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 from components.HtmlComponents import HtmlComponents
@@ -10,6 +11,7 @@ from components.HtmlComponents import HtmlComponents
 from HtmlLayoutBarleymap import HtmlLayoutBarleymap
 
 PREFIX_UI_CTRLS_ALIGN = "align"
+PREFIX_UI_CTRLS_GRAPH = "graph"
 PREFIX_UI_CTRLS_FIND = "find"
 PREFIX_UI_CTRLS_LOCATE = "locate"
 
@@ -79,6 +81,13 @@ class HtmlLayout(object):
                                                 maps_config)
         
         return align_components
+
+    def graph_components(self, align_form, maps_config):
+
+        graph_components = HtmlComponents.graph(self._base_url, align_form, PREFIX_UI_CTRLS_GRAPH,
+                                                maps_config)
+
+        return graph_components
     
     def find_components(self, find_form, maps_config):
         

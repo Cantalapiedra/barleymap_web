@@ -3,6 +3,7 @@
 
 # WebApp.py is part of Barleymap web app.
 # Copyright (C) 2017  Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 import sys, traceback
@@ -24,7 +25,9 @@ from FormsFactory import FormsFactory
 DEFAULT_THRESHOLD_ID = "DEFAULT_THRESHOLD_ID"
 DEFAULT_THRESHOLD_COV = "DEFAULT_THRESHOLD_COV"
 DEFAULT_ALIGNER = "DEFAULT_ALIGNER"
+DEFAULT_ALIGNER_GRAPH = "DEFAULT_ALIGNER_GRAPH"
 DEFAULT_MAPS = "DEFAULT_MAPS"
+DEFAULT_GRAPHS = "DEFAULT_GRAPHS"
 DEFAULT_GENES_WINDOW_CM = "DEFAULT_GENES_WINDOW_CM"
 DEFAULT_GENES_WINDOW_BP = "DEFAULT_GENES_WINDOW_BP"
 APP_GOOGLE_ANALYTICS_ID = "APP_GOOGLE_ANALYTICS_ID"
@@ -201,7 +204,70 @@ class Root():
             output = "There was a server error. Please, contact with barleymap web application adminitrators."
         
         return output
-    
+   
+    @cherrypy.expose 
+    def graph(self):
+        sys.stderr.write("server.py: request to /graph/\n")
+                        
+        try:
+            bmap_settings = cherrypy.request.app.config['bmapsettings']
+                              
+            paths_config = PathsConfig.from_dict(cherrypy.request.app.config[self.PATHS_CONFIG])
+                              
+            html_layout = self._get_html_layout(bmap_settings)
+
+            app_path = paths_config.get_app_path()#[PathsConfig._APP_PATH]
+            maps_conf_file = app_path+ConfigBase.MAPS_CONF
+            maps_config = MapsConfig(maps_conf_file, self.VERBOSE)
+
+            session = cherrypy.session
+            
+            aligner = bmap_settings[DEFAULT_ALIGNER_GRAPH]
+            threshold_id = bmap_settings[DEFAULT_THRESHOLD_ID]
+            threshold_cov = bmap_settings[DEFAULT_THRESHOLD_COV]
+
+            if session.get('session_token'):
+                graph_form = FormsFactory.get_graph_form_session(session, aligner, threshold_id, threshold_cov)
+
+                if graph_form.get_action() == "index":
+                    window_cm = bmap_settings[DEFAULT_GENES_WINDOW_CM]
+                    window_bp = bmap_settings[DEFAULT_GENES_WINDOW_BP]
+                    maps = bmap_settings[DEFAULT_GRAPHS]
+
+                    graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, maps, aligner, threshold_id, threshold_cov)
+
+            else:
+                window_cm = bmap_settings[DEFAULT_GENES_WINDOW_CM]
+                window_bp = bmap_settings[DEFAULT_GENES_WINDOW_BP]
+                maps = bmap_settings[DEFAULT_GRAPHS]
+
+                graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, maps, aligner, threshold_id, threshold_cov)
+
+            graph_component = html_layout.graph_components(graph_form, maps_config)
+
+            citation = paths_config.get_citation().replace("_", " ")#[PathsConfig._CITATION].replace("_", " ")
+
+            contents = [html_layout.menu(citation),
+                        graph_component]
+
+            output = "".join([html_layout.html_head(),
+                              html_layout.header(),
+                              html_layout.html_container(contents),
+                              html_layout.footer(),
+                              html_layout.html_end()])  
+
+        except m2pException as m2pe:
+            sys.stderr.write(str(m2pe)+"\n")
+            traceback.print_exc(file=sys.stderr)
+            output = str(m2pe)
+
+        except Exception, e:
+            sys.stderr.write(str(e)+"\n")
+            traceback.print_exc(file=sys.stderr)
+            output = "There was a server error. Please, contact with barleymap web application adminitrators."
+
+        return output
+
     @cherrypy.expose
     def locate(self):
         sys.stderr.write("server.py: request to /locate/\n")

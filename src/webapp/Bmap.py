@@ -103,7 +103,7 @@ class Bmap(object):
                 
         # NO fasta format
         else:
-            if action == ALIGN_ACTION or GRAPH_ACTION:
+            if action == ALIGN_ACTION or action == GRAPH_ACTION:
                 raise m2pException("The input for "+ALIGN_ACTION+" action must be in FASTA format.")
             elif action == FIND_ACTION or action == LOCATE_ACTION:
                 pass # OK

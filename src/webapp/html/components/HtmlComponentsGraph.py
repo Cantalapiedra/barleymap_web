@@ -60,7 +60,7 @@ class HtmlComponentsGraph(object):
                     """)
         
         #### MAPS
-        output.append(HtmlComponentsBase._load_data(align_form.get_maps(), maps_config.get_maps_tuples(), "maps"))
+        output.append(HtmlComponentsBase._load_data(align_form.get_graphs(), maps_config.get_graphs_tuples(), "graphs"))
         
         output.append("""
                       

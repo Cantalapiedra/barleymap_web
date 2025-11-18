@@ -190,6 +190,7 @@ class InputForm(object):
     EXTEND_CM = "extend_cm"
     EXTEND_BP = "extend_bp"
     MAPS = "maps"
+    GRAPHS = "graphs"
     SEND_EMAIL = "send_email"
     EMAIL_TO = "email_to"
     COLLAPSED_VIEW = "collapsed_view"
@@ -208,6 +209,7 @@ class InputForm(object):
     _extend_cm = ""
     _extend_bp = ""
     _maps = ""
+    _graphs = ""
     _send_email = ""
     _email_to = ""
     _collapsed_view = True
@@ -292,7 +294,13 @@ class InputForm(object):
     
     def set_maps(self, maps):
         self._maps = maps
-        
+
+    def get_graphs(self, ):
+        return self._graphs
+
+    def set_graphs(self, graphs):
+        self._graphs = graphs
+ 
     def get_send_email(self, ):
         return self._send_email
     
@@ -345,6 +353,7 @@ class InputForm(object):
         session[self.EXTEND_CM] = self.get_extend_cm()
         session[self.EXTEND_BP] = self.get_extend_bp()
         session[self.MAPS] = self.get_maps()
+        session[self.GRAPHS] = self.get_graphs()
         
         if self.get_send_email() == "1":
             session[self.SEND_EMAIL] = self.get_send_email()
@@ -376,6 +385,7 @@ class InputForm(object):
         form._extend_cm = session.get(form.EXTEND_CM)
         form._extend_bp = session.get(form.EXTEND_BP)
         form._maps = session.get(form.MAPS)
+        form._graphs = session.get(form.GRAPHS)
         form._send_email = session.get(form.SEND_EMAIL)
         form._email_to = session.get(form.EMAIL_TO)
         form._user_file = session.get(form.USER_FILE)
@@ -391,7 +401,7 @@ class InputForm(object):
     def set_parameters(self, query = "", multiple = "", sort = "",
                            show_markers = "", show_genes = "", show_anchored = "",
                            show_main = "", show_how = "",
-                           extend = "", extend_cm = "", extend_bp = "",
+                           extend = "", extend_cm = "", extend_bp = "", graphs = "",
                            maps = "", send_email = "", email_to = "", user_file = None):
         form = self
         
@@ -411,6 +421,7 @@ class InputForm(object):
         form.set_extend_cm(extend_cm)
         form.set_extend_bp(extend_bp)
         form.set_maps(maps)
+        form.set_graphs(graphs)
         form.set_send_email(send_email)
         form.set_email_to(email_to)
         form.set_collapsed_view(True)
@@ -432,6 +443,7 @@ class InputForm(object):
         ret_value.append("Extend interval (cM): "+self.get_extend_cm())
         ret_value.append("Extend interval (bp): "+self.get_extend_bp())
         ret_value.append("Maps: "+",".join(self.get_maps()))
+        ret_value.append("Graphs: "+",".join(self.get_graphs()))
         
         return "\n".join(ret_value)
     

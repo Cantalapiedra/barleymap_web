@@ -3,6 +3,7 @@
 
 # PathsConfig.py is part of Barleymap.
 # Copyright (C)  2016  Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 from barleymapcore.utils.data_utils import read_paths
@@ -17,7 +18,8 @@ class PathsConfig(object):
     _DATASETS_PATH = "datasets_path"
     _MAPS_PATH = "maps_path"
     _ANNOTATION_PATH = "annot_path"
-    
+    _GRAPHS_PATH = "graphs_path"
+
     # Aux apps
     _GENMAP_PATH = "genmap_path"
     _SPLIT_BLAST_PATH = "split_blast_path"
@@ -28,7 +30,9 @@ class PathsConfig(object):
     _GMAPL_APP_PATH = "gmapl_app_path"
     _HSBLASTN_APP_PATH = "hsblastn_app_path"
     _HSBLASTN_DBS_PATH = "hsblastn_dbs_path"
-    
+    _ALIGN2GRAPH_APP_PATH = "align2graph_app_path"
+    _ALIGN2GRAPH_DBS_PATH = "align2graph_dbs_path"
+
     # Aux dirs
     _TMP_FILES_PATH = "tmp_files_path"
     
@@ -50,6 +54,8 @@ class PathsConfig(object):
     _gmapl_app_path = ""
     _hsblastn_app_path = ""
     _hsblastn_dbs_path = ""
+    _align2graph_app_path = ""
+    _align2graph_dbs_path = ""
     _citation = ""
     _stdalone_app = ""
     
@@ -74,6 +80,8 @@ class PathsConfig(object):
         self._gmapl_app_path = self._config_path_dict[self._GMAPL_APP_PATH]
         self._hsblastn_app_path = self._config_path_dict[self._HSBLASTN_APP_PATH]
         self._hsblastn_dbs_path = self._config_path_dict[self._HSBLASTN_DBS_PATH]
+        self._align2graph_app_path = self._config_path_dict[self._ALIGN2GRAPH_APP_PATH]
+        self._align2graph_dbs_path = self._config_path_dict[self._ALIGN2GRAPH_DBS_PATH]
         self._citation = self._config_path_dict[self._CITATION]
         self._stdalone_app = self._config_path_dict[self._STDALONE_APP]
         
@@ -94,6 +102,8 @@ class PathsConfig(object):
                              self._GMAPL_APP_PATH:self._gmapl_app_path,
                              self._HSBLASTN_APP_PATH:self._hsblastn_app_path,
                              self._HSBLASTN_DBS_PATH:self._hsblastn_dbs_path,
+                             self._ALIGN2GRAPH_APP_PATH:self._align2graph_app_path,
+                             self._ALIGN2GRAPH_DBS_PATH:self._align2graph_dbs_path,
                              self._CITATION:self._citation,
                              self._STDALONE_APP:self._stdalone_app}
         
@@ -118,6 +128,8 @@ class PathsConfig(object):
         paths_config._gmapl_app_path = config_path_dict[paths_config._GMAPL_APP_PATH]
         paths_config._hsblastn_app_path = config_path_dict[paths_config._HSBLASTN_APP_PATH]
         paths_config._hsblastn_dbs_path = config_path_dict[paths_config._HSBLASTN_DBS_PATH]
+        paths_config._align2graph_app_path = config_path_dict[paths_config._ALIGN2GRAPH_APP_PATH]
+        paths_config._align2graph_dbs_path = config_path_dict[paths_config._ALIGN2GRAPH_DBS_PATH]
         paths_config._citation = config_path_dict[paths_config._CITATION]
         paths_config._stdalone_app = config_path_dict[paths_config._STDALONE_APP]
         
@@ -167,7 +179,13 @@ class PathsConfig(object):
     
     def get_hsblastn_dbs_path(self):
         return self._hsblastn_dbs_path
-    
+
+    def get_align2graph_app_path(self):
+        return self._align2graph_app_path
+
+    def get_align2graph_dbs_path(self):
+        return self._align2graph_dbs_path
+
     # Other
     def get_citation(self):
         return self._citation

@@ -15,7 +15,7 @@ from barleymapcore.m2p_exception import m2pException
 from html.HtmlLayout import HtmlLayout
 
 from FormsFactory import FormsFactory
-from Bmap import Bmap, FIND_ACTION, ALIGN_ACTION, LOCATE_ACTION
+from Bmap import Bmap, FIND_ACTION, ALIGN_ACTION, LOCATE_ACTION, GRAPH_ACTION
 
 DEFAULT_SORT_PARAM = "map default"
 EMAIL_CONF = "EMAIL_CONF"
@@ -23,6 +23,7 @@ APP_NAME = "APP_NAME"
 N_THREADS = "N_THREADS"
 MAX_QUERIES = "MAX_QUERIES"
 APP_GOOGLE_ANALYTICS_ID = "APP_GOOGLE_ANALYTICS_ID"
+DEFAULT_MAPS = "DEFAULT_MAPS"
 
 class Root():
     
@@ -45,7 +46,7 @@ class Root():
     @cherrypy.expose
     def index(self, action = "", input_query = "", input_multiple = "", input_sort = "", input_genes = "",
               load_annot = "", genes_window = "",
-              input_maps = "", send_email = "", email_to = ""):
+              input_maps = "", input_graphs="", send_email = "", email_to = ""):
         
         # GET /barleymap/mapmarkers/index?load_annot=1&genes_window=2.0&input_query=owbGBS1718
         # GET /barleymap/mapmarkers/index?load_annot=1&genes_window=2.0&input_query=12_30588
@@ -65,6 +66,7 @@ class Root():
         extend_cm = 50000
         extend_bp = 50000
         maps = "morexv3" # so that all will be used
+        graphs = ""        
         send_email = "0"
         email_to = ""
         user_file = None
@@ -76,7 +78,7 @@ class Root():
                                                        show_markers, show_genes, show_anchored,
                                                        show_main, show_how,
                                                        extend, extend_cm, extend_bp,
-                                                       maps, send_email, email_to, user_file)
+                                                       maps, graphs, send_email, email_to, user_file)
             
             form.set_action(action)
             form.set_session(cherrypy.session)
@@ -116,7 +118,7 @@ class Root():
              show_markers = "", show_genes = "", show_anchored = "",
              show_main = "", show_how = "",
              load_annot = "", extend = "", extend_cm = "", extend_bp = "",
-             maps = "", send_email = "", email_to = "", user_file = None):
+             maps = "", graphs="", send_email = "", email_to = "", user_file = None):
         
         sys.stderr.write("server.py: request to /mapmarkers/find\n")
         
@@ -127,7 +129,7 @@ class Root():
                                                        show_markers, show_genes, show_anchored,
                                                        show_main, show_how,
                                                        extend, extend_cm, extend_bp,
-                                                       maps, send_email, email_to, user_file)
+                                                       maps, graphs, send_email, email_to, user_file)
             
             form.set_session(cherrypy.session)
             
@@ -166,7 +168,7 @@ class Root():
               show_markers = "", show_genes = "", show_anchored = "",
               show_main = "", show_how = "",
               load_annot = "", extend = "", extend_cm = "", extend_bp = "",
-              maps = "", send_email = "", email_to = "", user_file = None,
+              maps = "", graphs="", send_email = "", email_to = "", user_file = None,
               aligner = "", threshold_id = "", threshold_cov = ""):
         
         sys.stderr.write("server.py: request to /mapmarkers/align\n")
@@ -178,8 +180,8 @@ class Root():
                                                    show_markers, show_genes, show_anchored,
                                                    show_main, show_how,
                                                    extend, extend_cm, extend_bp,
-                                                   maps, send_email, email_to, user_file,
-                                                     aligner, threshold_id, threshold_cov)
+                                                   maps, graphs, send_email, email_to, user_file,
+                                                   aligner, threshold_id, threshold_cov)
             
             form.set_session(cherrypy.session)
             
@@ -218,7 +220,7 @@ class Root():
               show_markers = "", show_genes = "", show_anchored = "",
               show_main = "", show_how = "",
               load_annot = "", extend = "", extend_cm = "", extend_bp = "",
-              maps = "", send_email = "", email_to = "", user_file = None,
+              maps = "", graphs="", send_email = "", email_to = "", user_file = None,
               aligner = "", threshold_id = "", threshold_cov = ""):
 
         sys.stderr.write("server.py: request to /mapmarkers/graph\n")
@@ -226,12 +228,14 @@ class Root():
         try:
             bmap_settings = cherrypy.request.app.config['bmapsettings']
 
+            maps = bmap_settings[DEFAULT_MAPS]
+
             form = FormsFactory.get_graph_form_new(query, multiple, sort,
                                                    show_markers, show_genes, show_anchored,
                                                    show_main, show_how,
                                                    extend, extend_cm, extend_bp,
-                                                   maps, send_email, email_to, user_file,
-                                                     aligner, threshold_id, threshold_cov)
+                                                   maps, graphs, send_email, email_to, user_file,
+                                                   aligner, threshold_id, threshold_cov)
 
             form.set_session(cherrypy.session)
 
@@ -241,7 +245,7 @@ class Root():
             n_threads = bmap_settings[N_THREADS]
             max_queries = bmap_settings[MAX_QUERIES]
 
-            bmap = Bmap(paths_config, DEFAULT_SORT_PARAM, max_queries, ALIGN_ACTION, n_threads, app_name, self.VERBOSE)
+            bmap = Bmap(paths_config, DEFAULT_SORT_PARAM, max_queries, GRAPH_ACTION, n_threads, app_name, self.VERBOSE)
 
             results = bmap.align(form)
 
@@ -261,7 +265,7 @@ class Root():
         except Exception, e:
             sys.stderr.write(str(e)+"\n")
             traceback.print_exc(file=sys.stderr)
-            output = "There was a server error. Please, contact with PrunusMap web application administrators."
+            output = "There was a server error. Please, contact with barleymap web application administrators."
 
         return output
 
@@ -270,7 +274,7 @@ class Root():
              show_markers = "", show_genes = "", show_anchored = "",
              show_main = "", show_how = "",
              load_annot = "", extend = "", extend_cm = "", extend_bp = "",
-             maps = "", send_email = "", email_to = "", user_file = None):
+             maps = "", graphs="", send_email = "", email_to = "", user_file = None):
         
         sys.stderr.write("server.py: request to /mapmarkers/locate\n")
         
@@ -281,7 +285,7 @@ class Root():
                                                        show_markers, show_genes, show_anchored,
                                                        show_main, show_how,
                                                        extend, extend_cm, extend_bp,
-                                                       maps, send_email, email_to, user_file)
+                                                       maps, graphs, send_email, email_to, user_file)
             
             form.set_session(cherrypy.session)
             

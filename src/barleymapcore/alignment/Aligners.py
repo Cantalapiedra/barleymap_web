@@ -4,11 +4,12 @@
 # Aligners.py is part of Barleymap.
 # Copyright (C)  2013-2014  Carlos P Cantalapiedra.
 # Copyright (C)  2016-2017  Carlos P Cantalapiedra.
+# Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 import os, sys
 
-import m2p_split_blast, m2p_gmap, m2p_hsblastn
+import m2p_split_blast, m2p_gmap, m2p_hsblastn, m2p_align2graph 
 import barleymapcore.utils.alignment_utils as alignment_utils
 from barleymapcore.m2p_exception import m2pException
 from barleymapcore.db.DatabasesConfig import REF_TYPE_STD, REF_TYPE_BIG, DatabasesConfig
@@ -16,6 +17,7 @@ from barleymapcore.db.DatabasesConfig import REF_TYPE_STD, REF_TYPE_BIG, Databas
 ALIGNER_BLASTN = "blastn"
 ALIGNER_GMAP = "gmap"
 ALIGNER_HSBLASTN = "hsblastn"
+ALIGNER_ALIGN2GRAPH = "align2graph"
 
 class AlignersFactory(object):
     
@@ -54,6 +56,16 @@ class AlignersFactory(object):
         return aligner
     
     @staticmethod
+    def get_aligner_align2graph(paths_config, n_threads, verbose):
+
+        align2graph_app_path = paths_config.get_align2graph_app_path()
+        align2graph_dbs_path = paths_config.get_align2graph_dbs_path()
+
+        aligner = Align2GraphAligner(align2graph_app_path, n_threads, align2graph_dbs_path, verbose)
+
+        return aligner
+
+    @staticmethod
     # Returns a new aligner based on the query_type supplied
     def get_aligner(aligner_list, n_threads, paths_config, verbose = False): # This is an AlignerFactory
         
@@ -89,6 +101,10 @@ class AlignersFactory(object):
                 
                 aligner = AlignersFactory.get_aligner_hsblastn(paths_config, n_threads, verbose)
                 
+            elif aligner_name == ALIGNER_ALIGN2GRAPH:
+
+                aligner = AlignersFactory.get_aligner_align2graph(paths_config, n_threads, verbose)
+
             else:
                 raise m2pException("Unknown aligner type "+str(aligner_name)+" when requesting aligner.")
         
@@ -188,6 +204,38 @@ class GMAPAligner(BaseAligner):
         
         sys.stderr.write("GMAPAligner: no hits "+str(len(self._results_unaligned))+"\n")
         
+        return self.get_hits()
+
+class Align2GraphAligner(BaseAligner):
+
+    def __init__(self, app_path, n_threads, dbs_path, verbose = False):
+
+        BaseAligner.__init__(self, app_path, n_threads, dbs_path, verbose)
+
+    def align(self, fasta_path, db, ref_type, threshold_id, threshold_cov):
+
+        sys.stderr.write("\n")
+
+        fasta_headers = alignment_utils.get_fasta_headers(fasta_path)
+
+        sys.stderr.write("Align2GraphAligner: DB --> "+str(db)+"\n")
+        sys.stderr.write("Align2GraphAligner: to align "+str(len(fasta_headers))+"\n")
+
+        app_path = self._app_path
+
+        # get_hits from m2p_gmap.py
+        self._results_hits = m2p_align2graph.get_best_score_hits(app_path, self._n_threads, fasta_path, self._dbs_path, db,
+                                      threshold_id, threshold_cov, \
+                                      self._verbose)
+
+        query_list = [a.get_query_id() for a in self._results_hits]
+
+        sys.stderr.write("Align2GraphAligner: aligned "+str(len(set([a.split(" ")[0] for a in query_list])))+"\n")
+
+        self._results_unaligned = alignment_utils.filter_list(fasta_headers, query_list)
+
+        sys.stderr.write("Align2GraphAligner: no hits "+str(len(self._results_unaligned))+"\n")
+
         return self.get_hits()
 
 class HSBlastnAligner(BaseAligner):

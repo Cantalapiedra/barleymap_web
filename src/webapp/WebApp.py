@@ -12,6 +12,7 @@ import cherrypy
 from barleymapcore.db.ConfigBase import ConfigBase
 from barleymapcore.db.PathsConfig import PathsConfig
 from barleymapcore.db.MapsConfig import MapsConfig
+from barleymapcore.db.GraphsConfig import GraphsConfig
 from barleymapcore.db.DatabasesConfig import DatabasesConfig
 from barleymapcore.m2p_exception import m2pException
 
@@ -217,8 +218,8 @@ class Root():
             html_layout = self._get_html_layout(bmap_settings)
 
             app_path = paths_config.get_app_path()#[PathsConfig._APP_PATH]
-            maps_conf_file = app_path+ConfigBase.MAPS_CONF
-            maps_config = MapsConfig(maps_conf_file, self.VERBOSE)
+            graphs_conf_file = app_path+ConfigBase.GRAPHS_CONF
+            graphs_config = GraphsConfig(graphs_conf_file, self.VERBOSE)
 
             session = cherrypy.session
             
@@ -232,18 +233,18 @@ class Root():
                 if graph_form.get_action() == "index":
                     window_cm = bmap_settings[DEFAULT_GENES_WINDOW_CM]
                     window_bp = bmap_settings[DEFAULT_GENES_WINDOW_BP]
-                    maps = bmap_settings[DEFAULT_GRAPHS]
+                    graphs = bmap_settings[DEFAULT_GRAPHS]
 
-                    graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, maps, aligner, threshold_id, threshold_cov)
+                    graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, graphs, aligner, threshold_id, threshold_cov)
 
             else:
                 window_cm = bmap_settings[DEFAULT_GENES_WINDOW_CM]
                 window_bp = bmap_settings[DEFAULT_GENES_WINDOW_BP]
-                maps = bmap_settings[DEFAULT_GRAPHS]
+                graphs = bmap_settings[DEFAULT_GRAPHS]
 
-                graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, maps, aligner, threshold_id, threshold_cov)
+                graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, graphs, aligner, threshold_id, threshold_cov)
 
-            graph_component = html_layout.graph_components(graph_form, maps_config)
+            graph_component = html_layout.graph_components(graph_form, graphs_config)
 
             citation = paths_config.get_citation().replace("_", " ")#[PathsConfig._CITATION].replace("_", " ")
 

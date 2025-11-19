@@ -61,7 +61,7 @@ class FormsFactory(object):
                            show_markers = "", show_genes = "", show_anchored = "",
                            show_main = "", show_how = "",
                            extend = "", extend_cm = "", extend_bp = "",
-                           maps = "", grahps="", send_email = "", email_to = "", user_file = None,
+                           maps = "", graphs="", send_email = "", email_to = "", user_file = None,
                            aligner = "", threshold_id = "", threshold_cov = ""):
 
         form = GraphForm()

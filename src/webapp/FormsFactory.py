@@ -15,7 +15,7 @@ class FormsFactory(object):
                            show_markers = "", show_genes = "", show_anchored = "",
                            show_main = "", show_how = "",
                            extend = "", extend_cm = "", extend_bp = "",
-                           maps = "", send_email = "", email_to = "", user_file = None,
+                           maps = "", graphs="", send_email = "", email_to = "", user_file = None,
                            aligner = "", threshold_id = "", threshold_cov = ""):
         
         form = AlignForm()
@@ -24,7 +24,7 @@ class FormsFactory(object):
                            show_markers, show_genes, show_anchored,
                            show_main, show_how,
                            extend, extend_cm, extend_bp,
-                           maps, send_email, email_to, user_file)
+                           maps, graphs, send_email, email_to, user_file)
         
         form.set_aligner(aligner)
         form.set_threshold_id(threshold_id)
@@ -61,7 +61,7 @@ class FormsFactory(object):
                            show_markers = "", show_genes = "", show_anchored = "",
                            show_main = "", show_how = "",
                            extend = "", extend_cm = "", extend_bp = "",
-                           maps = "", send_email = "", email_to = "", user_file = None,
+                           maps = "", grahps="", send_email = "", email_to = "", user_file = None,
                            aligner = "", threshold_id = "", threshold_cov = ""):
 
         form = GraphForm()
@@ -70,7 +70,7 @@ class FormsFactory(object):
                            show_markers, show_genes, show_anchored,
                            show_main, show_how,
                            extend, extend_cm, extend_bp,
-                           maps, send_email, email_to, user_file)
+                           maps, graphs, send_email, email_to, user_file)
 
         form.set_aligner(aligner)
         form.set_threshold_id(threshold_id)
@@ -87,7 +87,7 @@ class FormsFactory(object):
 
         align_form.set_extend_cm(DEFAULT_GENES_WINDOW_CM)
         align_form.set_extend_bp(DEFAULT_GENES_WINDOW_BP)
-        align_form.set_maps(DEFAULT_GRAPHS)
+        align_form.set_graphs(DEFAULT_GRAPHS)
         align_form.set_aligner(DEFAULT_ALIGNER_GRAPH)
         align_form.set_threshold_id(DEFAULT_THRESHOLD_ID)
         align_form.set_threshold_cov(DEFAULT_THRESHOLD_COV)
@@ -107,7 +107,7 @@ class FormsFactory(object):
                            show_markers = "", show_genes = "", show_anchored = "",
                            show_main = "", show_how = "",
                            extend = "", extend_cm = "", extend_bp = "",
-                           maps = "", send_email = "", email_to = "", user_file = None):
+                           maps = "", graphs="", send_email = "", email_to = "", user_file = None):
         
         form = FindForm()
         
@@ -115,7 +115,7 @@ class FormsFactory(object):
                            show_markers, show_genes, show_anchored,
                            show_main, show_how,
                            extend, extend_cm, extend_bp,
-                           maps, send_email, email_to, user_file)
+                           maps, graphs, send_email, email_to, user_file)
         
         return form
     
@@ -143,7 +143,7 @@ class FormsFactory(object):
                            show_markers = "", show_genes = "", show_anchored = "",
                            show_main = "", show_how = "",
                            extend = "", extend_cm = "", extend_bp = "",
-                           maps = "", send_email = "", email_to = "", user_file = None):
+                           maps = "", graphs = "", send_email = "", email_to = "", user_file = None):
         
         form = LocateForm()
         
@@ -151,7 +151,7 @@ class FormsFactory(object):
                            show_markers, show_genes, show_anchored,
                            show_main, show_how,
                            extend, extend_cm, extend_bp,
-                           maps, send_email, email_to, user_file)
+                           maps, graphs, send_email, email_to, user_file)
         
         return form
     
@@ -401,8 +401,8 @@ class InputForm(object):
     def set_parameters(self, query = "", multiple = "", sort = "",
                            show_markers = "", show_genes = "", show_anchored = "",
                            show_main = "", show_how = "",
-                           extend = "", extend_cm = "", extend_bp = "", graphs = "",
-                           maps = "", send_email = "", email_to = "", user_file = None):
+                           extend = "", extend_cm = "", extend_bp = "",
+                           maps = "", graphs = "", send_email = "", email_to = "", user_file = None):
         form = self
         
         form.set_query(query)

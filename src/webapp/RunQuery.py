@@ -247,7 +247,7 @@ class Root():
 
             bmap = Bmap(paths_config, DEFAULT_SORT_PARAM, max_queries, GRAPH_ACTION, n_threads, app_name, self.VERBOSE)
 
-            results = bmap.align(form)
+            results = bmap.graph(form)
 
             csv_files = bmap.csv_files(results, form)
 

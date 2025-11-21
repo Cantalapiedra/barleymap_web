@@ -73,7 +73,7 @@ class HtmlComponentsGraph(object):
                 </tr></table>
             </form>
         </section><hr/> <!-- content -->
-        """.format(base_url+"/img/ui_buttons_align.png", "graph"))
+        """.format(base_url+"/img/ui_buttons_graph.png", "graph"))
         
         output.append("""
         <script>
@@ -85,7 +85,7 @@ class HtmlComponentsGraph(object):
                 element.setAttribute('src', '{1}');
             }}
         </script>
-        """.format("graph", base_url+"/img/ui_buttons_align_mini.png", base_url+"/img/ui_buttons_align_mini_hover.png"))
+        """.format("graph", base_url+"/img/ui_buttons_graph_mini.png", base_url+"/img/ui_buttons_graph_mini_hover.png"))
         
         return "".join(output)
     

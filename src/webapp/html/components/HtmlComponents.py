@@ -23,8 +23,8 @@ class HtmlComponents(object):
         return HtmlComponentsAlign.align(base_url, align_form, PREFIX_UI_CTRLS_ALIGN, maps_config)
 
     @staticmethod
-    def graph(base_url, align_form, PREFIX_UI_CTRLS_GRAPH, maps_config):
-        return HtmlComponentsGraph.graph(base_url, align_form, PREFIX_UI_CTRLS_GRAPH, maps_config)    
+    def graph(base_url, graph_form, PREFIX_UI_CTRLS_GRAPH, maps_config):
+        return HtmlComponentsGraph.graph(base_url, graph_form, PREFIX_UI_CTRLS_GRAPH, maps_config)    
 
     @staticmethod
     def find(base_url, find_form, PREFIX_UI_CTRLS_FIND, maps_config):

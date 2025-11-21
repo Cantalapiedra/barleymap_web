@@ -11,6 +11,7 @@ import sys, tempfile, os, csv
 from barleymapcore.db.ConfigBase import ConfigBase
 from barleymapcore.db.MapsConfig import MapsConfig
 from barleymapcore.db.DatasetsConfig import DatasetsConfig
+from barleymapcore.db.GraphsConfig import GraphsConfig
 from barleymapcore.db.DatabasesConfig import DatabasesConfig
 from barleymapcore.alignment.AlignmentFacade import AlignmentFacade
 from barleymapcore.datasets.DatasetsFacade import DatasetsFacade
@@ -25,6 +26,7 @@ from html.output.OutputMaps import OutputMaps
 
 import m2p_mail
 
+GRAPHS_CONF = ConfigBase.GRAPHS_CONF
 MAPS_CONF = ConfigBase.MAPS_CONF
 DATABASES_CONF = ConfigBase.DATABASES_CONF
 DATASETS_CONF = ConfigBase.DATASETS_CONF
@@ -368,19 +370,30 @@ class Bmap(object):
         paths_config = self._paths_config
         __app_path = paths_config.get_app_path()
 
+        # Graphs
+        graphs_conf_file = __app_path+GRAPHS_CONF
+        graphs_config = GraphsConfig(graphs_conf_file, self._verbose)
+        if align_form.get_graphs():
+            graphs = align_form.get_graphs()
+            if type(graphs) is list:
+                graphs_names = [x.encode('UTF8') for x in align_form.get_graphs()]
+            elif isinstance(graphs, basestring):
+                graphs_names = [graphs.encode('UTF8')]
+        else:
+            graphs_names = graphs_config.get_databases_names()
+
+        if len(graphs_names)<=0:
+            raise Exception("No valid graph names. Please, check your --maps parameter or your conf/graphs.conf file.")
+
+        graphs_ids = graphs_config.get_graphs_ids(graphs_names)
+
+        #sys.stderr.write(graphs_ids)
+
+
+
         # Maps
         maps_conf_file = __app_path+MAPS_CONF
         maps_config = MapsConfig(maps_conf_file)
-        if align_form.get_maps():
-            maps = align_form.get_maps()
-
-            if isinstance(maps, basestring): maps = [maps]
-
-            maps_names = maps_config.get_maps_names(maps)
-            maps_ids = maps#maps_config.get_maps_ids(maps_names.strip().split(","))
-        else:
-            maps_ids = maps_config.get_maps().keys()
-            maps_names = ",".join(maps_config.get_maps_names(maps_ids))
 
         maps_path = paths_config.get_maps_path() #__app_path+config_path_dict["maps_path"]
 
@@ -420,11 +433,8 @@ class Bmap(object):
         constrain_fine_mapping = True
         best_score = True
 
-        aligner = align_form.get_aligner()
-        if "," in aligner:
-            aligner_list = aligner.strip().split(",")
-        else:
-            aligner_list = [aligner]
+        aligner = align_form.get_aligner().encode('UTF8')
+        aligner_list = [aligner]
 
         sys.stderr.write("BMAP aligner_list: "+str(aligner_list)+"\n")
 
@@ -432,11 +442,16 @@ class Bmap(object):
         threshold_cov = float(align_form.get_threshold_cov())
 
         all_mapping_results = []
-        for map_id in maps_ids:
-            sys.stderr.write("bmap_align_graph: Map "+map_id+"\n")
+        for g in range(len(graphs_names)):
 
-            map_config = maps_config.get_map_config(map_id)
-            databases_ids = map_config.get_db_list()
+            graph_id = graphs_ids[g]
+            graph_name = graphs_names[g]
+
+            sys.stderr.write("bmap_align_graph: Graph "+graph_name+"\n")
+
+            # get map matching this graph ie the reference used to build PHG graph
+            map_id = graphs_config.get_graph_map(graph_id)
+            map_config = maps_config.get_map_config(map_id)    
 
             sort_by = map_config.check_sort_param(map_config, sort_param, self._default_sort)
 
@@ -450,9 +465,10 @@ class Bmap(object):
 
             mapMarkers = MapMarkers(maps_path, map_config, alignment_facade, self._verbose)
 
-            mapMarkers.perform_mappings(input_file_name, databases_ids, databases_config, aligner_list,
+            mapMarkers.perform_mappings(input_file_name, [graph_name], graphs_config, aligner_list,
                                         threshold_id, threshold_cov, self._n_threads,
-                                        best_score, sort_by, multiple_param, tmp_files_dir)
+                                        best_score, sort_by, multiple_param, tmp_files_dir,
+                                        is_graph=True)
 
             # GenesAnnotator
             #load_annot = True always

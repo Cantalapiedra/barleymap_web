@@ -235,7 +235,8 @@ class Root():
                     window_bp = bmap_settings[DEFAULT_GENES_WINDOW_BP]
                     graphs = bmap_settings[DEFAULT_GRAPHS]
 
-                    graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, graphs, aligner, threshold_id, threshold_cov)
+                    graph_form = FormsFactory.get_graph_form_empty(window_cm, window_bp, graphs, aligner, 
+                                                                   threshold_id, threshold_cov)
 
             else:
                 window_cm = bmap_settings[DEFAULT_GENES_WINDOW_CM]

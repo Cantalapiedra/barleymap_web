@@ -175,10 +175,7 @@ class HtmlMapsWriter():
                     self.output_buffer.append(td+"No"+"</td>")
                 
             ## Other alignments
-            if pos.has_other_alignments():
-                self.output_buffer.append(td+"Yes"+"</td>")
-            else:
-                self.output_buffer.append(td+"No"+"</td>")
+            self.output_buffer.append(td+pos.get_other_alignments()+"</td>")
         
         return
     

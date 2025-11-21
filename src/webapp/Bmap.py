@@ -380,16 +380,12 @@ class Bmap(object):
             elif isinstance(graphs, basestring):
                 graphs_names = [graphs.encode('UTF8')]
         else:
-            graphs_names = graphs_config.get_databases_names()
+            graphs_names = graphs_config.get_graphs_names()
 
         if len(graphs_names)<=0:
             raise Exception("No valid graph names. Please, check your --maps parameter or your conf/graphs.conf file.")
 
         graphs_ids = graphs_config.get_graphs_ids(graphs_names)
-
-        #sys.stderr.write(graphs_ids)
-
-
 
         # Maps
         maps_conf_file = __app_path+MAPS_CONF
@@ -478,7 +474,9 @@ class Bmap(object):
                 datasets_ids = map_config.get_main_datasets()
 
             mapMarkers.enrichment(annotator, show_markers, show_genes, show_anchored, show_how,
-                                  datasets_facade, datasets_ids, extend_window, collapsed_view, constrain_fine_mapping = False)
+                                  datasets_facade, datasets_ids, extend_window, collapsed_view, 
+                                  constrain_fine_mapping = False)
+
             mapping_results = mapMarkers.get_mapping_results()
 
             sys.stderr.write("Num mapping results:"+str(len(mapping_results.get_mapped()))+"\n")

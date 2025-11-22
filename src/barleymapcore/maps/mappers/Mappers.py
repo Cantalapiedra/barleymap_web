@@ -131,6 +131,8 @@ class Mapper(object):
                 
                 # graph-alignment map position are treated just the same,
                 # with associated graph ranges as other_alignments
+                if not 'other_alignments' in pos:
+                    pos["other_alignments"] = "No"    
                 mapping_result = MappingResult(marker_id, chr_pos, chrom_order,
                                                pos["cm_pos"], pos["cm_end_pos"], 
                                                pos["bp_pos"], pos["bp_end_pos"], pos["strand"],

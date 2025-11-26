@@ -175,7 +175,7 @@ class HtmlMapsWriter():
                     self.output_buffer.append(td+"No"+"</td>")
                 
             ## Other alignments
-            self.output_buffer.append(td+pos.get_other_alignments()+"</td>")
+            self.output_buffer.append(td+pos.get_other_alignments().replace(";"," ")+"</td>")
         
         return
     

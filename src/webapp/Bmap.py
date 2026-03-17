@@ -617,7 +617,7 @@ class Bmap(object):
     ##
     def email(self, form, csv_files, email_conf):
         
-        # Maps configuration files
+     # Maps configuration files
         paths_config = self._paths_config
         __app_path = paths_config.get_app_path()
         maps_conf_file = __app_path+MAPS_CONF

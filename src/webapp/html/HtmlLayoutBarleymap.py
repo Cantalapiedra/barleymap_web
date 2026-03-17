@@ -167,44 +167,25 @@ class HtmlLayoutBarleymap(object):
         text_buffer = []
         if show_last_changes:
             text_buffer.append("""
+
             <br/><strong>Latest changes</strong><br/>
-            <br/>03-06-2025:<br/>
-            . Added BarT2 and panBaRT genes to facilitate cross-analysis at <a href="https://ics.hutton.ac.uk/eorna/index.html">EoRNA</a> and <a href="https://ics.hutton.ac.uk/panbart20/index.html">panBaRT</a>.
-            <br/>            
-            <br/>19-05-2025:<br/>
-            . Updated pangenes, made with pangenomeV2 annotated assemblies & <a href="https://doi.org/10.1186/s13059-023-03071-z">GET_PANGENES</a> v14052025. Relies on <a ref="https://www.ncbi.nlm.nih.gov/projects/msaviewer">NCBI Multiple Sequence Alignment Viewer</a>. 
-            <br/>
-            <br/>25-10-2024:<br/>
-            . Updated pangenes, made with <a href="https://doi.org/10.1186/s13059-023-03071-z">GET_PANGENES</a> v04102024.
-            <br/>
-            <br/>31-05-2024:<br/>
-            . MorexV3 HC genes in maps now link out to protein alignments of pangenes<sup>[7]</sup>, read more at the <a href="https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html">blog</a>.<br/> 
-            . You can browse all pangenes, even those absent in MorexV3, at <a href="https://eead-csic-compbio.github.io/barley_pangenes">https://eead-csic-compbio.github.io/barley_pangenes</a>
-            <br/>
-            <br/>22-08-2023:<br/>
-            . Results can now be correctly exported as CSV files after fixing bug.
-            <br/>
-            <br/>15-03-2023:<br/>
-            . Moved to new server and updated URL (<a href="https://barleymap.eead.csic.es">https://barleymap.eead.csic.es</a>).
-            <br/>
-            <br/>14-06-2022:<br/>
-            . Added lifted-over IBSC 2012 & 2016 gene models to MorexV3 map. DartSeq markers mapped later by user request.
-            <br/>
-            <br/>04-11-2021:<br/>
-            · Added MorexV3map <sup>[5]</sup>, centromeres, PGSB and BaRT1.0 gene models <sup>[6]</sup> and NCBI Entrez CDS sequeces (see release <a href='https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html'>notes</a>).
-            <br/>
-            <br/>17-08-2018:<br/>
-            · Added POPSEQ map updated with 2017 data<sup>[3]</sup> (POPSEQ_2017).
-            <br/>
-            <br/>6-03-2018:<br/>
-            · Added a dataset of NCBI genes to the Morex Genome map. This dataset includes genes like HvCO1, Int-c, Btr1, Vrs1, PhyB, HvCEN, etc... to a total of 894 entries.
-            <br/>
-            <br/>19-12-2017:<br/>
-            · Support for the <strong>Illumina50K</strong><sup>[4]</sup> markers, which can now be searched in the
-            IBSC<sup>[1]</sup>, POPSEQ<sup>[2]</sup> and Morex Genome<sup>[3]</sup> released in 2017,
-            through the
-            <strong><i><a href="{0}/find/">Find markers</a></i></strong> option.
-            <br/>
+<textarea id="changes" name="changes" rows="3" cols="120" readonly>
+14-01-2026 Created table of IBSC2012 contigs with physical (MorexV3) and genetic positions (popseq2017) by user request,
+see https://github.com/Cantalapiedra/barleymap/releases/tag/popseq2017.morexv3
+03-06-2025 Added BarT2 and panBaRT genes to facilitate cross-analysis at EoRNA and panBaRT.
+19-05-2025 Updated pangenes, made with pangenomeV2 annotated assemblies & GET_PANGENES v14052025. Relies on NCBI Multiple Sequence Alignment Viewer. 
+25-10-2024 Updated pangenes, made with GET_PANGENES v04102024.
+31-05-2024 MorexV3 HC genes in maps now link out to protein alignments of pangenes [7]; read more at 
+https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html
+You can browse all pangenes, even those absent in MorexV3, at https://eead-csic-compbio.github.io/barley_pangenes
+22-08-2023 Results can now be correctly exported as CSV files after fixing bug.
+15-03-2023 Moved to new server and updated URL to https://barleymap.eead.csic.es
+14-06-2022 Added lifted-over IBSC 2012 & 2016 gene models to MorexV3 map. DartSeq markers mapped later by user request.
+04-11-2021 Added MorexV3 map [5], centromeres, PGSB and BaRT1.0 gene models [6] and NCBI Entrez CDS sequeces, see 
+https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html
+17-08-2018 Added POPSEQ map updated with 2017 data (POPSEQ_2017) [3].
+06-03-2018 Added a dataset of NCBI genes to the Morex Genome map. This dataset includes genes like HvCO1, Int-c, Btr1, Vrs1, PhyB, HvCEN, etc... to a total of 894 entries.
+19-12-2017 Support for Illumina50K [4] markers, which can now be searched in the IBSC [1], POPSEQ [2] and Morex Genome<sup>[3], through 'Find markers'.</textarea>                               
         """.format(base_url))
             
         text_buffer.append("""

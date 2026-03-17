@@ -22,7 +22,7 @@ MAP_WITH_ANCHORED_TITLE = "Map with anchored features"
 from HtmlWriterMaps import HtmlMapsWriter
 import bmap_svg_img
 
-BACK_BUTTON_IMG = "/img/back.gif"
+BACK_BUTTON_IMG = "/img/back.png"
 
 class HtmlWriter():
     output_buffer = None

@@ -84,7 +84,7 @@ class HtmlComponentsHelp(object):
         output_buffer.append("""
                              <section id="content">
                                 <a href="{0}"><img style="width:5%;height:5%;border:none;" src="{1}" alt="back"/></a>
-                             """.format(base_url+"/", base_url+"/img/back.gif"))
+                             """.format(base_url+"/", base_url+"/img/back.png"))
         
         output_buffer.append("""<br/>""")
         
@@ -684,7 +684,7 @@ class HtmlComponentsHelp(object):
         output_buffer.append("""
             <a href="{0}"><img style="width:5%;height:5%;border:none;" src="{1}" alt="back"/></a>
         </section> <!-- content -->
-        """.format(base_url+"/", base_url+"/img/back.gif"))
+        """.format(base_url+"/", base_url+"/img/back.png"))
         
         return "".join(output_buffer)
 

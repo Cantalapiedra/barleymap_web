@@ -6,11 +6,11 @@
 # Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
-from HtmlComponentsHelp import HtmlComponentsHelp
-from HtmlComponentsAlign import HtmlComponentsAlign
-from HtmlComponentsGraph import HtmlComponentsGraph
-from HtmlComponentsFind import HtmlComponentsFind
-from HtmlComponentsLocate import HtmlComponentsLocate
+from .HtmlComponentsHelp import HtmlComponentsHelp
+from .HtmlComponentsAlign import HtmlComponentsAlign
+from .HtmlComponentsGraph import HtmlComponentsGraph
+from .HtmlComponentsFind import HtmlComponentsFind
+from .HtmlComponentsLocate import HtmlComponentsLocate
 
 class HtmlComponents(object):
     

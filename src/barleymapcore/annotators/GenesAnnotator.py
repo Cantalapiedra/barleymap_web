@@ -11,7 +11,7 @@ from barleymapcore.maps.enrichment.FeatureMapping import GeneMapping
 from barleymapcore.db.DatasetsAnnotation import DatasetsAnnotation
 from barleymapcore.db.AnnotationTypes import AnnotationTypes
 
-from AnnotationFileReader import AnnotationFileReader
+from .AnnotationFileReader import AnnotationFileReader
 
 ## Class to obtain the Annotator, from configuration files,
 ## including the DatasetsAnnotation and AnnotationTypes instances

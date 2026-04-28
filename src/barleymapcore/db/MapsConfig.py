@@ -240,7 +240,7 @@ class MapsConfig(object):
                 else:
                     sys.stderr.write("MapsConfig: map name "+map_name+" not found in config.\n")
         else:
-            maps_ids = self._config_dict.keys()
+            maps_ids = list(self._config_dict.keys())
         
         return maps_ids
     

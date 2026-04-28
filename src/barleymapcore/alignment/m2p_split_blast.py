@@ -9,7 +9,7 @@ import sys, os
 from subprocess import Popen, PIPE
 
 from barleymapcore.m2p_exception import m2pException
-from AlignmentResult import *
+from .AlignmentResult import *
 
 #from Aligners import SELECTION_BEST_SCORE, SELECTION_NONE
 
@@ -121,15 +121,15 @@ def __filter_blast_results(results, threshold_id, threshold_cov, db_name, verbos
         # strand and local position
         if line_data[7]>line_data[8]:
             strand = "-"
-            local_position = long(line_data[8])
-            end_position = long(line_data[7])
+            local_position = int(line_data[8])
+            end_position = int(line_data[7])
         else:
             strand = "+"
-            local_position = long(line_data[7])
-            end_position = long(line_data[8])
+            local_position = int(line_data[7])
+            end_position = int(line_data[8])
         
-        qstart_pos = long(line_data[5])
-        qend_pos = long(line_data[6])
+        qstart_pos = int(line_data[5])
+        qend_pos = int(line_data[6])
         
         result_tuple = AlignmentResult()
         result_tuple.create_from_attributes(query_id, subject_id,

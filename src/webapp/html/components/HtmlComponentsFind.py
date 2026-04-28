@@ -7,7 +7,7 @@
 
 import sys
 
-from HtmlComponentsBase import HtmlComponentsBase
+from .HtmlComponentsBase import HtmlComponentsBase
 
 class HtmlComponentsFind(object):
     

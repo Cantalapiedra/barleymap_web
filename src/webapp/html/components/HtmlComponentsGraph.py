@@ -6,7 +6,7 @@
 # Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
-from HtmlComponentsBase import HtmlComponentsBase
+from .HtmlComponentsBase import HtmlComponentsBase
 
 class HtmlComponentsGraph(object):
     

@@ -19,8 +19,8 @@ MAP_WITH_GENES_TITLE = "Map with genes"
 MAP_WITH_MARKERS_TITLE = "Map with markers"
 MAP_WITH_ANCHORED_TITLE = "Map with anchored features"
 
-from HtmlWriterMaps import HtmlMapsWriter
-import bmap_svg_img
+from .HtmlWriterMaps import HtmlMapsWriter
+from . import bmap_svg_img
 
 BACK_BUTTON_IMG = "/img/back.png"
 

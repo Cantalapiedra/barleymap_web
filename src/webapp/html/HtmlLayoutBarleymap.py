@@ -148,7 +148,7 @@ class HtmlLayoutBarleymap(object):
             <h2><a href="{1}/">Barleymap</a></h2>
             <h3 class="infobar">({0})</h3>
         </header>
-        """.format("Map markers to the barley genome - MorexV3 + pangenes 2024 edition", base_url)
+        """.format("Map markers to the barley genome - MorexV3 + pangenes 2026 edition", base_url)
     
     @staticmethod
     def footer():

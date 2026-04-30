@@ -802,6 +802,19 @@ a[download="report.csv"] img {
     border-top: 1px solid #e2e8f0;
 }
 
+#positions_table {
+    table-layout: auto;
+}
+
+#positions_table th:first-child,
+#positions_table td:first-child {
+    width: 1%;
+    min-width: 240px;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {

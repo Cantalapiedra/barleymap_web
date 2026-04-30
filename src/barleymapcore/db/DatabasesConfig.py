@@ -80,7 +80,7 @@ class DatabasesConfig(object):
                 if not found:
                     sys.stderr.write("WARNING: DatabasesConfig: database name "+database_name+" not found in config.\n")
         else:
-            databases_ids = self._config_dict.keys()
+            databases_ids = list(self._config_dict.keys())
         
         return databases_ids
     

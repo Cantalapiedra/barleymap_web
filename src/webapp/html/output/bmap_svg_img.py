@@ -39,7 +39,7 @@ def output_genetic_map(map_csv_file, genmap_path, map_chrom_order_file, map_as_p
         #if verbose:
         #    p = Popen(gmap_cmd, shell=True, stdout=PIPE, stderr=sys.stderr)
         #else:
-        p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE, text=True)
         
         #p = Popen(command, shell=True, stdout=PIPE, stderr=sys.stderr)
         com_list = p.communicate()

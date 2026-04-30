@@ -87,17 +87,22 @@ class CSVWriter(object):
     def __init__(self, paths_config, verbose = False):
         self._paths_config = paths_config
         self._verbose = verbose
+
+    def _open_csv_file(self):
+        tmp_files_path = self._paths_config.get_tmp_files_path()
+        (file_desc, file_name) = tempfile.mkstemp(suffix="_csv", dir=tmp_files_path)
+
+        # OutputFacade writes text rows, so CSV temp files must be opened in text mode on Python 3.
+        csv_file = os.fdopen(file_desc, 'w', encoding='utf-8')
+
+        return csv_file, file_name
     
     def _output_map(self, mapping_results, output_printer, multiple_param):
         
         file_name = None
         
         try:
-            tmp_files_path = self._paths_config.get_tmp_files_path()
-            
-            (file_desc, file_name) = tempfile.mkstemp(suffix="_csv", dir=tmp_files_path)
-            
-            csv_file = os.fdopen(file_desc, 'wb')
+            (csv_file, file_name) = self._open_csv_file()
             
             output_printer.set_output_desc(csv_file)
             
@@ -118,11 +123,7 @@ class CSVWriter(object):
         file_name = None
         
         try:
-            tmp_files_path = self._paths_config.get_tmp_files_path()
-            
-            (file_desc, file_name) = tempfile.mkstemp(suffix="_csv", dir=tmp_files_path)
-            
-            csv_file = os.fdopen(file_desc, 'wb')
+            (csv_file, file_name) = self._open_csv_file()
             
             output_printer.set_output_desc(csv_file)
             
@@ -143,11 +144,7 @@ class CSVWriter(object):
         file_name = None
         
         try:
-            tmp_files_path = self._paths_config.get_tmp_files_path()
-            
-            (file_desc, file_name) = tempfile.mkstemp(suffix="_csv", dir=tmp_files_path)
-            
-            csv_file = os.fdopen(file_desc, 'wb')
+            (csv_file, file_name) = self._open_csv_file()
             
             output_printer.set_output_desc(csv_file)
             
@@ -169,11 +166,7 @@ class CSVWriter(object):
         file_name = None
         
         try:
-            tmp_files_path = self._paths_config.get_tmp_files_path()
-            
-            (file_desc, file_name) = tempfile.mkstemp(suffix="_csv", dir=tmp_files_path)
-            
-            csv_file = os.fdopen(file_desc, 'wb')
+            (csv_file, file_name) = self._open_csv_file()
             
             output_printer.set_output_desc(csv_file)
             
@@ -194,11 +187,7 @@ class CSVWriter(object):
         file_name = None
         
         try:
-            tmp_files_path = self._paths_config.get_tmp_files_path()
-            
-            (file_desc, file_name) = tempfile.mkstemp(suffix="_csv", dir=tmp_files_path)
-            
-            csv_file = os.fdopen(file_desc, 'wb')
+            (csv_file, file_name) = self._open_csv_file()
             
             output_printer.set_output_desc(csv_file)
             
@@ -219,11 +208,7 @@ class CSVWriter(object):
         file_name = None
         
         try:
-            tmp_files_path = self._paths_config.get_tmp_files_path()
-            
-            (file_desc, file_name) = tempfile.mkstemp(suffix="_csv", dir=tmp_files_path)
-            
-            csv_file = os.fdopen(file_desc, 'wb')
+            (csv_file, file_name) = self._open_csv_file()
             
             output_printer.set_output_desc(csv_file)
             

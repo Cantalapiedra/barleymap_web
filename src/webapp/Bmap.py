@@ -22,9 +22,9 @@ from barleymapcore.maps.enrichment.MapEnricher import SHOW_ON_INTERVALS, SHOW_ON
 from barleymapcore.output.CSVWriter import CSVWriter
 from barleymapcore.m2p_exception import m2pException
 
-from html.output.OutputMaps import OutputMaps
+from .html.output.OutputMaps import OutputMaps
 
-import m2p_mail
+from . import m2p_mail
 
 GRAPHS_CONF = ConfigBase.GRAPHS_CONF
 MAPS_CONF = ConfigBase.MAPS_CONF
@@ -125,6 +125,8 @@ class Bmap(object):
         if user_file and user_file.file: # Uploaded file
             input_lines = []
             for line in user_file.file:
+                if isinstance(line, bytes):
+                    line = line.decode("utf-8")
                 input_lines.append(line)
         else: # Text Area
             input_lines = query.strip().split("\n")
@@ -174,12 +176,12 @@ class Bmap(object):
         if find_form.get_maps():
             maps = find_form.get_maps()
             
-            if isinstance(maps, basestring): maps = [maps]
+            if isinstance(maps, str): maps = [maps]
             
             maps_names = maps_config.get_maps_names(maps)
             maps_ids = maps#maps_config.get_maps_ids(maps_names.strip().split(","))
         else:
-            maps_ids = maps_config.get_maps().keys()
+            maps_ids = list(maps_config.get_maps().keys())
             maps_names = ",".join(maps_config.get_maps_names(maps_ids))
         
         maps_path = paths_config.get_maps_path() #__app_path+config_path_dict["maps_path"]
@@ -262,12 +264,12 @@ class Bmap(object):
         if align_form.get_maps():
             maps = align_form.get_maps()
             
-            if isinstance(maps, basestring): maps = [maps]
+            if isinstance(maps, str): maps = [maps]
             
             maps_names = maps_config.get_maps_names(maps)
             maps_ids = maps#maps_config.get_maps_ids(maps_names.strip().split(","))
         else:
-            maps_ids = maps_config.get_maps().keys()
+            maps_ids = list(maps_config.get_maps().keys())
             maps_names = ",".join(maps_config.get_maps_names(maps_ids))
         
         maps_path = paths_config.get_maps_path() #__app_path+config_path_dict["maps_path"]
@@ -286,7 +288,7 @@ class Bmap(object):
         # Datasets config
         datasets_conf_file = __app_path+DATASETS_CONF
         datasets_config = DatasetsConfig(datasets_conf_file)
-        datasets_ids = datasets_config.get_datasets().keys()
+        datasets_ids = list(datasets_config.get_datasets().keys())
         
         # Load DatasetsFacade
         datasets_path = paths_config.get_datasets_path() #__app_path+config_path_dict["datasets_path"]
@@ -376,9 +378,9 @@ class Bmap(object):
         if align_form.get_graphs():
             graphs = align_form.get_graphs()
             if type(graphs) is list:
-                graphs_names = [x.encode('UTF8') for x in align_form.get_graphs()]
-            elif isinstance(graphs, basestring):
-                graphs_names = [graphs.encode('UTF8')]
+                graphs_names = align_form.get_graphs()
+            elif isinstance(graphs, str):
+                graphs_names = [graphs]
         else:
             graphs_names = graphs_config.get_graphs_names()
 
@@ -407,7 +409,7 @@ class Bmap(object):
         # Datasets config
         datasets_conf_file = __app_path+DATASETS_CONF
         datasets_config = DatasetsConfig(datasets_conf_file)
-        datasets_ids = datasets_config.get_datasets().keys()
+        datasets_ids = list(datasets_config.get_datasets().keys())
 
         # Load DatasetsFacade
         datasets_path = paths_config.get_datasets_path() #__app_path+config_path_dict["datasets_path"]
@@ -429,8 +431,7 @@ class Bmap(object):
         constrain_fine_mapping = True
         best_score = True
 
-        aligner = align_form.get_aligner().encode('UTF8')
-        aligner_list = [aligner]
+        aligner_list = [align_form.get_aligner()]
 
         sys.stderr.write("BMAP aligner_list: "+str(aligner_list)+"\n")
 
@@ -503,12 +504,12 @@ class Bmap(object):
         if form.get_maps():
             maps = form.get_maps()
             
-            if isinstance(maps, basestring): maps = [maps]
+            if isinstance(maps, str): maps = [maps]
             
             maps_names = maps_config.get_maps_names(maps)
             maps_ids = maps#maps_config.get_maps_ids(maps_names.strip().split(","))
         else:
-            maps_ids = maps_config.get_maps().keys()
+            maps_ids = list(maps_config.get_maps().keys())
             maps_names = ",".join(maps_config.get_maps_names(maps_ids))
         
         maps_path = paths_config.get_maps_path() #__app_path+config_path_dict["maps_path"]
@@ -527,7 +528,7 @@ class Bmap(object):
         # Datasets config
         datasets_conf_file = __app_path+DATASETS_CONF
         datasets_config = DatasetsConfig(datasets_conf_file)
-        datasets_ids = datasets_config.get_datasets().keys()
+        datasets_ids = list(datasets_config.get_datasets().keys())
         
         # Load DatasetsFacade
         datasets_path = paths_config.get_datasets_path() #__app_path+config_path_dict["datasets_path"]

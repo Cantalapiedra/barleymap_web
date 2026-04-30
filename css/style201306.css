@@ -94,7 +94,7 @@ h3 {
     padding: 0;
 }
 
-/* tamaño de botones */
+/* Buttons Size */
 
 #main_buttons_table img {
     width: 282px !important;
@@ -457,4 +457,386 @@ footer a {
 #input_query {
     width: 100% !important;
     max-width: 100%;
+}
+
+/* Resultados Barleymap */
+
+#body_section {
+    max-width: 1280px;
+    margin: 24px auto;
+    padding: 0 18px;
+    box-sizing: border-box;
+}
+
+#results_section,
+footer.infobar {
+    max-width: 1280px;
+    background: #fff;
+    border: 1px solid #dbe1ea;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07);
+}
+
+#results_section {
+    padding: 22px;
+    margin-top: 18px;
+    box-sizing: border-box;
+}
+
+footer.infobar {
+    margin: 30px auto 0;
+    border-radius: 14px 14px 0 0;
+}
+
+/* Cita superior */
+
+#body_section > strong:first-child {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #e8eefc;
+    color: #1e3a8a;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+#body_section > a[target="_blank"] {
+    color: #475569;
+    line-height: 1.45;
+}
+
+/* Títulos y menú */
+
+.map_title {
+    margin: 10px 0 14px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+    color: #0f172a;
+    font-size: 28px;
+    text-align: left;
+}
+
+.map_title::before {
+    content: "Genome ";
+    color: #2563eb;
+}
+
+.map_menu {
+    margin: 12px 0 20px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #f8fafc;
+}
+
+.map_menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.map_menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.map_result_link,
+a[download="report.csv"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+.map_result_link {
+    min-height: 34px;
+    padding: 7px 12px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #1e3a8a;
+}
+
+.map_result_link:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.results_table_title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 24px 0 8px;
+    padding: 8px 12px;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.results_table_title a img,
+.map_title a img {
+    opacity: .65;
+    transition: opacity .15s ease, transform .15s ease;
+}
+
+.results_table_title a:hover img,
+.map_title a:hover img {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Botones */
+
+.boton {
+    display: inline-flex;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #dbe1ea;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, .08);
+}
+
+.boton:hover,
+a[download="report.csv"]:hover {
+    transform: translateY(-1px);
+}
+
+.toggle_button {
+    width: 46px !important;
+    height: 46px !important;
+    margin: 4px 0 12px;
+    padding: 9px !important;
+    border: 1px solid #bfdbfe !important;
+    border-radius: 14px;
+    background: #eff6ff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, .15);
+}
+
+.toggle_button:hover {
+    background: #dbeafe;
+    transform: scale(1.05);
+}
+
+a[download="report.csv"] {
+    margin: 8px 0 10px;
+    padding: 7px 11px;
+    border: 1px solid #bbf7d0;
+    background: #ecfdf5;
+    color: #166534;
+}
+
+a[download="report.csv"]::after {
+    content: "Download CSV";
+}
+
+a[download="report.csv"] img {
+    width: 24px !important;
+    height: 24px !important;
+    object-fit: contain;
+}
+
+/* Mapas SVG */
+
+#graphical_maps_morexv3,
+#graphical_maps_morexv3_fine {
+    display: block !important;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 10px 0 22px;
+    padding: 16px;
+    border: 1px solid #dbe1ea;
+    border-radius: 16px;
+    background: #fff;
+}
+
+#graphical_maps_morexv3[style*="display:none"],
+#graphical_maps_morexv3_fine[style*="display:none"] {
+    display: none !important;
+}
+
+#graphical_maps_morexv3 svg,
+#graphical_maps_morexv3_fine svg {
+    max-width: none;
+    height: auto;
+}
+
+#graphical_maps_morexv3::-webkit-scrollbar,
+#graphical_maps_morexv3_fine::-webkit-scrollbar {
+    height: 10px;
+}
+
+#graphical_maps_morexv3::-webkit-scrollbar-track,
+#graphical_maps_morexv3_fine::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 999px;
+}
+
+#graphical_maps_morexv3::-webkit-scrollbar-thumb,
+#graphical_maps_morexv3_fine::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+}
+
+/* Tablas sin scroll horizontal */
+
+#positions_table,
+.unmapped_table {
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 10px 0 24px;
+    overflow: hidden;
+    border: 1px solid #dbe1ea;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, .06);
+}
+
+#positions_table th,
+.unmapped_table th,
+#positions_table td,
+.unmapped_table td {
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: center;
+    vertical-align: middle;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+#positions_table th,
+.unmapped_table th {
+    background: #1e293b;
+    color: #fff;
+}
+
+#positions_table tr:hover td,
+.unmapped_table tr:hover td {
+    background: #eff6ff !important;
+}
+
+#positions_table td.std_td {
+    background: #eef6ff;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+#positions_table td.feature_td {
+    background: #fff;
+    color: #334155;
+}
+
+#positions_table td.empty_td {
+    background: #f8fafc;
+    color: #94a3b8;
+}
+
+#positions_table td a,
+.unmapped_table td a {
+    color: #1d4ed8;
+    font-weight: 600;
+}
+
+/* Anchuras principales de la tabla con genes */
+#positions_table th:nth-child(1),
+#positions_table td:nth-child(1) { width: 15%; }
+
+#positions_table th:nth-child(2),
+#positions_table td:nth-child(2) { width: 13%; }
+
+#positions_table th:nth-child(3),
+#positions_table td:nth-child(3),
+#positions_table th:nth-child(4),
+#positions_table td:nth-child(4) { width: 8%; }
+
+#positions_table th:nth-child(5),
+#positions_table td:nth-child(5),
+#positions_table th:nth-child(6),
+#positions_table td:nth-child(6),
+#positions_table th:nth-child(10),
+#positions_table td:nth-child(10) { width: 6%; }
+
+#positions_table th:nth-child(7),
+#positions_table td:nth-child(7) { width: 17%; }
+
+#positions_table th:nth-child(8),
+#positions_table td:nth-child(8) { width: 9%; }
+
+#positions_table th:nth-child(9),
+#positions_table td:nth-child(9) { width: 14%; }
+
+#unaligned_table {
+    max-width: 420px;
+    table-layout: auto;
+}
+
+#unaligned_table td {
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+}
+
+#results_section hr {
+    margin: 28px 0 8px;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    #body_section { padding: 0 12px; }
+    #results_section { padding: 16px; }
+    .map_title { font-size: 23px; }
+    .results_table_title { font-size: 16px; }
+
+    .map_menu ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .map_result_link {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 520px) {
+    body { font-size: 14px; }
+    header { padding: 14px 10px; }
+    header h2 { font-size: 23px; }
+    .map_title { font-size: 20px; }
+
+    #positions_table th,
+    .unmapped_table th,
+    #positions_table td,
+    .unmapped_table td {
+        padding: 7px 5px;
+        font-size: 10px;
+    }
+
+    a[download="report.csv"]::after {
+        content: "CSV";
+    }
 }

@@ -7,7 +7,7 @@
 # Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
-from MapsBase import MapTypes
+from .MapsBase import MapTypes
 
 ## This class represents the map position of a marker which has been aligned first to a DB
 ##

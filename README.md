@@ -49,7 +49,8 @@ Barleymap has 3 different groups of **tools**, which are further explained in fo
 
 ## 2) Prerequisites
 
-- Python 2.6 or superior.
+- Python 3.9 or superior.
+- Install web dependencies with `pip install -r requirements.txt`.
 - To perform sequence alignments barleymap will need
 either BLASTN, HS-BLASTN and/or GMAP sequence aligners.
 
@@ -88,8 +89,8 @@ export PYTHONPATH=$PYTHONPATH:/home/$USER/apps/barleymap/
 
 #### 3.1.2) Web version
 
-The barleymap web interface was designed to be used with a [CherryPy server](http://cherrypy.org/),
-which should be installed and configured independently.
+The barleymap web interface was designed to be used with a [CherryPy server](http://cherrypy.org/).
+This repository now includes the Python web dependency in `requirements.txt`.
 
 Those interested on running their own barleymap web servers should check the CherryPy documentation
 to setup the server with their own infrastructure.

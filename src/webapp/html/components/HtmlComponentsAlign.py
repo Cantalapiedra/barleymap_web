@@ -5,7 +5,7 @@
 # Copyright (C) 2017 Carlos P Cantalapiedra.
 # (terms of use can be found within the distributed LICENSE file).
 
-from HtmlComponentsBase import HtmlComponentsBase
+from .HtmlComponentsBase import HtmlComponentsBase
 
 class HtmlComponentsAlign(object):
     

@@ -7,8 +7,8 @@
 
 import sys, os
 
-from reader.MapReader import MapReader
-from mappers.Mappers import Mappers
+from .reader.MapReader import MapReader
+from .mappers.Mappers import Mappers
 from barleymapcore.db.MapsConfig import MapsConfig
 from barleymapcore.m2p_exception import m2pException
 import barleymapcore.utils.alignment_utils as alignment_utils

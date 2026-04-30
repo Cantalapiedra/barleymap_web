@@ -49,11 +49,10 @@ def __align2graph(align2graph_app_path, n_threads, threshold_id, threshold_cov, 
     if verbose: sys.stderr.write("m2p_align2graph: Executing '"+align2graph_cmd+"'\n")
     
     retValue = 0
-    FNULL = open(os.devnull, 'w')
     if verbose:
-        p = Popen(align2graph_cmd, shell=True, stdout=PIPE, stderr=sys.stderr)
+        p = Popen(align2graph_cmd, shell=True, stdout=PIPE, stderr=sys.stderr, text=True)
     else:
-        p = Popen(align2graph_cmd, shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen(align2graph_cmd, shell=True, stdout=PIPE, stderr=PIPE, text=True)
     
     com_list = p.communicate()
     output = com_list[0]

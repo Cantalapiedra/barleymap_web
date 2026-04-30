@@ -170,6 +170,7 @@ class HtmlLayoutBarleymap(object):
 
             <br/><strong>Latest changes</strong><br/>
 <textarea id="changes" name="changes" rows="3" cols="120" readonly>
+30-04-2026 New visual interface. Please let us know if you find any issues. ,
 14-01-2026 Created table of IBSC2012 contigs with physical (MorexV3) and genetic positions (popseq2017) by user request,
 see https://github.com/Cantalapiedra/barleymap/releases/tag/popseq2017.morexv3
 03-06-2025 Added BarT2 and panBaRT genes to facilitate cross-analysis at EoRNA and panBaRT.

@@ -158,10 +158,10 @@ class DatasetsConfig(object):
         return self._config_dict[dataset_id]
     
     def get_datasets_ids(self):
-        return self._config_dict.keys()
+        return list(self._config_dict.keys())
     
     def get_datasets_configs(self):
-        return self._config_dict.values()
+        return list(self._config_dict.values())
     
     def get_datasets_names(self, datasets_ids = None):
         datasets_names = []

@@ -8,11 +8,11 @@
 
 import sys
 
-from SearchEngines import SearchEnginesFactory
-from reader.MapReader import MapReader
-from mappers.Mappers import Mappers
-from enrichment.MapEnricher import MapEnricherFactory, MapEnricher
-from enrichment.Enrichers import EnricherFactory
+from .SearchEngines import SearchEnginesFactory
+from .reader.MapReader import MapReader
+from .mappers.Mappers import Mappers
+from .enrichment.MapEnricher import MapEnricherFactory, MapEnricher
+from .enrichment.Enrichers import EnricherFactory
 
 from barleymapcore.datasets.DatasetsFacade import DatasetsFacade
 from barleymapcore.alignment.AlignmentResult import *

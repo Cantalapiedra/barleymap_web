@@ -5,7 +5,7 @@
 # Copyright (C)  2016-2017  Carlos P Cantalapiedra.
 # (terms of use can be found within the distributed LICENSE file).
 
-from GeneAnnotation import GeneAnnotation
+from .GeneAnnotation import GeneAnnotation
 
 class AnnotationFile(object):
     

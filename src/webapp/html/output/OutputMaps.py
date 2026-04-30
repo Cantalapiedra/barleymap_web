@@ -7,7 +7,7 @@
 
 import sys
 
-from HtmlWriter import HtmlWriter
+from .HtmlWriter import HtmlWriter
 
 class OutputMaps(object):
     

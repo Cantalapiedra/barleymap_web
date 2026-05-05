@@ -38,7 +38,7 @@ def __align2graph(align2graph_app_path, n_threads, threshold_id, threshold_cov, 
                    " --cor ", str(n_threads), \
                    " --minident ", str(threshold_id), \
                    " --mincover ", str(threshold_cov), \
-                   " --add_ranges ", \
+                   " --add_ranges both", \
                    " ",query_fasta_path,
                    ])
     

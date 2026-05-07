@@ -4,7 +4,7 @@
 
 echo "Launching barleymap web app...";
 date;
-PYTHONPATH=$PYTHONPATH:"/home/cantalapiedra" python2 ./src/server.py >>./logs/server.log 2>>./logs/server.err &
+PYTHONPATH=$PYTHONPATH:"/home/cantalapiedra" python3 ./src/server.py >>./logs/server.log 2>>./logs/server.err &
 
 # PID
 last_pid=$!;
@@ -12,4 +12,3 @@ echo $last_pid > ./logs/last_pid;
 
 date >> ./logs/start_date.log &&
 echo "Barleymap web app is working.";
-

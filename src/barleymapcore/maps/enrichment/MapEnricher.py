@@ -14,8 +14,8 @@ from barleymapcore.maps.MapsBase import MapTypes
 
 from barleymapcore.m2p_exception import m2pException
 
-from Enrichers import EnricherFactory
-from MarkerEnrichers import MarkerEnricherFactory
+from .Enrichers import EnricherFactory
+from .MarkerEnrichers import MarkerEnricherFactory
 
 SHOW_ON_INTERVALS = "0"
 SHOW_ON_MARKERS = "1"

@@ -8,7 +8,7 @@
 import sys, re, os
 from subprocess import Popen, PIPE
 
-from AlignmentResult import *
+from .AlignmentResult import *
 from barleymapcore.m2p_exception import m2pException
 
 #from Aligners import SELECTION_BEST_SCORE, SELECTION_NONE
@@ -47,11 +47,10 @@ def __gmap(gmap_app_path, n_threads, threshold_id, threshold_cov, query_fasta_pa
     if verbose: sys.stderr.write("m2p_gmap: Executing '"+gmap_cmd+"'\n")
     
     retValue = 0
-    FNULL = open(os.devnull, 'w')
     if verbose:
-        p = Popen(gmap_cmd, shell=True, stdout=PIPE, stderr=sys.stderr)
+        p = Popen(gmap_cmd, shell=True, stdout=PIPE, stderr=sys.stderr, text=True)
     else:
-        p = Popen(gmap_cmd, shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen(gmap_cmd, shell=True, stdout=PIPE, stderr=PIPE, text=True)
     
     com_list = p.communicate()
     output = com_list[0]
@@ -247,12 +246,12 @@ def __filter_gmap_results(results, threshold_id, threshold_cov, db_name, verbose
         s_pos = re.search(strand_exp, line_data[9])
         
         if strand == "+":
-            local_position = long(line_data[9].split(":")[1].split("..")[0])
-            end_position = long(line_data[9].split(":")[1].split("..")[1])
+            local_position = int(line_data[9].split(":")[1].split("..")[0])
+            end_position = int(line_data[9].split(":")[1].split("..")[1])
             #local_position = long(s_pos.group(1))
         elif strand == "-":
-            local_position = long(line_data[9].split(":")[1].split("..")[1])
-            end_position = long(line_data[9].split(":")[1].split("..")[0])
+            local_position = int(line_data[9].split(":")[1].split("..")[1])
+            end_position = int(line_data[9].split(":")[1].split("..")[0])
             #local_position = long(s_pos.group(2))
         else:
             raise Exception("m2p_gmap: wrong strand "+str(strand)+".")
@@ -262,7 +261,7 @@ def __filter_gmap_results(results, threshold_id, threshold_cov, db_name, verbose
         query_positions = line_data[7].split("..")
         qstart_pos = query_positions[0]
         qend_pos = query_positions[1]
-        align_score = (long(qend_pos) - long(qstart_pos)) * (align_ident / 100)
+        align_score = (int(qend_pos) - int(qstart_pos)) * (align_ident / 100)
         #if query_id == "i_BK_02": debug = True
         #else: debug = False
         

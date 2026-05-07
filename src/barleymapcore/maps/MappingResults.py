@@ -7,7 +7,7 @@
 # Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
-from MapsBase import MapTypes
+from .MapsBase import MapTypes
 
 ## This class represents the map position of a marker which has been aligned first to a DB
 ##
@@ -236,6 +236,7 @@ class MappingResults(object):
     _fine_mapping = False
     _sort_by = ""
     _map_config = None
+    _graph_name = None
     
     _map_with_genes = None
     _map_with_markers = None
@@ -284,6 +285,12 @@ class MappingResults(object):
     
     def set_map_config(self, map_config):
         self._map_config = map_config
+
+    def get_graph_name(self):
+        return self._graph_name
+
+    def set_graph_name(self, graph_name):
+        self._graph_name = graph_name
     
     def set_map_with_genes(self, map_with_genes):
         self._map_with_genes = map_with_genes

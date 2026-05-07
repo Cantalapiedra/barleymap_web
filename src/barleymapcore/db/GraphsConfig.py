@@ -104,7 +104,7 @@ class GraphsConfig(object):
                 if not found:
                     sys.stderr.write("WARNING: GraphsConfig: database name "+database_name+" not found in config.\n")
         else:
-            databases_ids = self._config_dict.keys()
+            databases_ids = list(self._config_dict.keys())
         
         return databases_ids
     
@@ -117,12 +117,10 @@ class GraphsConfig(object):
                 if database in self._config_dict:
                     databases_names.append(self._config_dict[database][GRAPH_NAME])
                     found = True
-                    break
+                if not found:
+                    sys.stderr.write("WARNING: GraphsConfig: database ID "+database+" not found in config.\n")
+                    databases_names.append(database)
 
-            if not found:
-                sys.stderr.write("WARNING: GraphsConfig: database ID "+database+" not found in config.\n")
-                databases_names.append(database)
-        
         else:
             for graph_id in self._config_list:
                 databases_names.append(self._config_dict[graph_id][GRAPH_NAME])

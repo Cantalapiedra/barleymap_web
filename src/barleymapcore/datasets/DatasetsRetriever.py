@@ -199,7 +199,7 @@ class DatasetsRetriever(object):
         if self._verbose: sys.stderr.write("DatasetsRetriever: final number of results "+str(num_results)+"\n")
         sys.stderr.write("DatasetsRetriever: found "+str(queries_found)+" out of "+str(initial_num_queries)+"\n")
         
-        self._unmapped = [query for query in query_ids_dict.keys() if query_ids_dict[query] == 0]
+        self._unmapped = [query for query in list(query_ids_dict.keys()) if query_ids_dict[query] == 0]
         
         return
     

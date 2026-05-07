@@ -511,7 +511,7 @@ class HtmlComponentsBase(object):
             input_data = []
         elif input_data == "":
             input_data = []
-        elif isinstance(input_data, basestring): # If only one dataset provided, best if embeb it in a list
+        elif isinstance(input_data, str): # If only one dataset provided, best if embeb it in a list
             input_data = [input_data]
         #else: input_data is already a list
         

@@ -11,7 +11,7 @@ import sys, os
 from barleymapcore.db.DatasetsConfig import DatasetsConfig
 #from barleymapcore.alignment.AlignmentResult import *
 
-from DatasetsRetriever import DatasetsRetriever
+from .DatasetsRetriever import DatasetsRetriever
 
 class DatasetsFacade(DatasetsRetriever):
     

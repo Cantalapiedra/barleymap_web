@@ -10,8 +10,8 @@ import os, sys
 
 from barleymapcore.db.DatabasesConfig import REF_TYPE_STD
 
-from AlignmentEngines import AlignmentEnginesFactory
-from AlignmentResult import AlignmentResults, AlignmentResult
+from .AlignmentEngines import AlignmentEnginesFactory
+from .AlignmentResult import AlignmentResults, AlignmentResult
 
 class AlignmentFacade():
     
@@ -54,7 +54,7 @@ class AlignmentFacade():
                 strand = "+"
                 qstart_pos = "1"
                 qend_pos = "2"
-                end_position = str(long(local_position) + 1)
+                end_position = str(int(local_position) + 1)
                 db_name = "-"
                 algorithm = "-"
                 

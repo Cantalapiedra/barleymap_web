@@ -36,7 +36,7 @@ class HtmlLayoutBarleymap(object):
         return "".join(output)
     
     @staticmethod
-    def main_text(citation, base_url, PREFIX_UI_CTRLS_ALIGN, PREFIX_UI_CTRLS_FIND, PREFIX_UI_CTRLS_LOCATE):
+    def main_text(citation, base_url, PREFIX_UI_CTRLS_ALIGN, PREFIX_UI_CTRLS_FIND, PREFIX_UI_CTRLS_LOCATE, PREFIX_UI_CTRLS_GRAPH):
         output = []
         #output.append('<br/>')
         output.append('<div id="main_buttons" style="margin:0px;">')
@@ -55,6 +55,11 @@ class HtmlLayoutBarleymap(object):
         output.append(HtmlLayoutBarleymap.output_html_img_button(PREFIX_UI_CTRLS_LOCATE, base_url+"/"+PREFIX_UI_CTRLS_LOCATE+"/",
                                                                  base_url+"/img/ui_buttons_locate.png", "200px", "100px",
                                                                  base_url+"/img/ui_buttons_locate_hover.png"))
+        output.append("</td>")
+        output.append('<td style="text-align:center;">')
+        output.append(HtmlLayoutBarleymap.output_html_img_button(PREFIX_UI_CTRLS_GRAPH, base_url+"/"+PREFIX_UI_CTRLS_GRAPH+"/",
+                                                                 base_url+"/img/ui_buttons_graph.png", "200px", "100px",
+                                                                 base_url+"/img/ui_buttons_graph_hover.png"))                                          
         output.append("</td>")
         output.append('<td style="text-align:center;">')
         output.append(HtmlLayoutBarleymap.output_html_img_button("help", base_url+"/help/",
@@ -148,7 +153,7 @@ class HtmlLayoutBarleymap(object):
             <h2><a href="{1}/">Barleymap</a></h2>
             <h3 class="infobar">({0})</h3>
         </header>
-        """.format("Map markers to the barley genome - MorexV3 + pangenes 2024 edition", base_url)
+        """.format("Map markers to the barley genome - MorexV3 + pangenes 2026 edition", base_url)
     
     @staticmethod
     def footer():
@@ -170,6 +175,7 @@ class HtmlLayoutBarleymap(object):
 
             <br/><strong>Latest changes</strong><br/>
 <textarea id="changes" name="changes" rows="3" cols="120" readonly>
+30-04-2026 New visual interface. Please let us know if you find any issues. ,
 14-01-2026 Created table of IBSC2012 contigs with physical (MorexV3) and genetic positions (popseq2017) by user request,
 see https://github.com/Cantalapiedra/barleymap/releases/tag/popseq2017.morexv3
 03-06-2025 Added BarT2 and panBaRT genes to facilitate cross-analysis at EoRNA and panBaRT.

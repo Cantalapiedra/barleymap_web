@@ -9,7 +9,7 @@ import sys, os
 from subprocess import Popen, PIPE
 
 from barleymapcore.m2p_exception import m2pException
-from AlignmentResult import *
+from .AlignmentResult import *
 
 #from Aligners import SELECTION_BEST_SCORE, SELECTION_NONE
 
@@ -34,7 +34,7 @@ def __split_blast(split_blast_path, blast_app_path, n_threads, query_fasta_path,
     ###### Retrieve num of fasta seqs to calculate necessary bins
     retValue = 0
     p = Popen(" ".join(["cat", query_fasta_path, " | grep -c \"^>\""]), \
-              shell=True, stdout=PIPE, stderr=sys.stderr)
+              shell=True, stdout=PIPE, stderr=sys.stderr, text=True)
     output = p.communicate()[0]
     retValue = p.returncode
     if retValue == 0:
@@ -56,11 +56,10 @@ def __split_blast(split_blast_path, blast_app_path, n_threads, query_fasta_path,
     if verbose: sys.stderr.write("m2p_split_blast: Executing '"+blast_cmd+"'\n")
     
     retValue = 0
-    FNULL = open(os.devnull, 'w')
     if verbose:
-        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=sys.stderr)
+        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=sys.stderr, text=True)
     else:
-        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=PIPE, text=True)
     
     com_list = p.communicate()
     output = com_list[0]
@@ -121,15 +120,15 @@ def __filter_blast_results(results, threshold_id, threshold_cov, db_name, verbos
         # strand and local position
         if line_data[7]>line_data[8]:
             strand = "-"
-            local_position = long(line_data[8])
-            end_position = long(line_data[7])
+            local_position = int(line_data[8])
+            end_position = int(line_data[7])
         else:
             strand = "+"
-            local_position = long(line_data[7])
-            end_position = long(line_data[8])
+            local_position = int(line_data[7])
+            end_position = int(line_data[8])
         
-        qstart_pos = long(line_data[5])
-        qend_pos = long(line_data[6])
+        qstart_pos = int(line_data[5])
+        qend_pos = int(line_data[6])
         
         result_tuple = AlignmentResult()
         result_tuple.create_from_attributes(query_id, subject_id,

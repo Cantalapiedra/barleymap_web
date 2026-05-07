@@ -10,7 +10,7 @@ from subprocess import Popen, PIPE
 
 from barleymapcore.utils.alignment_utils import load_fasta_lengths
 from barleymapcore.m2p_exception import m2pException
-from AlignmentResult import *
+from .AlignmentResult import *
 
 #from Aligners import SELECTION_BEST_SCORE, SELECTION_NONE
 
@@ -53,11 +53,10 @@ def __hs_blast(hsblastn_app_path, n_threads, query_fasta_path, hsblastn_dbs_path
     if verbose: sys.stderr.write(os.path.basename(__file__)+": Running '"+blast_cmd+"'\n")
     
     retValue = 0
-    FNULL = open(os.devnull, 'w')
     if verbose:
-        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=sys.stderr)
+        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=sys.stderr, text=True)
     else:
-        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=PIPE)
+        p = Popen(blast_cmd, shell=True, stdout=PIPE, stderr=PIPE, text=True)
     
     com_list = p.communicate()
     output = com_list[0]
@@ -121,15 +120,15 @@ def __filter_blast_results(results, threshold_id, threshold_cov, db_name, qlen_d
         # strand and local position
         if line_data[ALIGN_SSTART]>line_data[ALIGN_SEND]:
             strand = "-"
-            local_position = long(line_data[ALIGN_SEND])
-            end_position = long(line_data[ALIGN_SSTART])
+            local_position = int(line_data[ALIGN_SEND])
+            end_position = int(line_data[ALIGN_SSTART])
         else:
             strand = "+"
-            local_position = long(line_data[ALIGN_SSTART])
-            end_position = long(line_data[ALIGN_SEND])
+            local_position = int(line_data[ALIGN_SSTART])
+            end_position = int(line_data[ALIGN_SEND])
         
-        qstart_pos = long(line_data[ALIGN_QSTART])
-        qend_pos = long(line_data[ALIGN_QEND])
+        qstart_pos = int(line_data[ALIGN_QSTART])
+        qend_pos = int(line_data[ALIGN_QEND])
         
         result_tuple = AlignmentResult()
         result_tuple.create_from_attributes(query_id, subject_id,

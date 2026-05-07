@@ -11,8 +11,8 @@ import sys
 #from barleymapcore.maps.MappingResults import MappingResult
 #from barleymapcore.db.MapsConfig import MapsConfig
 
-from MapFiles import ChromosomesFile
-from MappingsParser import MappingsParser
+from .MapFiles import ChromosomesFile
+from .MappingsParser import MappingsParser
 
 class MapReader(object):
     

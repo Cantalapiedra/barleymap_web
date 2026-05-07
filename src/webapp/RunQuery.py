@@ -12,10 +12,10 @@ import cherrypy
 from barleymapcore.db.PathsConfig import PathsConfig
 from barleymapcore.m2p_exception import m2pException
 
-from html.HtmlLayout import HtmlLayout
+from .html.HtmlLayout import HtmlLayout
 
-from FormsFactory import FormsFactory
-from Bmap import Bmap, FIND_ACTION, ALIGN_ACTION, LOCATE_ACTION, GRAPH_ACTION
+from .FormsFactory import FormsFactory
+from .Bmap import Bmap, FIND_ACTION, ALIGN_ACTION, LOCATE_ACTION, GRAPH_ACTION
 
 DEFAULT_SORT_PARAM = "map default"
 EMAIL_CONF = "EMAIL_CONF"
@@ -106,7 +106,7 @@ class Root():
             traceback.print_exc(file=sys.stderr)
             output = str(m2pe)
             
-        except Exception, e:
+        except Exception as e:
             sys.stderr.write(str(e)+"\n")
             traceback.print_exc(file=sys.stderr)
             output = "There was a server error. Please, contact with barleymap web application adminitrators."
@@ -156,7 +156,7 @@ class Root():
             traceback.print_exc(file=sys.stderr)
             output = str(m2pe)
             
-        except Exception, e:
+        except Exception as e:
             sys.stderr.write(str(e)+"\n")
             traceback.print_exc(file=sys.stderr)
             output = "There was a server error. Please, contact with barleymap web application adminitrators."
@@ -208,7 +208,7 @@ class Root():
             traceback.print_exc(file=sys.stderr)
             output = str(m2pe)
             
-        except Exception, e:
+        except Exception as e:
             sys.stderr.write(str(e)+"\n")
             traceback.print_exc(file=sys.stderr)
             output = "There was a server error. Please, contact with barleymap web application adminitrators."
@@ -262,7 +262,7 @@ class Root():
             traceback.print_exc(file=sys.stderr)
             output = str(m2pe)
 
-        except Exception, e:
+        except Exception as e:
             sys.stderr.write(str(e)+"\n")
             traceback.print_exc(file=sys.stderr)
             output = "There was a server error. Please, contact with barleymap web application administrators."
@@ -312,7 +312,7 @@ class Root():
             traceback.print_exc(file=sys.stderr)
             output = str(m2pe)
             
-        except Exception, e:
+        except Exception as e:
             sys.stderr.write(str(e)+"\n")
             traceback.print_exc(file=sys.stderr)
             output = "There was a server error. Please, contact with barleymap web application adminitrators."

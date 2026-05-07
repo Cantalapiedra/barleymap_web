@@ -6,9 +6,9 @@
 # Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
-from components.HtmlComponents import HtmlComponents
+from .components.HtmlComponents import HtmlComponents
 
-from HtmlLayoutBarleymap import HtmlLayoutBarleymap
+from .HtmlLayoutBarleymap import HtmlLayoutBarleymap
 
 PREFIX_UI_CTRLS_ALIGN = "align"
 PREFIX_UI_CTRLS_GRAPH = "graph"
@@ -59,7 +59,7 @@ class HtmlLayout(object):
     def main_text(self, citation):
         
         return HtmlLayoutBarleymap.main_text(citation, self._base_url, PREFIX_UI_CTRLS_ALIGN, PREFIX_UI_CTRLS_FIND,
-                                             PREFIX_UI_CTRLS_LOCATE)
+                                             PREFIX_UI_CTRLS_LOCATE, PREFIX_UI_CTRLS_GRAPH)
     
     def menu(self, citation):
         

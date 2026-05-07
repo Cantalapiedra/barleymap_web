@@ -6,13 +6,13 @@
 # (terms of use can be found within the distributed LICENSE file).
 
 import sys, os
-import cPickle
+import pickle
 
 from barleymapcore.maps.MappingResults import MappingResult
 from barleymapcore.maps.MapInterval import MapInterval
 from barleymapcore.maps.enrichment.FeatureMapping import FeaturesFactory
 
-from MapFiles import MapFile
+from .MapFiles import MapFile
 
 ### Class to obtain mapping results from pre-calculated datasets
 ### "mapping results" are those which have already map positions
@@ -134,8 +134,8 @@ class MappingsParser(object):
         
         sys.stderr.write("MappingsParser: loading index "+str(index_path)+"...\n")
         
-        with open(index_path, 'r') as index_f:
-            index = cPickle.load(index_f)
+        with open(index_path, 'rb') as index_f:
+            index = pickle.load(index_f)
         
         sys.stderr.write("MappingsParser: loaded index with "+str(len(index))+" entries.\n")
         

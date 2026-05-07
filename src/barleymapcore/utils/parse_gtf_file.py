@@ -112,7 +112,7 @@ def parse_gtf_file(gtf_path, db_list, feature_type = GTF_TYPE_TRANSCRIPT, file_t
     
     sys.stderr.write("\t\t\tparse_gtf_file: finished reading a total "+str(len(features))+" of type "+str(feature_type)+"\n")
     
-    return features.values()
+    return list(features.values())
 
 # Creates the AlignmentResult objects used in parse_gtf_file
 def __create_alignment_result(gtf_data, db_list, feature_type, file_type):

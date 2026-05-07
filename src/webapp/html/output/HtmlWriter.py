@@ -19,8 +19,8 @@ MAP_WITH_GENES_TITLE = "Map with genes"
 MAP_WITH_MARKERS_TITLE = "Map with markers"
 MAP_WITH_ANCHORED_TITLE = "Map with anchored features"
 
-from HtmlWriterMaps import HtmlMapsWriter
-import bmap_svg_img
+from .HtmlWriterMaps import HtmlMapsWriter
+from . import bmap_svg_img
 
 BACK_BUTTON_IMG = "/img/back.png"
 
@@ -121,8 +121,12 @@ class HtmlWriter():
         
         map_config = genetic_map_data.get_map_config()
         genetic_map_name = map_config.get_name()#genetic_map_data["map_name"]
+        graph_name = genetic_map_data.get_graph_name()
+        map_title = 'Map: '+str(genetic_map_name)
+        if graph_name:
+            map_title += ' Graph: '+str(graph_name)
         # MAP MENU
-        self.output_text('<h1 class="map_title" id="'+str(genetic_map_name)+'">Map: '+str(genetic_map_name)+'')
+        self.output_text('<h1 class="map_title" id="'+str(genetic_map_name)+'">'+map_title+'')
         #self.output_html_top_button()
         self.output_buffer.append(self.output_html_top_img())
         self.output_text('</h1>')

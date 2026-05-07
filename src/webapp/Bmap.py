@@ -125,6 +125,8 @@ class Bmap(object):
         if user_file and user_file.file: # Uploaded file
             input_lines = []
             for line in user_file.file:
+                if isinstance(line, bytes):
+                    line = line.decode("utf-8")
                 input_lines.append(line)
         else: # Text Area
             input_lines = query.strip().split("\n")
@@ -376,7 +378,11 @@ class Bmap(object):
         if align_form.get_graphs():
             graphs = align_form.get_graphs()
             if type(graphs) is list:
+
                 graphs_names = [str(x) for x in align_form.get_graphs()]
+
+                #graphs_names = align_form.get_graphs()
+
             elif isinstance(graphs, str):
                 graphs_names = [graphs]
         else:
@@ -429,8 +435,12 @@ class Bmap(object):
         constrain_fine_mapping = True
         best_score = True
 
+
         aligner = align_form.get_aligner()
         aligner_list = [aligner]
+
+        # aligner_list = [align_form.get_aligner()]
+
 
         sys.stderr.write("BMAP aligner_list: "+str(aligner_list)+"\n")
 

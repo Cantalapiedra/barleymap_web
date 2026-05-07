@@ -459,8 +459,8 @@ footer a {
     max-width: 100%;
 }
 
-/* Barleymap results */
 
+/* Barleymap results */
 #body_section {
     max-width: 1280px;
     margin: 24px auto;
@@ -488,7 +488,6 @@ footer.infobar {
     border-radius: 14px 14px 0 0;
 }
 
-
 #body_section > strong:first-child {
     display: inline-block;
     margin-bottom: 6px;
@@ -506,8 +505,8 @@ footer.infobar {
     line-height: 1.45;
 }
 
-/* Title and menus */
 
+/* Title and menus */
 .map_title {
     margin: 10px 0 14px;
     padding-bottom: 12px;
@@ -597,7 +596,6 @@ a[download="report.csv"] {
 }
 
 /* Buttons */
-
 .boton {
     display: inline-flex;
     margin: 10px 0;
@@ -647,8 +645,8 @@ a[download="report.csv"] img {
     object-fit: contain;
 }
 
-/* SVG Maps */
 
+/* SVG Maps */
 #graphical_maps_morexv3,
 #graphical_maps_morexv3_fine {
     display: block !important;
@@ -690,8 +688,8 @@ a[download="report.csv"] img {
     border-radius: 999px;
 }
 
-/* Tables without horizontal scrolling */
 
+/* Tables without horizontal scrolling */
 #positions_table,
 .unmapped_table {
     display: table;
@@ -757,6 +755,7 @@ a[download="report.csv"] img {
     font-weight: 600;
 }
 
+
 /* Main widths of the table with genes */
 #positions_table th:nth-child(1),
 #positions_table td:nth-child(1) { width: 15%; }
@@ -814,6 +813,7 @@ a[download="report.csv"] img {
     word-break: normal;
 }
 
+
 /* other alignments */
 #positions_table th:nth-child(6),
 #positions_table td:nth-child(6) {
@@ -822,6 +822,7 @@ a[download="report.csv"] img {
     overflow-wrap: normal;
     word-break: normal;
 }
+
 
 /* Responsive */
 

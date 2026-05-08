@@ -271,7 +271,8 @@ class PhysicalMapper(Mapper):
 class AnchoredMapper(Mapper):
     ## Obtain a finished map of markers from alignments to anchored sequences
     # def create_anchored_map
-    def create_map(self, alignment_results, unaligned_markers, map_config, sort_param, multiple_param):
+    def create_map(self, alignment_results, unaligned_markers, map_config, sort_param, multiple_param,
+                    is_graph = False):
         
         # Indexes the alignments by marker_id
         markers_dict = self._get_markers_dict(alignment_results)

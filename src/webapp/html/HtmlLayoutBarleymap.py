@@ -3,6 +3,7 @@
 
 # HtmlLayoutBarleymap.py is part of Barleymap web app.
 # Copyright (C) 2017  Carlos P Cantalapiedra.
+# Copyright (C) 2026 Bruno Contreras Moreira, Carlos J ramiez and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 class HtmlLayoutBarleymap(object):
@@ -153,17 +154,17 @@ class HtmlLayoutBarleymap(object):
             <h2><a href="{1}/">Barleymap</a></h2>
             <h3 class="infobar">({0})</h3>
         </header>
-        """.format("Map markers to the barley genome - MorexV3 + pangenes 2026 edition", base_url)
+        """.format("Map markers to the barley genome - graph 2026 edition", base_url)
     
     @staticmethod
     def footer():
         return """
         <footer class="infobar">
-            <a href="http://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
+            <a href="https://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
             ::
-            <a href="http://eead.csic.es/" target="_blank">Estaci&oacute;n Experimental de Aula Dei</a>
+            <a href="https://eead.csic.es/" target="_blank">Estaci&oacute;n Experimental de Aula Dei</a>
             ::
-            <a href="http://www.csic.es/" target="_blank">Consejo Superior de Investigaciones Cient&iacute;ficas</a>
+            <a href="https://www.csic.es/" target="_blank">Consejo Superior de Investigaciones Cient&iacute;ficas</a>
         </footer>
         """
     
@@ -177,31 +178,29 @@ class HtmlLayoutBarleymap(object):
 <textarea id="changes" name="changes" rows="3" cols="120" readonly>
 30-04-2026 New visual interface and experimental Graph feature. Please let us know if you find any issues. 
 14-01-2026 Created table of IBSC2012 contigs with physical (MorexV3) and genetic positions (popseq2017) by user request,
-see https://github.com/Cantalapiedra/barleymap/releases/tag/popseq2017.morexv3
+14-01-2026 see https://github.com/Cantalapiedra/barleymap/releases/tag/popseq2017.morexv3
 03-06-2025 Added BarT2 and panBaRT genes to facilitate cross-analysis at EoRNA and panBaRT.
 19-05-2025 Updated pangenes, made with pangenomeV2 annotated assemblies & GET_PANGENES v14052025. Relies on NCBI Multiple Sequence Alignment Viewer. 
 25-10-2024 Updated pangenes, made with GET_PANGENES v04102024.
-31-05-2024 MorexV3 HC genes in maps now link out to protein alignments of pangenes [7]; read more at 
-https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html
-You can browse all pangenes, even those absent in MorexV3, at https://eead-csic-compbio.github.io/barley_pangenes
+31-05-2024 MorexV3 HC genes in maps now link out to protein alignments of pangenes [7],
+31-05-2024 read more at https://bioinfoperl.blogspot.com/2024/02/browsing-barley-pangenes.html;
+31-05-2024 browse all pangenes, even those absent in MorexV3, at https://eead-csic-compbio.github.io/barley_pangenes
 22-08-2023 Results can now be correctly exported as CSV files after fixing bug.
 15-03-2023 Moved to new server and updated URL to https://barleymap.eead.csic.es
 14-06-2022 Added lifted-over IBSC 2012 & 2016 gene models to MorexV3 map. DartSeq markers mapped later by user request.
-04-11-2021 Added MorexV3 map [5], centromeres, PGSB and BaRT1.0 gene models [6] and NCBI Entrez CDS sequeces, see 
-https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html
+04-11-2021 Added MorexV3 map [5], centromeres, PGSB and BaRT1.0 gene models [6] and NCBI Entrez CDS sequeces,
+04-11-2021 see https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html
 17-08-2018 Added POPSEQ map updated with 2017 data (POPSEQ_2017) [3].
-06-03-2018 Added a dataset of NCBI genes to the Morex Genome map. This dataset includes genes like HvCO1, Int-c, Btr1, Vrs1, PhyB, HvCEN, etc... to a total of 894 entries.
-19-12-2017 Support for Illumina50K [4] markers, which can now be searched in the IBSC [1], POPSEQ [2] and Morex Genome<sup>[3], through 'Find markers'.</textarea>                               
         """.format(base_url))
-            
+
         text_buffer.append("""
             <br/><br/>
             <hr/>
             <b><a href="{2}">Barleymap</a></b> was designed to search the position of barley genetic markers
-            on the <strong>Barley Physical Map</strong> (IBSC<sup>[1]</sup>) 
-            ,the <strong>POPSEQ map</strong> (Mascher <i>et al.</i><sup>[2]</sup>) and the 
-            2017 Morex Genome. 
+            on the <strong>Barley Physical Map</strong> (IBSC<sup>[1]</sup>), 
+            the <strong>POPSEQ map</strong> (Mascher <i>et al.</i><sup>[2]</sup>) and the 2017 Morex Genome. 
             The current version was updated to work with the <strong>MorexV3</strong> genome (released in 2021)<sup>[5]</sup>.
+            Since 2026 markers can also be mapped to <strong>pangenome graphs</strong>.
             <br/><br/>
             
             All the public data used by Barleymap can be found at
@@ -209,7 +208,7 @@ https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html
             , <a href="https://galaxy-web.ipk-gatersleben.de/" target="_blank">IPK</a> 
             , <a href="http://doi.org/10.5447/ipk/2021/3" target="_blank">e!DAL</a>
             , <a href="https://ics.hutton.ac.uk/barleyrtd" target="_blank">Barley RTD</a>
-            the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_904849725.1" target="_blank">NCBI</a>
+            the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_904849725.1" target="_blank">NCBI</a>,
             and <a href="https://eead-csic-compbio.github.io/barley_pangenes">barley_pangenes</a>
             <br/><br/>
             
@@ -244,15 +243,15 @@ https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html
             <strong><a href="{0}">here</a></strong>.
             <br/>
             Or you may wish to <strong>contact</strong> the <a href="http://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
-            (<a href="http://www.eead.csic.es">EEAD</a> - <a href="http://www.csic.es">CSIC</a>):<br/>
-            <a href="mailto:cpcantalapiedra@gmail.com">Carlos P Cantalapiedra</a>
-            <br/>
-            <a href="mailto:bcontreras@eead.csic.es">Bruno Contreras-Moreira</a>
+            (<a href="https://www.eead.csic.es">EEAD</a> - <a href="https://www.csic.es">CSIC</a>):<br/>
+            <!--<a href="mailto:cpcantalapiedra@gmail.com">Carlos P Cantalapiedra</a>
+            <br/>-->
+            <a href="mailto:compbio@eead.csic.es">compbio@eead.csic.es</a>
             <br/><br/>
            
             <strong>Funding</strong>
             This work was funded by DGA-Obra Social La Caixa [GA-LC-059-2011], the Spanish Ministry of Science and Innovation [AGL2010-21929,RTA2009-00006-C04-02,
-            PID2022-142116OB-I00],Horizon 2020 [PRIMA GENDIBAR, PCI2019-103526], Government of Aragon [A08_23R] and CSIC [FAS2022_052, INFRA24018].
+            PID2022-142116OB-I00], Horizon 2020 [PRIMA GENDIBAR, PCI2019-103526], Government of Aragon [A08_23R] and CSIC [FAS2022_052, INFRA24018].
             <br/><br/>
 
             <strong>Citation:</strong>

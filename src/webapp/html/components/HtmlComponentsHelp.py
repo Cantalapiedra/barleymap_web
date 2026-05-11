@@ -110,7 +110,7 @@ class HtmlComponentsHelp(object):
                         <br/>
                         Barleymap was designed to search the position of barley genetic markers on the <strong>Barley Physical Map</strong> (IBSC<sup>[1]</sup>), 
                         the <strong>POPSEQ map</strong> (Mascher <i>et al.</i><sup>[2]</sup>) and the 2017 Morex Genome. 
-                        The current version uses by default the <strong>MorexV3</strong> genome<sup>[5]</sup>.
+                        The current version uses by default the <strong>MorexV3</strong> genome<sup>[4]</sup>.
                         Since 2026 markers can also be mapped to <strong>pangenome graphs</strong>.
                         <br/><br/>
                         Barleymap provides <strong>four tools</strong> to retrieve data from the maps:
@@ -200,60 +200,60 @@ class HtmlComponentsHelp(object):
                         <ul class="help_list">
                         
                             <li>
-                                <b>BOPA1</b> dataset<sup>[4][11]</sup>: bears 1,536 sequences.
+                                <b>BOPA1</b> dataset<sup>[5][12]</sup>: bears 1,536 sequences.
                                 "BOPA consensus" (e.g.: 11_20003) or
                                 "POPA12" identifiers must be provided (e.g.: ABC09016-2-2-348, 7174-365, BOPA1_7174-365, ...).
                                 <br/>
-                                A full list of markers, different identifiers and their sequences can be found at [4][11] (supplementary Table S9).
+                                A full list of markers, different identifiers and their sequences can be found at [5][12] (supplementary Table S9).
                             </li>
                             
                             <li>
-                                <b>BOPA2</b> dataset<sup>[4][11]</sup>: bears 1,536 sequences.
+                                <b>BOPA2</b> dataset<sup>[5][12]</sup>: bears 1,536 sequences.
                                 "BOPA consensus" identifiers must be provided (e.g.: 12_31342, i_12_31342, BOPA2_12_31342).
                                 <br/>
-                                A full list of markers, different identifiers and their sequences can be found at [4][11] (supplementary Table S10; "POPA" identifiers are also used often, see Table S14). 
+                                A full list of markers, different identifiers and their sequences can be found at [5][12] (supplementary Table S10; "POPA" identifiers are also used often, see Table S14). 
                             </li>
                             
                             <li>
-                                <b>Illumina iSelect Infinium</b><sup>[5]</sup>: 7,864 sequences.
+                                <b>Illumina iSelect Infinium</b><sup>[6]</sup>: 7,864 sequences.
                                 Identifiers can be provided in different formats (e.g.: i_11_10882, 11_10882, 6964-414, BOPA1_6964-414, ...).
                                 <br/>
-                                A full list of markers, different identifiers and their sequences can be found at [5] (supplementary Table 6).
+                                A full list of markers, different identifiers and their sequences can be found at [6] (supplementary Table 6).
                                 <br/>
                                 (Illumina Infinium iSelect technology belongs to Illumina®)
                             </li>
                             
                             <li>
-                                <b>Illumina 50K</b><sup>[6][*]</sup>: 43,078 sequences with positions provided by JHI. Morex Genome and MorexV3 only.
+                                <b>Illumina 50K</b><sup>[7][*]</sup>: 43,078 sequences with positions provided by JHI. Morex Genome and MorexV3 only.
                                 "Illumina 50K" identifiers must be provided (e.g.: JHI-Hv50k-2016-7), but it accepts previous identifiers for
                                 markers from previous datasets (e.g. SCRI_RS_10006).
                                 <br/>
-                                A full list of markers, different identifiers and their sequences can be found at [6][*'] (supplementary Table XX).
+                                A full list of markers, different identifiers and their sequences can be found at [7][*'] (supplementary Table XX).
                                 <br/>
                                 (Illumina Infinium technology belongs to Illumina®)
                             </li>
                             
-                            <li><b>DArTs</b><sup>[7][6]</sup>: 2,000 sequences (e.g.: bPb-3150 or bPb-3150_PUR_f+r, bPb-2614 or bPb-2614_WSU_r).
-                                <br/>Sequences for DArTs can be found at [7][6'].
+                            <li><b>DArTs</b><sup>[7][8]</sup>: 2,000 sequences (e.g.: bPb-3150 or bPb-3150_PUR_f+r, bPb-2614 or bPb-2614_WSU_r).
+                                <br/>Sequences for DArTs can be found at [8][7'].
                             </li>
                             
-                            <li><b>DArTseq SNPs</b><sup>[8][7]</sup>: 8,535 sequences (e.g.: 3254894|F|0 or 3254894).</li>
+                            <li><b>DArTseq SNPs</b><sup>[8][9]</sup>: 8,535 sequences (e.g.: 3254894|F|0 or 3254894).</li>
                             
-                            <li><b>DArTseq PAVs (SilicoDArTs)</b><sup>[8][7]</sup>: 15,526 sequences (e.g.: 3271396|F|0 or 3271396).
+                            <li><b>DArTseq PAVs (SilicoDArTs)</b><sup>[8][9]</sup>: 15,526 sequences (e.g.: 3271396|F|0 or 3271396).
                                 <br/>
                                 NOTE that 1,761 sequences from DArTseq are PAVs and contain SNPs, so that the identifier is the same for both markers.
                                 <br/>
                                 (DArTs<sup>TM</sup> and DArTseq<sup>TM</sup> technologies belong to Diversity Arrays Technology®)
                             </li>
                             
-                            <li><b>Oregon Wolfe Barley GBS SNPs</b><sup>[9][8]</sup>: 34,396 sequences (e.g.: owbGBS1162 or owbGBS34926).
+                            <li><b>Oregon Wolfe Barley GBS SNPs</b><sup>[9][10]</sup>: 34,396 sequences (e.g.: owbGBS1162 or owbGBS34926).
                                 <br/>
-                                A full list of markers their sequences can be found at [9][8] (supplementary Dataset S1).
+                                A full list of markers their sequences can be found at [9][10] (supplementary Dataset S1).
                             </li>
                             
-                            <li><b>Haruna nijo cultivar flcDNAs</b><sup>[10][9]</sup>: 28620 sequences (e.g.: AK358336 or AK358336.1).</li>
+                            <li><b>Haruna nijo cultivar flcDNAs</b><sup>[10][11]</sup>: 28620 sequences (e.g.: AK358336 or AK358336.1).</li>
                             
-                            <li><b>HarvEST Unigenes (assembly #36)</b><sup>[11][10]</sup>: 70148 sequences (e.g.: U36_70143 or U36_998).</li>
+                            <li><b>HarvEST Unigenes (assembly #36)</b><sup>[11][12]</sup>: 70148 sequences (e.g.: U36_70143 or U36_998).</li>
                             
                             <li><b>IBSC2012 genes</b><sup>[2][*]</sup>: 14,923 HC and 19,415 LC genes (e.g.: MLOC_67805).</li>
                             
@@ -268,26 +268,26 @@ class HtmlComponentsHelp(object):
                             Morex contigs in POPSEQ map also.
                            (e.g. morex_contig_15371, barke_contig_975766, bowman_contig_387623).</li>
                             
-                            <li><b>NCBI barley genes</b><sup>[11][*]</sup>: Morex Genome only.
+                            <li><b>NCBI barley genes</b><sup>[12][*]</sup>: Morex Genome only.
                             894 sequences (e.g.: AAD02252.1, dhn11, AAF01699.1).</li>
                             
                             <li><b>IBSC2016 genes</b><sup>[3][*]</sup>: Morex Genome only.
                             39,734 HC and 41,949 LC genes.
                             (e.g.: HORVU1Hr1G000090).</li>
                             
-                            <li><b>PGSB genes</b><sup>[14]</sup>: MorexV3 only.
+                            <li><b>PGSB genes</b><sup>[15]</sup>: MorexV3 only.
                             35,826 HC and 45,849 LC genes.
                             (e.g.: HORVU.MOREX.r3.1HG0000030).</li>
                             
-                            <li><b>BaRT 1.0 gene models</b><sup>[15]</sup>: MorexV3 only.
+                            <li><b>BaRT 1.0 gene models</b><sup>[16]</sup>: MorexV3 only.
                             45,619 genes.
                             (e.g.: BART1_0-u00002).</li>
 
-                            <li><b>BaRT 2.18 transcript isoforms</b><sup>[15]</sup>: MorexV3 only.
+                            <li><b>BaRT 2.18 transcript isoforms</b><sup>[16]</sup>: MorexV3 only.
                             133647 transcripts.
                             (e.g.: BaRT2v18chr1HG000020.1).</li>            
 
-                            <li><b>panBaRT20 transcript isoforms</b><sup>[16]</sup>: MorexV3 only.
+                            <li><b>panBaRT20 transcript isoforms</b><sup>[17]</sup>: MorexV3 only.
                             565817 transcripts.
                             (e.g.: PanBaRT20_chr1HG00001.1).</li>
 
@@ -383,6 +383,14 @@ class HtmlComponentsHelp(object):
                         <a class="top_link" href="#"><img style="width:10px;height:10px;border:none;" src="{0}/img/top.jpg"/></a>
                         
                         <ul class="help_list">
+
+                            <li><strong>MorexV3</strong><sup>[4]</sup></li>
+                                <br/>
+                                
+                                MorexV3 supports the most up-to-date datasets (see Morex Genome).
+
+                                <br/><br/>
+
                             <li><strong>Morex Genome</strong><sup>[3]</sup></li>
                                 <br/>
                                 
@@ -664,46 +672,49 @@ class HtmlComponentsHelp(object):
                     <cite><sup>[3]</sup><a href="http://doi.org/10.1038/nature22043"
                                            target="_blank">Mascher et al. 2017</a></cite>
                     <br/>
-                    <cite><sup>[4]</sup><a href="https://doi.org/10.1186/1471-2164-10-582"
+                    <cite><sup>[4]</sup><a href="https://doi.org/10.1093/plcell/koab077" 
+                                           target="_blank">Mascher et al. 2021</a></cite>
+                    </br>
+                    <cite><sup>[5]</sup><a href="https://doi.org/10.1186/1471-2164-10-582"
                                            target="_blank">Close et al. 2009</a></cite>
                     <br/>
-                    <cite><sup>[5]</sup><a href="http://doi.org/10.1038/ng.2447"
+                    <cite><sup>[6]</sup><a href="http://doi.org/10.1038/ng.2447"
                                            target="_blank">Comadran et al. 2012</a></cite>
                     <br/>
-                    <cite><sup>[6]</sup><a href="https://doi.org/10.3389/fpls.2017.01792"
+                    <cite><sup>[7]</sup><a href="https://doi.org/10.3389/fpls.2017.01792"
                                            target="_blank">Bayer et al. 2017</a></cite>
                     <br/>
-                    <cite><sup>[7]</sup><a href="https://doi.org/10.1073/pnas.0401076101"
+                    <cite><sup>[8]</sup><a href="https://doi.org/10.1073/pnas.0401076101"
                                            target="_blank">Wenzl et al. 2004</a></cite>
                     <br/>
-                    <cite><sup>[7']</sup><a href="http://www.diversityarrays.com/dart-map-sequences"
+                    <cite><sup>[8']</sup><a href="http://www.diversityarrays.com/dart-map-sequences"
                                            target="_blank">www.diversityarrays.com</a></cite>
                     <br/>
-                    <cite><sup>[8]</sup><a href="https://doi.org/10.1007/978-1-61779-870-2_5"
+                    <cite><sup>[9]</sup><a href="https://doi.org/10.1007/978-1-61779-870-2_5"
                                            target="_blank">Kilian et al. 2012</a></cite>
                     <br/>
-                    <cite><sup>[9]</sup><a href="https://doi.org/10.1371/journal.pone.0032253"
+                    <cite><sup>[10]</sup><a href="https://doi.org/10.1371/journal.pone.0032253"
                                            target="_blank">Poland et al. 2012</a></cite>
                     <br/>
-                    <cite><sup>[10]</sup><a href="https://doi.org/10.1104/pp.110.171579"
+                    <cite><sup>[11]</sup><a href="https://doi.org/10.1104/pp.110.171579"
                                            target="_blank">Matsumoto et al. 2011</a></cite>
                     <br/>
-                    <cite><sup>[11]</sup><a href="http://harvest.ucr.edu"
+                    <cite><sup>[12]</sup><a href="http://harvest.ucr.edu"
                                            target="_blank">HarvEST</a></cite>
                     <br/>
-                    <cite><sup>[12]</sup><a href="https://doi.org/10.1093/bioinformatics/bti310"
+                    <cite><sup>[13]</sup><a href="https://doi.org/10.1093/bioinformatics/bti310"
                                             target="_blank">Wu and Watanabe 2005</a></cite>
                     <br/>
-                    <cite><sup>[13]</sup><a href="https://doi.org/10.1016/S0022-2836(05)80360-2"
+                    <cite><sup>[14]</sup><a href="https://doi.org/10.1016/S0022-2836(05)80360-2"
                                             target="_blank">Altschul et al. 1990</a></cite>
                     <br/>
-                    <cite><sup>[14]</sup><a href="https://doi.org/10.1093/plcell/koab077"
+                    <cite><sup>[15]</sup><a href="https://doi.org/10.1093/plcell/koab077"
                                             target="_blank">Mascher et al. 2021</a></cite>
                     <br/>
-                    <cite><sup>[15]</sup><a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-019-6243-7"
+                    <cite><sup>[16]</sup><a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-019-6243-7"
                                             target="_blank">Rapazote-Flores et al. 2019</a></cite>
                     <br/>
-                    <cite><sup>[16]</sup><a href="https://www.nature.com/articles/s41597-021-00872-4"
+                    <cite><sup>[17]</sup><a href="https://www.nature.com/articles/s41597-021-00872-4"
                                             target="_blank">Milne et al. 2021</a></cite>
                     <br/>
                 </section>

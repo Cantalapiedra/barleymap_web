@@ -299,7 +299,7 @@ class HtmlLayoutBarleymap(object):
             <a href="https://doi.org/10.1093/plcell/koab077" target="_blank">
             Long-read sequence assembly: a technical evaluation in barley
             </a>
-            The Plant Cell 33(6):1888–1906 doi:10.1093/plcell/koab077
+            The Plant Cell 33(6):1888-1906 doi:10.1093/plcell/koab077
             </cite>
             </br>
 

@@ -199,7 +199,7 @@ class HtmlLayoutBarleymap(object):
             <b><a href="{2}">Barleymap</a></b> was designed to search the position of barley genetic markers
             on the <strong>Barley Physical Map</strong> (IBSC<sup>[1]</sup>), 
             the <strong>POPSEQ map</strong> (Mascher <i>et al.</i><sup>[2]</sup>) and the 2017 Morex Genome. 
-            The current version was updated to work with the <strong>MorexV3</strong> genome (released in 2021)<sup>[5]</sup>.
+            The current version uses by default the <strong>MorexV3</strong> genome<sup>[5]</sup>.
             Since 2026 markers can also be mapped to <strong>pangenome graphs</strong>.
             <br/><br/>
             

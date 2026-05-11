@@ -3,7 +3,7 @@
 
 # HtmlLayoutBarleymap.py is part of Barleymap web app.
 # Copyright (C) 2017  Carlos P Cantalapiedra.
-# Copyright (C) 2026 Bruno Contreras Moreira, Carlos J ramiez and Joan Sarria
+# Copyright (C) 2026 Bruno Contreras Moreira, Carlos J Ramirez and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 class HtmlLayoutBarleymap(object):

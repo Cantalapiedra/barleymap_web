@@ -190,7 +190,7 @@ class HtmlLayoutBarleymap(object):
 14-06-2022 Added lifted-over IBSC 2012 & 2016 gene models to MorexV3 map. DartSeq markers mapped later by user request.
 04-11-2021 Added MorexV3 map [5], centromeres, PGSB and BaRT1.0 gene models [6] and NCBI Entrez CDS sequeces,
 04-11-2021 see https://bioinfoperl.blogspot.com/2021/11/barleymapmorexv3release.html
-17-08-2018 Added POPSEQ map updated with 2017 data (POPSEQ_2017) [3].
+17-08-2018 Added POPSEQ map updated with 2017 data (POPSEQ_2017) [3].</textarea>
         """.format(base_url))
 
         text_buffer.append("""
@@ -221,7 +221,11 @@ class HtmlLayoutBarleymap(object):
             <br/>These will be used to retrieve their positions through
             <strong><a href="{0}#references_and_algorithms_used_for_alignment">sequence alignment</a></strong> to the selected map (IBSC2012, POPSEQ, MorexGenome or MorexV3).
             <br/><br/>
-            
+
+            The <strong><i><a href="{2}/graph/">Align to graph</a></i></strong> also requires nucleotide sequences of the markers (in FASTA format).
+            <br/>These will be used to retrieve their positions through alignment to the selected pangenome graph (Pan20, Med13).
+            <br/><br/>
+
             The <strong><i><a href="{2}/locate/">Locate by position</a></i></strong> option allows to examine the map context of specific positions,
             which must be provided as tuples with chromosome (or contig) and position (local position, within the chromosome or contig, in base pairs).
             For example, an user could provide as input "chr1H   10000" to find out which genes are in that specific region of chromosome 1H.
@@ -244,8 +248,7 @@ class HtmlLayoutBarleymap(object):
             <br/>
             Or you may wish to <strong>contact</strong> the <a href="http://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
             (<a href="https://www.eead.csic.es">EEAD</a> - <a href="https://www.csic.es">CSIC</a>):<br/>
-            <!--<a href="mailto:cpcantalapiedra@gmail.com">Carlos P Cantalapiedra</a>
-            <br/>-->
+            <!--<a href="mailto:cpcantalapiedra@gmail.com">Carlos P Cantalapiedra</a><br/>-->
             <a href="mailto:compbio@eead.csic.es">compbio@eead.csic.es</a>
             <br/><br/>
            

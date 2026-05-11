@@ -543,15 +543,16 @@ class HtmlComponentsHelp(object):
                                 <li>chr: chromosome (or contig or equivalent).</li>
                                 <li>cM: centimorgans position. Only for anchored maps with cM positions (IBSC2012 and POPSEQ).</li>
                                 <li>bp: basepairs position. Only for anchored maps with bp positions (IBSC2012).</li>
-                                <li>start: basepairs starting position. Only for physical maps (MorexGenome).</li>
-                                <li>end: basepairs ending position. Only for physical maps (MorexGenome).</li>
-                                <li>strand: whether the query aligns to the target strand (+) or to the complementary strand (-). Only for physical maps (MorexGenome).</li>
+                                <li>start: basepairs starting position. Only for physical maps (MorexGenome/MorexV3).</li>
+                                <li>end: basepairs ending position. Only for physical maps (MorexGenome/MorexV3).</li>
+                                <li>strand: whether the query aligns to the target strand (+) or to the complementary strand (-). Only for physical maps (MorexGenome/MorexV3).
+                                In <strong>Graph mode</strong>, (.) indicates sequences absent from the map (MorexV3), with coordinates inferred from whole genome alignment.</li>
                                 <li>multiple positions: whether the current query sequence has more than one different mapping position in the current map.
                                     <br/>This field is shown only if the "Markers with multiple mappings" option has been selected.
                                     <br/>
                                 </li>
-                                <li>other alignments: whether the current query sequence has other alignment targets which lack map position.
-                                    <br/>At least one unmapped alignment should be found for such query.
+                                <li>other alignments. In <strong>Align mode</strong>, whether the current query sequence has other alignment targets which lack map position. 
+                                In <strong>Graph mode</strong>, list of matching locations among genomes making up the graph, ie <i>chr4H@HOR_2830:602386783-602388450(-)</i>
                                 </li>
                             </ul>
                         

@@ -45,6 +45,13 @@ class HtmlComponentsHelp(object):
                                     
                                 </a></li>
                             </ul>
+                        
+                        <li><a href="#graph">
+                        
+                            Align to graph
+                            
+                        </a></li>
+
                         <li><a href="#locate_by_position">
                         
                             Locate by position

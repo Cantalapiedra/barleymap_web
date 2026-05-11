@@ -3,6 +3,7 @@
 
 # HtmlComponentsHelp.py is part of Barleymap web app.
 # Copyright (C) 2017-2023 Carlos P Cantalapiedra.
+# Copyright (C) 2026 Bruno Contreras Moreira, Carlos J Ramirez and Joan Sarria
 # (terms of use can be found within the distributed LICENSE file).
 
 class HtmlComponentsHelp(object):
@@ -100,15 +101,16 @@ class HtmlComponentsHelp(object):
                     <h2 id="overview">Overview</h2>
                     
                         <br/>
-                        Barleymap was designed to search the genetic and physical positions of barley markers on
-                        the <strong>Barley Physical Map</strong> (IBSC<sup>[1]</sup>) and
-                        the <strong>POPSEQ</strong> map<sup>[2]</sup>. The strong>Morex Genome</strong><sup>[3]</sup> map
-                        was subsequently added in 2017. The current version uses the <strong>MorexV3</strong> genome<sup>[5]</sup> by default.
+                        Barleymap was designed to search the position of barley genetic markers on the <strong>Barley Physical Map</strong> (IBSC<sup>[1]</sup>), 
+                        the <strong>POPSEQ map</strong> (Mascher <i>et al.</i><sup>[2]</sup>) and the 2017 Morex Genome. 
+                        The current version uses by default the <strong>MorexV3</strong> genome<sup>[5]</sup>.
+                        Since 2026 markers can also be mapped to <strong>pangenome graphs</strong>.
                         <br/><br/>
-                        Barleymap provides <strong>three tools</strong> to retrieve data from the maps:
+                        Barleymap provides <strong>four tools</strong> to retrieve data from the maps:
                         <ul class="help_list">
                             <li>"Find markers": to retrieve the position of markers providing their identifiers.</li>
                             <li>"Align sequences": to obtain the position of FASTA sequences by pairwise alignment.</li>
+                            <li>"Align to graph": to obtain the position of FASTA sequences by alignment to pangenome graphs.</li>
                             <li>"Locate by position": to examine specific loci by map position.</li>
                         </ul>
                         <br/>
@@ -423,7 +425,28 @@ class HtmlComponentsHelp(object):
                         <br/>
                         """.format(base_url+"/img/barleymap_popseq.pipeline_2.png"))
         
-        
+        ## GRAPH
+
+        output_buffer.append("""
+                    <hr/>
+                    <br/>
+                    <a class="top_link" href="#"><img style="width:10px;height:10px;border:none;" src="{0}/img/top.jpg"/></a>
+                    <h2 id="graph">Align to graph</h2>
+                        
+                        <br/>
+                        
+                        The "Align to graph" tool supports the alignment of arbitrary DNA sequences to precomputed graphs of barley pangenomes
+                        with the purpose of retrieving their MorexV3 coordinates and finding out which genomes contain them, revealing presence-absence polymorphisms.
+                        
+                        <br/><br/>
+                        
+                        All the other <strong>parameters</strong> are identical to those in "Align sequences".
+                        
+                        <br/><br/>
+                        
+                """.format(base_url))
+
+
         ## LOCATE BY POSITION
         
         output_buffer.append("""
@@ -449,7 +472,7 @@ class HtmlComponentsHelp(object):
                         <br/><br/>
                         
                 """.format(base_url))
-        
+       
         ## OUTPUT
         
         output_buffer.append("""
@@ -604,7 +627,7 @@ class HtmlComponentsHelp(object):
                     <h2 id="disclaimer">Disclaimer</h2>
                         <br/>
                         This service is available AS IS and at your own risk.
-                        EEAD/CSIC do not give any representation or warranty nor assume
+                        EEAD-CSIC does not give any representation or warranty nor assume
                         any liability or responsibility for the service or the results posted
                         (whether as to their accuracy, completeness, quality or otherwise).
                         Access to the service is available free of charge for ordinary use

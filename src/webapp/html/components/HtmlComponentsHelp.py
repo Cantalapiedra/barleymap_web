@@ -441,7 +441,7 @@ class HtmlComponentsHelp(object):
                         <br/>
                         <center><img width="499" height="526" style="border:none;" src="{0}"/></center>
                         <br/>
-                        """.format(base_url+"/img/barleymap_popseq.pipeline_2.png"))
+                        """.format(base_url+"/img/bmapflow.png"))
         
         ## GRAPH
 

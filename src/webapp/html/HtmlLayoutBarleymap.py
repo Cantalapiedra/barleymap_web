@@ -242,7 +242,7 @@ class HtmlLayoutBarleymap(object):
             at <a href="https://www.eead.csic.es">EEAD-CSIC</a>): <a href="mailto:compbio@eead.csic.es">compbio@eead.csic.es</a>
             <br/><br/>
            
-            <strong>Funding</strong>
+            <strong>Funding: </strong>
             This work was funded by DGA-Obra Social La Caixa [GA-LC-059-2011], the Spanish Ministry of Science and Innovation [AGL2010-21929,RTA2009-00006-C04-02,
             PID2022-142116OB-I00], Horizon 2020 [PRIMA GENDIBAR, PCI2019-103526], Government of Aragon [A08_23R] and CSIC [FAS2022_052, INFRA24018].
             <br/><br/>

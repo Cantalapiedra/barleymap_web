@@ -16,7 +16,7 @@ Barleymap was designed with **3 main goals** in mind:
 - Facilitate inspecting the region surrounding the queried sequence. ¿Which other markers, genes, etc are in the region?
 - Perform alignments in a multi-reference or pan-genome fashion, allowing to query several databases at a time.
 
-While the original version was written in python2, this branch was updated to **python3**.
+While the original version was written in python2, this branch was upgraded to **python3** by @Carlos-Ramirez99.
 
 Therefore, there are three basic **tasks** which can be carried out with barleymap,
 depending on the input data used:

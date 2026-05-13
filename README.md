@@ -17,6 +17,7 @@ Barleymap was designed with **3 main goals** in mind:
 - Perform alignments in a multi-reference or pan-genome fashion, allowing to query several databases at a time.
 
 While the original version was written in python2, this branch was upgraded to **python3** by @Carlos-Ramirez99.
+You can check this Web application at <https://barleymap.eead.csic.es>.
 
 Therefore, there are three basic **tasks** which can be carried out with barleymap,
 depending on the input data used:
@@ -766,7 +767,7 @@ Therefore, there are some parameters not present in this tool, like the aligner 
 Note that, because of this, the positions stored and returned as output by this tool
 were obtained with a specific set of parameters. This includes also the list of databases and the algorithm configured
 for a given map when the positions were obtained by alignment.
-Check [www.floresta.eead.csic.es/barleymap/](http://floresta.eead.csic.es/barleymap/)
+Check [https://barleymap.eead.csic.es](https://barleymap.eead.csic.es)
 for details about the datasets used in the web version.
 
 #### 4.1.3) Locating features in region

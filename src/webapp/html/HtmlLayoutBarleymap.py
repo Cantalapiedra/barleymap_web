@@ -246,7 +246,7 @@ class HtmlLayoutBarleymap(object):
             <strong>Funding: </strong>
             This work was funded by DGA-Obra Social La Caixa [GA-LC-059-2011], the Spanish Ministry of Science and Innovation [AGL2010-21929,RTA2009-00006-C04-02,
             PID2022-142116OB-I00], Horizon 2020 [PRIMA GENDIBAR, PCI2019-103526], Government of Aragon [A08_23R] and CSIC [FAS2022_052, INFRA24018].
-            <center><img style="border:none;" src="https://github.com/Cantalapiedra/barleymap_web/tree/python3/img/AEI.jpg"></center>
+            <center><img style="border:none;" src="/barleymap/img/AEI.jpg"></center>
             <br/><br/>
 
              

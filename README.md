@@ -6,7 +6,7 @@
  - 3: [Installation and configuration](#3-installation-and-configuration)
  - 4: [Tools and algorithms](#4-tools-and-algorithms)
  - 5: [Citation](#5-citation)
- - 6: [Funding](#5-funding)
+ - 6: [Funding](#6-funding)
  
 ## 1) Barleymap overview
 

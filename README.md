@@ -6,6 +6,7 @@
  - 3: [Installation and configuration](#3-installation-and-configuration)
  - 4: [Tools and algorithms](#4-tools-and-algorithms)
  - 5: [Citation](#5-citation)
+ - 6: [Funding](#5-funding)
  
 ## 1) Barleymap overview
 
@@ -1034,8 +1035,16 @@ whereas for small dataset files is likely better to not use index files.
 
 README is part of Barleymap.
 Copyright (C)  2013-2014  Carlos P Cantalapiedra.
+Copyright (C) 2025 Bruno Contreras Moreira and Joan Sarria
+Copyright (C) 2026 Bruno Contreras Moreira, Carlos J Ramirez and Joan Sarria
 (terms of use can be found within the distributed LICENSE file).
 
 ## 5) Citation
 
 Cantalapiedra, C.P., Boudiar, R., Casas, A.M. et al. BARLEYMAP: physical and genetic mapping of nucleotide sequences and annotation of surrounding loci in barley. Mol Breeding 35, 13 (2015). https://doi.org/10.1007/s11032-015-0253-1
+
+## 6) Funding
+
+Barleymap was funded by DGA-Obra Social La Caixa [GA-LC-059-2011], the Spanish Ministry of Science and Innovation [AGL2010-21929,RTA2009-00006-C04-02, PID2022-142116OB-I00], Horizon 2020 [PRIMA GENDIBAR, PCI2019-103526], Government of Aragon [A08_23R] and CSIC [FAS2022_052, INFRA24018]. 
+
+<center><img style="border:none;" src="img/AEI.jpg"></center>

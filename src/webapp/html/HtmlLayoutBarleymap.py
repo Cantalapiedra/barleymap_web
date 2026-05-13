@@ -208,8 +208,9 @@ class HtmlLayoutBarleymap(object):
             , <a href="https://galaxy-web.ipk-gatersleben.de/" target="_blank">IPK</a> 
             , <a href="http://doi.org/10.5447/ipk/2021/3" target="_blank">e!DAL</a>
             , <a href="https://ics.hutton.ac.uk/barleyrtd" target="_blank">Barley RTD</a>
-            the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_904849725.1" target="_blank">NCBI</a>,
-            and <a href="https://eead-csic-compbio.github.io/barley_pangenes">barley_pangenes</a>
+            , the <a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_904849725.1" target="_blank">NCBI</a>,
+            and <a href="https://eead-csic-compbio.github.io/barley_pangenes">barley_pangenes</a>.
+            <!-- TODO GDB136 -->
             <br/><br/>
             
             The <strong><i><a href="{2}/find/">Find markers</a></i></strong> option allows to find the position of markers by using their identifiers as input.
@@ -248,8 +249,6 @@ class HtmlLayoutBarleymap(object):
             PID2022-142116OB-I00], Horizon 2020 [PRIMA GENDIBAR, PCI2019-103526], Government of Aragon [A08_23R] and CSIC [FAS2022_052, INFRA24018].
             <center><img style="border:none;" src="/barleymap/img/AEI.jpg"></center>
             <br/><br/>
-
-             
 
             <strong>Citation:</strong>
             <a href="http://link.springer.com/article/10.1007%2Fs11032-015-0253-1">{1}</a>

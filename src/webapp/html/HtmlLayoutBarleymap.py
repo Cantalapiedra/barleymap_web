@@ -238,8 +238,9 @@ class HtmlLayoutBarleymap(object):
             <strong>Further information</strong> about how this tool works and help on using it can be found
             <strong><a href="{0}">here</a></strong>, the source is on <a href="https://github.com/Cantalapiedra/barleymap_web/tree/python3">GitHub</a>.  
             <br/>
-            Or you may wish to <strong>contact</strong> the <a href="https://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
-            at <a href="https://www.eead.csic.es">EEAD-CSIC</a>): <a href="mailto:compbio@eead.csic.es">compbio@eead.csic.es</a>
+            Or you may wish to <a href="mailto:compbio@eead.csic.es">contact</a> the 
+            <a href="https://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
+            at <a href="https://www.eead.csic.es">EEAD-CSIC</a>.
             <br/><br/>
            
             <strong>Funding: </strong>

@@ -236,7 +236,7 @@ class HtmlLayoutBarleymap(object):
             that enrich the context around or between the queries will be shown.<br/><br/>
             
             <strong>Further information</strong> about how this tool works and help on using it can be found
-            <strong><a href="{0}">here</a></strong, the source is at <https://github.com/Cantalapiedra/barleymap_web/tree/python3>.  
+            <strong><a href="{0}">here</a></strong>, the source is at <https://github.com/Cantalapiedra/barleymap_web/tree/python3>.  
             <br/>
             Or you may wish to <strong>contact</strong> the <a href="https://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
             at <a href="https://www.eead.csic.es">EEAD-CSIC</a>): <a href="mailto:compbio@eead.csic.es">compbio@eead.csic.es</a>

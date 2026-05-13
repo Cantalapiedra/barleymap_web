@@ -9,13 +9,14 @@
  
 ## 1) Barleymap overview
 
-**Barleymap** is a tool which allows searching the position of sequences
-in sequence-enriched genetic/physical maps.
+**Barleymap** is a tool which allows searching the position of sequences in sequence-enriched genetic/physical maps.
 
 Barleymap was designed with **3 main goals** in mind:
 - Provide the position of sequences in a map, hiding from the user the details of the alignment and mapping steps.
 - Facilitate inspecting the region surrounding the queried sequence. ¿Which other markers, genes, etc are in the region?
 - Perform alignments in a multi-reference or pan-genome fashion, allowing to query several databases at a time.
+
+While the original version was written in python2, this branch was updated to **python3**.
 
 Therefore, there are three basic **tasks** which can be carried out with barleymap,
 depending on the input data used:
@@ -37,6 +38,7 @@ to a specific map, so that it can be queried without repeating the alignment ste
 Barleymap has 3 different groups of **tools**, which are further explained in following sections:
 - Main tools:
   - bmap_align ("Align sequences" in the web version).
+  - bmap_align_graph ("Align to graph" in the web version).  
   - bmap_find ("Find markers" in the web version).
   - bmap_locate ("Locate by position" in the web version).
 - Secondary tools (only in the standalone version):
@@ -124,6 +126,7 @@ under the *barleymap/conf* directory:
 - *paths.conf*
 - *databases.conf*
 - *maps.conf*
+- *graphs.conf*
 - *datasets.conf*
 - *datasets_annotation.conf*
 
@@ -162,6 +165,9 @@ blastn_dbs_path PATH_TO_BLAST_DATABASES
 gmap_app_path PATH_TO_GMAP/bin/gmap
 gmap_dbs_path PATH_TO_GMAP_DATABASES
 gmapl_app_path PATH_TO_GMAP/bin/gmapl
+# align2graph
+align2graph_app_path PATH_TO/align2graph.py 
+align2graph_dbs_path PATH_TO/graphs/
 # HS-Blastn
 hsblastn_app_path PATH_TO_HSBLASTN/hs-blastn-src/hs-blastn
 hsblastn_dbs_path PATH_TO_HSBLASTN_DATABASES
@@ -187,6 +193,7 @@ To be sure that barleymap is reading those paths correctly, using absolute paths
 
 Regarding the section *Aligners*, only the fields corresponding to the aligner
 or aligners which will be used by the current barleymap instance will need to be edited.
+Note that `align2graph` is available at <github.com/eead-csic-compbio/barleygraph>.
 For each aligner to be used, barleymap needs:
 
 - The **absolute path to the binary** file of the aligner.
@@ -381,7 +388,11 @@ the following tools can be used:
 The bmap_find and bmap_locate could be used, but there is no interest in running them
 without having configured datasets previously.
 
-#### 3.2.4 Datasets: the *datasets.conf* file
+#### 3.2.4 Graphs: the *graphs.conf* file
+
+Please see <https://github.com/eead-csic-compbio/barleygraph/tree/main/graphs> to learn how graphs are constructed.
+
+#### 3.2.5 Datasets: the *datasets.conf* file
 
 Some genes or markers are searched in sequence databases, genomes or maps very often.
 Therefore, it is advantageous to search them once and store the result, so that
@@ -491,7 +502,7 @@ the following tools can be used:
 - bmap_find
 - bmap_locate
 
-#### 3.2.5 Annotations: the *datasets_annotation.conf* file
+#### 3.2.6 Annotations: the *datasets_annotation.conf* file
 
 Datasets of type "gene" can be enriched with annotation data,
 including a description text, a class of feature (to be defined by the admin of the app),

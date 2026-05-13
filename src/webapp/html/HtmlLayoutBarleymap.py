@@ -235,7 +235,7 @@ class HtmlLayoutBarleymap(object):
             <strong><a href="{0}#genes_markers_enrichment_and_annotation">information of genes and pangenes, genetic markers, and anchored features,</a></strong>
             that enrich the context around or between the queries will be shown.<br/><br/>
             
-            <strong><a href="https://github.com/Cantalapiedra/barleymap_web">Barleymap web</a></strong> 
+            <strong><a href="https://github.com/Cantalapiedra/barleymap_web/tree/python3">Barleymap web</a></strong> 
             works on top of <strong><a href="https://github.com/Cantalapiedra/barleymapcore">barleymap core API</a></strong>, used also in a
             <strong><a href="https://github.com/Cantalapiedra/barleymap">standalone application</a></strong>
             that allows loading custom databases, maps and datasets, among other features.

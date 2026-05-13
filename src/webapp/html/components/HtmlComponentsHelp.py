@@ -195,7 +195,7 @@ class HtmlComponentsHelp(object):
                         The next is a list of datasets whose map positions have been pre-computed and stored in this instance of the Barleymap web application.
                         Note that the
                         <a href="https://github.com/Cantalapiedra/barleymap">standalone version</a> or a custom
-                        <a href="https://github.com/Cantalapiedra/barleymap_web">web version</a> of barleymap could be used to create other datasets.
+                        <a href="https://github.com/Cantalapiedra/barleymap_web/tree/python3">web version</a> of barleymap could be used to create other datasets.
                         
                         <ul class="help_list">
                         
@@ -633,7 +633,7 @@ class HtmlComponentsHelp(object):
                         Should this naïve confidentiality be not acceptable to some users, we would recommend installing the
                         <a href="https://github.com/Cantalapiedra/barleymap">standalone barleymap</a> version,
                         or setting up their own instace of
-                        <a href="https://github.com/Cantalapiedra/barleymap_web">barleymap web</a> version. 
+                        <a href="https://github.com/Cantalapiedra/barleymap_web/tree/python3">barleymap web</a> version. 
                         <br/><br/>
             """.format(base_url))
         

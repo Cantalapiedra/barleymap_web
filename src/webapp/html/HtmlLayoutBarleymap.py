@@ -235,21 +235,13 @@ class HtmlLayoutBarleymap(object):
             <strong><a href="{0}#genes_markers_enrichment_and_annotation">information of genes and pangenes, genetic markers, and anchored features,</a></strong>
             that enrich the context around or between the queries will be shown.<br/><br/>
             
-            <strong><a href="https://github.com/Cantalapiedra/barleymap_web/tree/python3">Barleymap web</a></strong> 
-            works on top of <strong><a href="https://github.com/Cantalapiedra/barleymapcore">barleymap core API</a></strong>, used also in a
-            <strong><a href="https://github.com/Cantalapiedra/barleymap">standalone application</a></strong>
-            that allows loading custom databases, maps and datasets, among other features.
-            <br/>Such application can be used with data from any organism for which sequences anchored to a genetic/physical background are available.
-            
             <br/><br/>
             
             <strong>Further information</strong> about how this tool works and help on using it can be found
-            <strong><a href="{0}">here</a></strong>.
+            <strong><a href="{0}">here</a></strong>. The source is at <https://github.com/Cantalapiedra/barleymap_web/tree/python3">.  
             <br/>
-            Or you may wish to <strong>contact</strong> the <a href="http://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
-            (<a href="https://www.eead.csic.es">EEAD</a> - <a href="https://www.csic.es">CSIC</a>):<br/>
-            <!--<a href="mailto:cpcantalapiedra@gmail.com">Carlos P Cantalapiedra</a><br/>-->
-            <a href="mailto:compbio@eead.csic.es">compbio@eead.csic.es</a>
+            Or you may wish to <strong>contact</strong> the <a href="https://www.eead.csic.es/compbio/" target="_blank">Computational and structural biology group</a>
+            at <a href="https://www.eead.csic.es">EEAD-CSIC</a>): <a href="mailto:compbio@eead.csic.es">compbio@eead.csic.es</a>
             <br/><br/>
            
             <strong>Funding</strong>

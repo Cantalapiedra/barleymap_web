@@ -1,11 +1,11 @@
 
 ## Contents
 
- - 1: [Barleymap overview](https://github.com/Cantalapiedra/barleymap_web#1-barleymap-overview)
- - 2: [Prerequisites](https://github.com/Cantalapiedra/barleymap_web#2-prerequisites)
- - 3: [Installation and configuration](https://github.com/Cantalapiedra/barleymap_web#3-installation-and-configuration)
- - 4: [Tools and algorithms](https://github.com/Cantalapiedra/barleymap_web#4-tools-and-algorithms)
- - 5: [Citation](https://github.com/Cantalapiedra/barleymap_web#5-citation)
+ - 1: [Barleymap overview](#1-barleymap-overview)
+ - 2: [Prerequisites](#2-prerequisites)
+ - 3: [Installation and configuration](#3-installation-and-configuration)
+ - 4: [Tools and algorithms](#4-tools-and-algorithms)
+ - 5: [Citation](#5-citation)
  
 ## 1) Barleymap overview
 
@@ -114,12 +114,12 @@ to configure the *src/bmap.conf* and *src/server.conf* files.
 
 ### 3.2) Configuration
 
-- 3.2.1: [Global configuration: the *paths.conf* file](https://github.com/Cantalapiedra/barleymap#321-global-configuration-the-pathsconf-file)
-- 3.2.2: [Databases: the *databases.conf* file](https://github.com/Cantalapiedra/barleymap#322-databases-the-databasesconf-file)
-- 3.2.3: [Maps: the *maps.conf* file](https://github.com/Cantalapiedra/barleymap#323-maps-the-mapsconf-file)
-- 3.2.4: [Graphs: the *graphs.conf* file](https://github.com/Cantalapiedra/barleymap#324-graphs-the-graphsconf-file)
-- 3.2.5: [Datasets: the *datasets.conf* file](https://github.com/Cantalapiedra/barleymap#325-datasets-the-datasetsconf-file)
-- 3.2.6: [Annotations: the *datasets_annotation.conf* file](https://github.com/Cantalapiedra/barleymap#326-annotations-the-datasets_annotationconf-file)
+- 3.2.1: [Global configuration: the *paths.conf* file](#321-global-configuration-the-pathsconf-file)
+- 3.2.2: [Databases: the *databases.conf* file](#322-databases-the-databasesconf-file)
+- 3.2.3: [Maps: the *maps.conf* file](#323-maps-the-mapsconf-file)
+- 3.2.4: [Graphs: the *graphs.conf* file](#324-graphs-the-graphsconf-file)
+- 3.2.5: [Datasets: the *datasets.conf* file](#325-datasets-the-datasetsconf-file)
+- 3.2.6: [Annotations: the *datasets_annotation.conf* file](#326-annotations-the-datasets_annotationconf-file)
    
 To configure barleymap you will need to edit the following **configuration files**
 under the *barleymap/conf* directory:

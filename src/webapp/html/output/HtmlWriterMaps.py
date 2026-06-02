@@ -57,6 +57,11 @@ class HtmlMapsWriter():
     
     def __go_html_links(self, go_term_list):
         return "<br/>".join([self.__go_html_set_links(x) for x in go_term_list.split(",")])
+
+    def __format_other_alignments_html(self, other_alignments):
+        if other_alignments in (None, "", "-"):
+            return str(other_alignments)
+        return "<br/>".join([item.strip() for item in str(other_alignments).split(";") if item.strip()])
     
     def __location_html_link(self, chrom, bp):
         return '<a href="http://plants.ensembl.org/Hordeum_vulgare/Location/View?r='+str(chrom)+':'+str(bp)+'" \
@@ -175,7 +180,7 @@ class HtmlMapsWriter():
                     self.output_buffer.append(td+"No"+"</td>")
                 
             ## Other alignments
-            self.output_buffer.append(td+pos.get_other_alignments().replace(";"," ")+"</td>")
+            self.output_buffer.append(td+self.__format_other_alignments_html(pos.get_other_alignments())+"</td>")
         
         return
     

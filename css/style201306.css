@@ -587,6 +587,22 @@ a[download="report.csv"]:hover {
     transform: translateY(-1px);
 }
 
+.back_button {
+    margin: 6px 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.back_button:hover {
+    transform: translateY(-1px);
+}
+
+.back_button img {
+    display: block;
+}
+
 .toggle_button {
     cursor: pointer;
     width: 46px !important;

@@ -6,7 +6,8 @@
 # Copyright (C)  2017 Carlos P Cantalapiedra.
 # (terms of use can be found within the distributed LICENSE file).
 
-import sys, os
+import sys, os, tempfile
+import xml.etree.ElementTree as ET
 
 from barleymapcore.m2p_exception import m2pException
 #from barleymapcore.maps.MapsBase import MapTypes
@@ -56,7 +57,7 @@ class HtmlWriter():
         url = self.get_back_url(action)
         img_url = self.get_back_button()
         if url and img_url:
-            self.output_buffer.append('<a class="boton" href="'+url+'"><img style="width:50px;height:40px;border:none;" src="'+img_url+'"/></a>')
+            self.output_buffer.append('<a class="boton back_button" href="'+url+'"><img style="width:38px;height:30px;border:none;" src="'+img_url+'"/></a>')
         else: raise m2pException("No URL or img_url provided for back button")
         return
     
@@ -219,27 +220,100 @@ class HtmlWriter():
         self.output_buffer.append("<br/>")
         return
     
-    def output_download_html_link(self, url, name):
+    def output_download_html_link(self, url, name, download_name = "report.csv"):
         if url and name:
-            self.output_buffer.append('<a href="'+url+'" download="report.csv">'+name+'</a>')
+            self.output_buffer.append('<a href="'+url+'" download="'+download_name+'">'+name+'</a>')
         else: raise m2pException("No URL or name provided to output_html_link in html_writer.py")
         return
     
-    def output_download_html_img(self, url, img_url):
+    def output_download_html_img(self, url, img_url, download_name = "report.csv", title = None, text = None):
         if url and img_url:
-            self.output_buffer.append('<br/><a href="'+url+'" download="report.csv"><img style="width:3%;height:3%;" src="'+img_url+'"/></a>')
+            title_attr = ""
+            if title:
+                title_attr = ' title="'+title+'"'
+            link_html = '<br/><a href="'+url+'" download="'+download_name+'"'+title_attr+'>'
+            link_html += '<img style="width:3%;height:3%;" src="'+img_url+'"/>'
+            if text:
+                link_html += '<span style="margin-left:6px;vertical-align:middle;">'+text+'</span>'
+            link_html += '</a>'
+            self.output_buffer.append(link_html)
         else:
             raise m2pException("No URL or img_url provided to output_html_link in html_writer.py")
         
         return
+
+    def output_download_html_button(self, url, img_url, label, download_name = "report.csv", title = None):
+        if url and img_url and label:
+            title_attr = ""
+            if title:
+                title_attr = ' title="'+title+'"'
+            self.output_buffer.append(
+                '<br/><a href="'+url+'" download="'+download_name+'"'+title_attr+
+                ' style="display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--color-success-border);border-radius:18px;background:var(--color-success-bg);color:var(--color-success);text-decoration:none;font-weight:600;font-size:13px;">'
+                '<img style="width:24px;height:24px;object-fit:contain;" src="'+img_url+'"/>'+
+                '<span>'+label+'</span></a>'
+            )
+        else:
+            raise m2pException("No URL, img_url or label provided to output_download_html_button in html_writer.py")
+
+        return
+
+    def _build_standalone_svg(self, svg_code):
+        standalone_svg = svg_code.strip()
+        if not standalone_svg:
+            raise m2pException("No SVG code to save.")
+
+        if not standalone_svg.startswith("<?xml"):
+            standalone_svg = '<?xml version="1.0" encoding="UTF-8"?>\n' + standalone_svg
+
+        if "<!DOCTYPE svg" not in standalone_svg:
+            standalone_svg = standalone_svg.replace(
+                "\n<svg ",
+                '\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n<svg ',
+                1
+            )
+
+        return standalone_svg
+
+    def _save_svg_tmp_file(self, svg_code, suffix):
+        if not svg_code:
+            raise m2pException("No SVG code to save.")
+
+        (file_desc, file_name) = tempfile.mkstemp(suffix=suffix, dir=self._tmp_files_path)
+        svg_file = None
+
+        try:
+            svg_file = os.fdopen(file_desc, 'w', encoding='utf-8')
+            standalone_svg = self._build_standalone_svg(svg_code)
+            try:
+                ET.fromstring(svg_code)
+            except ET.ParseError as e:
+                debug_file = None
+                debug_path = None
+                try:
+                    (debug_fd, debug_path) = tempfile.mkstemp(suffix=".invalid.svg", dir=self._tmp_files_path)
+                    debug_file = os.fdopen(debug_fd, 'w', encoding='utf-8')
+                    debug_file.write(standalone_svg)
+                finally:
+                    if debug_file:
+                        debug_file.close()
+                debug_msg = ""
+                if debug_path:
+                    debug_msg = ". Debug file: "+debug_path
+                raise m2pException("Generated SVG is not valid XML: "+str(e)+debug_msg)
+            svg_file.write(standalone_svg)
+        except Exception:
+            raise
+        finally:
+            if svg_file:
+                svg_file.close()
+
+        return file_name
     
-    def output_svg_img(self, svg_code, map_id, fine_mapping):
+    def output_svg_img(self, svg_code, map_id):
         if svg_code and svg_code != "":
             self.output_buffer.append('<br/>')
-            if fine_mapping:
-                self.output_buffer.append('<span id="graphical_maps_'+map_id+'_fine" style="display:none;">'+svg_code+'</span>')
-            else:
-                self.output_buffer.append('<span id="graphical_maps_'+map_id+'" style="display:initial;">'+svg_code+'</span>')
+            self.output_buffer.append('<span id="graphical_maps_'+map_id+'" style="display:initial;">'+svg_code+'</span>')
         return
     
     def output_html_top(self):
@@ -284,46 +358,12 @@ class HtmlWriter():
                 pos_position = 2
                 if map_has_bp_pos: graph_map_as_physical = True
         
-        ## button to change svg view (full chromosomes or fine mapping)
-        img_url = self.__base_url+"/img/lupa.png"
-        img2_url = self.__base_url+"/img/lupa_hover.png"
-        self.output_buffer.append("""
-                                 <br/><img title="toggle map view"
-                                 class="toggle_button"
-                                 id="toggle_view_button_{0}" border:none;"
-                                 /*onmouseover="hover(this);" onmouseout="unhover(this);"*/
-                                 src="{1}"/>
-                                 """.format(map_id, img_url))
-        
-        # Functions to change maps image (zoom or full maps) with the
-        # magnifying glass button
-        self.output_buffer.append("""
-        <script>
-            // Functions to change image with mouse over and out
-            /*function hover(element) {{
-                element.setAttribute('src', '{2}');
-            }}
-            function unhover(element) {{
-                element.setAttribute('src', '{1}');
-            }}*/
-            $("#toggle_view_button_{0}").click(function(){{
-                $("#graphical_maps_{0}").toggle();
-                $("#graphical_maps_{0}_fine").toggle();
-            }});
-        </script>
-        """.format(map_id, img_url, img2_url))
-        
-        ## Graphical maps with full chromosomes
+        ## Graphical map in normal view
         fine_mapping = False
         svg_code = bmap_svg_img.output_genetic_map(csv_file_name, genmap_path, map_chrom_order_path, graph_map_as_physical, fine_mapping, pos_position)
-        self.output_svg_img(svg_code, map_id, fine_mapping)
-        
-        ## Graphical maps with fine mapping
-        fine_mapping = True
-        svg_code = bmap_svg_img.output_genetic_map(csv_file_name, genmap_path, map_chrom_order_path, graph_map_as_physical, fine_mapping, pos_position)
-        self.output_svg_img(svg_code, map_id, fine_mapping)
-        
-        return
+        svg_file = self._save_svg_tmp_file(svg_code, "_map.svg")
+
+        return (svg_code, svg_file, map_id)
     
     def _output_map_title(self, map_section_link, section_name, map_name, top = True):
         
@@ -345,17 +385,19 @@ class HtmlWriter():
         if len(positions)>0:
             ## Title
             self._output_map_title(map_section_link, section_name, map_name, top = False)
-            
-            ## Graphical maps
-            self._output_graphical_maps(mapping_results, csv_file_name)
-            
-            ## CSV file download link
+
+            ## Graphical maps and download links
             try:
                 basename_csv_file = os.path.split(csv_file_name)[1]
+                (svg_code, svg_file_name, map_id) = self._output_graphical_maps(mapping_results, csv_file_name)
+                basename_svg_file = os.path.split(svg_file_name)[1]
+                self.output_download_html_button(self.__base_url+"/"+os.path.basename(self._tmp_files_path)+"/"+basename_svg_file, \
+                                                 self.__base_url+"/img/svg_download.svg", "Download SVG", basename_svg_file, "download SVG")
+                self.output_svg_img(svg_code, map_id)
                 self.output_download_html_img(self.__base_url+"/"+os.path.basename(self._tmp_files_path)+"/"+basename_csv_file, \
-                                                     self.__base_url+"/img/csv_download.jpg")
+                                              self.__base_url+"/img/csv_download.jpg")
             except m2pException as e:
-                self.output_text("No URL or name provided for CSV file.")
+                self.output_text("No URL or name provided for downloadable files.")
                 raise e
             
             ## Actual tabular map

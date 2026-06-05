@@ -5,6 +5,7 @@
 # Copyright (C)  2013-2014  Carlos P Cantalapiedra.
 # (terms of use can be found within the distributed LICENSE file).
 
+import re
 import sys
 from subprocess import Popen, PIPE
 
@@ -30,26 +31,24 @@ def output_genetic_map(map_csv_file, genmap_path, map_chrom_order_file, map_as_p
         # If could be a different one, but with morexgenome, ibsc and popseq they are the same
         command_params.append("--pos_position="+str(pos_position))
         command_params.append("--chrommax="+str(pos_position))
-        command_params.append(" | grep -v \"<?xml\" | grep -v \"<!DOCTYPE\"")
-        
-        command = " ".join(command_params)
         
         retValue = 0
-        #FNULL = open(os.devnull, 'w')
-        #if verbose:
-        #    p = Popen(gmap_cmd, shell=True, stdout=PIPE, stderr=sys.stderr)
-        #else:
-        p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE, text=True)
-        
-        #p = Popen(command, shell=True, stdout=PIPE, stderr=sys.stderr)
+        p = Popen(command_params, stdout=PIPE, stderr=PIPE, text=True)
+
         com_list = p.communicate()
         output = com_list[0]
         output_err = com_list[1]
         retValue = p.returncode
         
         if retValue != 0:
-            raise Exception("map_svg_img: genmap.pl return != 0. "+command+"\n"+str(output_err)+"\n")
+            raise Exception("map_svg_img: genmap.pl return != 0. "+" ".join(command_params)+"\n"+str(output_err)+"\n")
         
+        # genmap.pl emits some line-continuation backslashes that are fine for
+        # inline HTML display but break standalone SVG/XML parsing.
+        output = re.sub(r'\\\s*\n\s*', ' ', output)
+        output = re.sub(r'^\s*<\?xml[^>]*>\s*', '', output, flags=re.MULTILINE)
+        output = re.sub(r'^\s*<!DOCTYPE[^>]*>\s*', '', output, flags=re.MULTILINE)
+
         # Clean SVG code to embbed it in html5
         [svg_code.append(line) for line in output.strip().split("\n") if (line != "")]# and not line.startswith("#") and not line.startswith(">"))]
         
@@ -63,6 +62,6 @@ def output_genetic_map(map_csv_file, genmap_path, map_chrom_order_file, map_as_p
     
     sys.stderr.write("map_svg_img.py: svg file created.\n")
     
-    return "".join(svg_code)
+    return "\n".join(svg_code)
 
 ## END

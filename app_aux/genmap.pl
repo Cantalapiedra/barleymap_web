@@ -85,6 +85,18 @@ use strict;
 use warnings;
 use Getopt::Long;
 
+sub xml_escape {
+    my ($text) = @_;
+    return '' if !defined $text;
+    $text =~ s/&/&amp;/g;
+    $text =~ s/</&lt;/g;
+    $text =~ s/>/&gt;/g;
+    $text =~ s/"/&quot;/g;
+    $text =~ s/'/&apos;/g;
+    $text =~ s/([\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\xFF])/sprintf('&#x%X;', ord($1))/ge;
+    return $text;
+}
+
 #----------------------------------------------------------
 our ($VERSION) = 0.5;
 
@@ -290,6 +302,7 @@ if (defined $map && -r $map && (open my $IN, '<', $map))
         foreach my $chrnum (sort { $a <=> $b } keys %chromosomes)
         {
 	    my $chromname = $rev_chrom_conf{$chrnum}{"name"};
+	    my $chromname_xml = xml_escape($chromname);
 	    my $chrom_max = $rev_chrom_conf{$chrnum}{"max"};
 	    my $chrom_min = $rev_chrom_conf{$chrnum}{"min"};
 	    my $chrom_num = $rev_chrom_conf{$chrnum}{"num"};
@@ -307,8 +320,8 @@ if (defined $map && -r $map && (open my $IN, '<', $map))
 	    $chr_text_x = $yshift + ($CHR_WIDTH / 2); # ($yshift + 22);
 	    $chr_text_y = ((($shify + ((3 * $font[3]) / 2)) / 2) - $font[1]);
 	    
-            push @final, '  <text class="text" style="font-size:' . ((3 * $font[3]) / 2) . 'pt;" text-anchor="middle" \
-			    x="' . $chr_text_x . '" y="' . $chr_text_y . '">' . $chromname . '</text>';
+            push @final, '  <text class="text" style="font-size:' . ((3 * $font[3]) / 2) . 'pt;" text-anchor="middle" '
+			    . 'x="' . $chr_text_x . '" y="' . $chr_text_y . '">' . $chromname_xml . '</text>';
 	    #########################################
 	    
 	    #### LOCI LOOP
@@ -387,7 +400,7 @@ if (defined $map && -r $map && (open my $IN, '<', $map))
 		
 		if ($MAX_PER_CHR >= $chrom_num) {
 		    push @legend, '  <text class="text" style="fill:'.$color.'" x="' . $legend_x . '" y="' . $legend_y . '">' .
-				    $chromosomes{$chrnum}{$locus}[0] .
+				    xml_escape($chromosomes{$chrnum}{$locus}[0]) .
 				    '</text>';
 		}
 		
@@ -430,9 +443,10 @@ if (defined $map && -r $map && (open my $IN, '<', $map))
 	      . " c 0 -".$bezier_height." -" . $CHR_WIDTH . ' -'.$bezier_height.' -' . $CHR_WIDTH . " 0 " # upper bezier
 	      . " z\"/>\n  ";
 	    
-            push @final, '  </g>';
+            push @final, '  <g class="legend">';
             push @final, @legend;
-            push @final, ' </g>';
+            push @final, '  </g>';
+            push @final, '  </g>';
         }
 	### END OF CHROMOSOME LOOP
 	
@@ -445,32 +459,31 @@ if (defined $map && -r $map && (open my $IN, '<', $map))
 	my $svg_width = $yshift + $chr_width;
 	my $svg_height = $maxlabel+60;#$font[3];
 	
-        print {*STDOUT} "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n\
-	<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n";
+        print {*STDOUT} "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n";
+	print {*STDOUT} "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n";
 	
         print {*STDOUT} '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="', $svg_width, '" height="', $svg_height, "\">\n";
         print {*STDOUT} " <defs>\n";
 	
-        print {*STDOUT} "  <style type=\"text/css\">\n   .text { font-size: ", $font[3], 'pt; fill: #000; font-family: ', $font[0], "; }\n   \
-	.line { stroke:#000; stroke-width:", '1', "; fill:none; }\n";
+        print {*STDOUT} "  <style type=\"text/css\">\n   .text { font-size: ", $font[3], "pt; fill: #000; font-family: ", $font[0], "; }\n";
+	print {*STDOUT} "   .line { stroke:#000; stroke-width:1; fill:none; }\n";
         
-	print {*STDOUT} "   .whiteline { stroke:#999; stroke-width:1.5; fill:none; }\n   \
-		   .locus { fill:url(#lograd); }\n   \
-		   .chromosome { fill:url(#bgrad); }\n";
+	print {*STDOUT} "   .whiteline { stroke:#999; stroke-width:1.5; fill:none; }\n";
+	print {*STDOUT} "   .locus { fill:url(#lograd); }\n";
+	print {*STDOUT} "   .chromosome { fill:url(#bgrad); }\n";
 	
         print {*STDOUT} "  </style>\n";
 	
-	print {*STDOUT}
-	  "  <linearGradient id=\"bgrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n   \
-				<stop offset=\"0%\"   style=\"stop-color:#BBA\"/>\n   \
-				<stop offset=\"50%\"  style=\"stop-color:#FFE\"/>\n   \
-				<stop offset=\"100%\" style=\"stop-color:#BBA\"/>\n  \
-	    </linearGradient>\n  \
-	    <linearGradient id=\"lograd\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n   \
-				<stop offset=\"0%\"   style=\"stop-color:#000\"/>\n   \
-				<stop offset=\"50%\"  style=\"stop-color:#666\"/>\n   \
-				<stop offset=\"100%\" style=\"stop-color:#000\"/>\n  \
-	    </linearGradient>\n";
+	print {*STDOUT} "  <linearGradient id=\"bgrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n";
+	print {*STDOUT} "    <stop offset=\"0%\" style=\"stop-color:#BBA\"/>\n";
+	print {*STDOUT} "    <stop offset=\"50%\" style=\"stop-color:#FFE\"/>\n";
+	print {*STDOUT} "    <stop offset=\"100%\" style=\"stop-color:#BBA\"/>\n";
+	print {*STDOUT} "  </linearGradient>\n";
+	print {*STDOUT} "  <linearGradient id=\"lograd\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n";
+	print {*STDOUT} "    <stop offset=\"0%\" style=\"stop-color:#000\"/>\n";
+	print {*STDOUT} "    <stop offset=\"50%\" style=\"stop-color:#666\"/>\n";
+	print {*STDOUT} "    <stop offset=\"100%\" style=\"stop-color:#000\"/>\n";
+	print {*STDOUT} "  </linearGradient>\n";
 	      
         print {*STDOUT} " </defs>\n";
         print {*STDOUT} join("\n", @final), "\n";

@@ -24,6 +24,14 @@ from .HtmlWriterMaps import HtmlMapsWriter
 from . import bmap_svg_img
 
 BACK_BUTTON_IMG = "/img/back.png"
+SVG_DOWNLOAD_ICON = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 17" '
+    'style="width:24px;height:24px;display:block;fill:currentColor;" aria-hidden="true">'
+    '<path d="m 6.2053898,4.7033898 a 1.5,1.5 0 1 1 -3,0 1.5,1.5 0 0 1 3,0"/>'
+    '<path d="M 2.2053898,0.20338983 A 2,2 0 0 0 0.20538983,2.2033898 V 12.20339 a 2,2 0 0 0 1.99999997,2 H 14.20539 a 2,2 0 0 0 2,-2 V 2.2033898 a 2,2 0 0 0 -2,-1.99999997 z M 14.20539,1.2033898 a 1,1 0 0 1 1,1 v 6.5 l -3.777,-1.947 a 0.5,0.5 0 0 0 -0.577,0.093 l -3.7100002,3.7100002 -2.66,-1.7720002 a 0.5,0.5 0 0 0 -0.63,0.062 l -2.646,2.3540002 V 2.2033898 a 1,1 0 0 1 1,-1 z"/>'
+    '<path d="m 18.872882,11.279215 a 0.5,0.5 0 0 0 -1,0 v 3.792999 l -1.146,-1.147 a 0.5006316,0.5006316 0 1 0 -0.708,0.708 l 2,2 a 0.5,0.5 0 0 0 0.708,0 l 1.999999,-2 a 0.5006316,0.5006316 0 0 0 -0.707999,-0.708 l -1.146,1.147 z"/>'
+    '</svg>'
+)
 
 class HtmlWriter():
     output_buffer = None
@@ -242,19 +250,22 @@ class HtmlWriter():
         
         return
 
-    def output_download_html_button(self, url, img_url, label, download_name = "report.csv", title = None):
-        if url and img_url and label:
+    def output_download_html_button(self, url, img_url, label, download_name = "report.csv", title = None, icon_html = None):
+        if url and label and (img_url or icon_html):
             title_attr = ""
             if title:
                 title_attr = ' title="'+title+'"'
+            icon_markup = icon_html
+            if not icon_markup:
+                icon_markup = '<img style="width:24px;height:24px;object-fit:contain;" src="'+img_url+'"/>'
             self.output_buffer.append(
                 '<br/><a href="'+url+'" download="'+download_name+'"'+title_attr+
                 ' style="display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--color-success-border);border-radius:18px;background:var(--color-success-bg);color:var(--color-success);text-decoration:none;font-weight:600;font-size:13px;">'
-                '<img style="width:24px;height:24px;object-fit:contain;" src="'+img_url+'"/>'+
+                +icon_markup+
                 '<span>'+label+'</span></a>'
             )
         else:
-            raise m2pException("No URL, img_url or label provided to output_download_html_button in html_writer.py")
+            raise m2pException("No URL, icon or label provided to output_download_html_button in html_writer.py")
 
         return
 
@@ -392,7 +403,7 @@ class HtmlWriter():
                 (svg_code, svg_file_name, map_id) = self._output_graphical_maps(mapping_results, csv_file_name)
                 basename_svg_file = os.path.split(svg_file_name)[1]
                 self.output_download_html_button(self.__base_url+"/"+os.path.basename(self._tmp_files_path)+"/"+basename_svg_file, \
-                                                 self.__base_url+"/img/svg_download.svg", "Download SVG", basename_svg_file, "download SVG")
+                                                 None, "Download SVG", basename_svg_file, "download SVG", SVG_DOWNLOAD_ICON)
                 self.output_svg_img(svg_code, map_id)
                 self.output_download_html_img(self.__base_url+"/"+os.path.basename(self._tmp_files_path)+"/"+basename_csv_file, \
                                               self.__base_url+"/img/csv_download.jpg")

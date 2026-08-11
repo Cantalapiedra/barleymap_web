@@ -90,9 +90,9 @@ class HtmlLayoutBarleymap(object):
         <head>
             <meta charset="utf-8" />
             <title>Barleymap</title>
-            <meta content="CPCantalapiedra" name="CPCantalapiedra" />
+            <meta content="EEAD-CSIC" name="EEAD-CSIC" />
             <meta content="Map markers to the barley genome" name="Map markers to the barley genome" />
-            <meta content="barley, barleymap, physical map, genetic map, markers, mapping, bioinformatics, blast, gmap, genome, genomics" name="keywords" />
+            <meta content="barley, barleymap, physical map, genetic map, markers, mapping, bioinformatics, blast, gmap, genome, genomics, pangenome, graph" name="keywords" />
             <link rel="stylesheet" href="{0}" type="text/css" media="screen"/>
         </head>""".format(base_url+"/style.css")
     
@@ -176,6 +176,7 @@ class HtmlLayoutBarleymap(object):
 
             <br/><strong>Latest changes</strong><br/>
 <textarea id="changes" name="changes" rows="3" cols="120" readonly>
+11-08-2026 Preprint describing the new Graph feature [8]: https://www.biorxiv.org/content/10.64898/2026.08.06.741139v1
 30-04-2026 New visual interface and experimental Graph feature. Please let us know if you find any issues. 
 14-01-2026 Created table of IBSC2012 contigs with physical (MorexV3) and genetic positions (popseq2017) by user request,
 14-01-2026 see https://github.com/Cantalapiedra/barleymap/releases/tag/popseq2017.morexv3
@@ -251,7 +252,7 @@ class HtmlLayoutBarleymap(object):
             <br/><br/>
 
             <strong>Citation:</strong>
-            <a href="http://link.springer.com/article/10.1007%2Fs11032-015-0253-1">{1}</a>
+            <a href="https://www.biorxiv.org/content/10.64898/2026.08.06.741139v1">{1}</a>
             <br/><br/>
             <hr/>
             <br/>
@@ -310,7 +311,14 @@ class HtmlLayoutBarleymap(object):
             </a>
             Genome Biol 24, 223 doi: 10.1186/s13059-023-03071-z
             </cite>
+            </br>
 
+            <cite><sup>[8]</sup>Sarria et al. 2026
+            <a href="https://www.biorxiv.org/content/10.64898/2026.08.06.741139v1" target="_blank">
+            A pangenome-graph approach for mapping and imputing barley sequences
+            </a>
+            bioRxiv 2026.08.06.741139; doi: https://doi.org/10.64898/2026.08.06.741139
+            </cite> 
 
         """.format(base_url+"/help/", citation, base_url))
         

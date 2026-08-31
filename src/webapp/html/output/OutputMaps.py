@@ -99,7 +99,7 @@ class OutputMaps(object):
         
         
         html_writer.output_text("<strong>please cite</strong> "+
-                                "<a href='http://link.springer.com/article/10.1007%2Fs11032-015-0253-1' target='_blank' style='text-decoration:none;font-size:small;'>"+
+                                "<a href='https://doi.org/10.64898/2026.08.06.741139' target='_blank' style='text-decoration:none;font-size:small;'>"+
                                 paths_config.get_citation().replace("_", " ")+
                                 "</a>"+
                                 "<br/><br/>")

@@ -4,7 +4,7 @@
 # html_writer_maps.py is part of Barleymap web app.
 # Copyright (C)  2013-2014  Carlos P Cantalapiedra.
 # Copyright (C)  2017  Carlos P Cantalapiedra.
-# Copyright (C)  2024 Bruno Contreras Moreira 
+# Copyright (C)  2024-26 Bruno Contreras Moreira 
 # (terms of use can be found within the distributed LICENSE file).
 
 import sys

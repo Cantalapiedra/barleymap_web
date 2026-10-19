@@ -61,7 +61,16 @@ class HtmlMapsWriter():
     def __format_other_alignments_html(self, other_alignments):
         if other_alignments in (None, "", "-"):
             return str(other_alignments)
-        return "<br/>".join([item.strip() for item in str(other_alignments).split(";") if item.strip()])
+
+        other_alns = ''
+        for item in str(other_alignments).split(";"):
+            if item.strip():
+                if('/tmp_files/' not in item):
+                    other_alns = other_alns + "<br/>" + item.strip()
+                else:
+                    other_alns = other_alns + "<br/>" + "<a href=\"" + item.replace('/var/www/html','https://barleymap.eead.csic.es') + "\">FASTA</a>"
+        
+        return other_alns
     
     def __location_html_link(self, chrom, bp):
         return '<a href="http://plants.ensembl.org/Hordeum_vulgare/Location/View?r='+str(chrom)+':'+str(bp)+'" \

@@ -176,7 +176,8 @@ class HtmlLayoutBarleymap(object):
 
             <br/><strong>Latest changes</strong><br/>
 <textarea id="changes" name="changes" rows="3" cols="120" readonly>
-19-10-2026 FASTA links now produced in Graph mode to retrieve mapped graph segments
+20-10-2026 FASTA links now produced in Graph mode to retrieve mapped graph segments,
+20-10-2026 see https://bioinfoperl.blogspot.com/2026/10/barleymap-graph-now-produces-fasta.html                                
 11-08-2026 Preprint describing the new Graph feature [8]: https://www.biorxiv.org/content/10.64898/2026.08.06.741139v1
 30-04-2026 New visual interface and experimental Graph feature. Please let us know if you find any issues. 
 14-01-2026 Created table of IBSC2012 contigs with physical (MorexV3) and genetic positions (popseq2017) by user request,

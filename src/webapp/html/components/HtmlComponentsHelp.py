@@ -568,8 +568,11 @@ class HtmlComponentsHelp(object):
                                     <br/>This field is shown only if the "Markers with multiple mappings" option has been selected.
                                     <br/>
                                 </li>
-                                <li>other alignments. In <strong>Align mode</strong>, whether the current query sequence has other alignment targets which lack map position. 
-                                In <strong>Graph mode</strong>, list of matching locations among genomes making up the graph, ie <i>chr4H@HOR_2830:602386783-602388450(-)</i>
+                                <li>other alignments.
+                                <ul>
+                                  <li>In <strong>Align mode</strong>, whether the current query sequence has other alignment targets which lack map position.</li> 
+                                  <li>In <strong>Graph mode</strong>, list of matching locations among genomes making up the graph. For instance, <i>chr4H@HOR_2830:602386783-602388450(-)</i> is a location in chr4H of the HOR_2830 genome, in the reverse strand. Such locations are stacked, one per line, with a <strong>FASTA</strong> link below that can be right-clicked to download as a file with extension .fna that can be subsequently multiply aligned by the user.</li>
+                                </ul>  
                                 </li>
                             </ul>
                         

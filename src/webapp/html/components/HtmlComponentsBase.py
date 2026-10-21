@@ -167,23 +167,25 @@ class HtmlComponentsBase(object):
                     """)
         
         ############## email
-        output.append("""
-                    <fieldset style="border:none;text-align:center;">
-                        <label for="send_email">Send by e-mail</label>
-                        <input id="input_send_email" type="checkbox" name="send_email" value="1"
-                    """)
-        
-        if send_email == "1": output.append(" checked/>")
-        else: output.append(" />")
-        
-        if send_email == "1" and email_to: output.append('<input type="email" name="email_to" autocomplete="on" value="'+str(email_to)+'"/>')
-        else: output.append('<input type="email" name="email_to" autocomplete="on" value=""/>')
-        
-        output.append("""
-                        <br/><span id="email_text" class="explain_text">Results will be sent to the speficied address.</span>
-                        </fieldset>
-                        </td></tr></table>
-                        """)
+        #output.append("""
+        #            <fieldset style="border:none;text-align:center;">
+        #                <label for="send_email">Send by e-mail</label>
+        #                <input id="input_send_email" type="checkbox" name="send_email" value="1"
+        #            """)
+        #
+        #if send_email == "1": output.append(" checked/>")
+        #else: output.append(" />")
+        #
+        #if send_email == "1" and email_to: output.append('<input type="email" name="email_to" autocomplete="on" value="'+str(email_to)+'"/>')
+        #else: output.append('<input type="email" name="email_to" autocomplete="on" value=""/>')
+        #
+        #output.append("""
+        #                <br/><span id="email_text" class="explain_text">Results will be sent to the speficied address.</span>
+        #                </fieldset>
+        #                </td></tr></table>
+        #                """)
+
+        output.append("""<fieldset style="border:none;text-align:center;"></fieldset></td></tr></table>""");        
         
         return "".join(output)
     

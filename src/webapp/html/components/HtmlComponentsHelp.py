@@ -182,7 +182,7 @@ class HtmlComponentsHelp(object):
                         <br/><br/>
                         
                         <strong>Other parameters</strong> include whether to show or not markers with multiple mappings,
-                        whether to sort the output by centimorgans (cM) or basepairs (bp), and an option to send the results to an email address provided by the user.
+                        whether to sort the output by centimorgans (cM) or basepairs (bp).
                         Note that the option "Sort by" will be applied only for IBSC2012, which has both cM and bp positions available.
                         POPSEQ data will be always sorted by cM, and Morex Genome data by bp.
                         

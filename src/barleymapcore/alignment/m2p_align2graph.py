@@ -39,6 +39,7 @@ def __align2graph(align2graph_app_path, n_threads, threshold_id, threshold_cov, 
                    " --minident ", str(threshold_id), \
                    " --mincover ", str(threshold_cov), \
                    " --add_ranges both", \
+                   " --save_fasta", \
                    " --tmp_path /var/www/html/barleymap/tmp_files", \
                    " ",query_fasta_path,
                    ])
